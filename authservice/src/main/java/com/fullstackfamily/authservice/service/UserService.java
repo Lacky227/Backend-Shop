@@ -2,16 +2,17 @@ package com.fullstackfamily.authservice.service;
 
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.regex.Pattern;
 
 @Service
+@AllArgsConstructor
 public class UserService {
-
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public User registerUser(User user) {
 
@@ -35,7 +36,7 @@ public class UserService {
             throw new IllegalArgumentException("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
         }
 
-
+        user.setPassword(passwordEncoder.encode(password));
         return userRepository.save(user);
     }
 }
