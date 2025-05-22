@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(pom.xml): add dependencies API Gateway, WebFlux, Eureka">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(config-GatewayConfig): create GatewayConfig" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -196,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747916483163</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="feat(config-GatewayConfig): create GatewayConfig">
+      <option name="closed" value="true" />
+      <created>1747948404877</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747948404877</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +219,7 @@
     <MESSAGE value="feat(service-JwtService): create JWTService for generate token and extract all claims" />
     <MESSAGE value="refactor(config-SecurityConfig): remove an imports and security filter chain" />
     <MESSAGE value="feat(pom.xml): add dependencies API Gateway, WebFlux, Eureka" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(pom.xml): add dependencies API Gateway, WebFlux, Eureka" />
+    <MESSAGE value="feat(config-GatewayConfig): create GatewayConfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(config-GatewayConfig): create GatewayConfig" />
   </component>
 </project>
