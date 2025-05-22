@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(service-JwtService): add PasswordEncoder by BCryptPasswordEncoder" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: create a common-jwt service for generating JWT token and extract all claims" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -132,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747852747121</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: create a common-jwt service for generating JWT token and extract all claims">
+      <option name="closed" value="true" />
+      <created>1747911941146</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747911941146</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +152,7 @@
     <MESSAGE value="feat(service-JwtService): create JwtService for generate JWT token" />
     <MESSAGE value="feat(service-JwtService): add role for generating token" />
     <MESSAGE value="feat(service-JwtService): add PasswordEncoder by BCryptPasswordEncoder" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(service-JwtService): add PasswordEncoder by BCryptPasswordEncoder" />
+    <MESSAGE value="feat: create a common-jwt service for generating JWT token and extract all claims" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: create a common-jwt service for generating JWT token and extract all claims" />
   </component>
 </project>
