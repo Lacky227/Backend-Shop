@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="refactor(service-UserService): integrate PasswordEncoder and switch to @AllArgsConstructor">
+    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,12 +35,16 @@
     &quot;assignee&quot;: &quot;makdy2&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Lacky227/Backend-Shop.git&quot;,
-    &quot;accountId&quot;: &quot;19ac6e48-c4ba-41e6-bd67-df7c6bc9cff0&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Lacky227/Backend-Shop.git",
+    "accountId": "2d7ef67e-c1ec-4ed3-abd3-e51150d58f08"
   }
-}</component>
+}]]></component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MavenRunner">
     <option name="jreName" value="jbr-21" />
   </component>
@@ -51,33 +56,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/addUser&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.archetype.catalogs&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/addUser",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.archetype.catalogs",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "module",
+      "repository"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;,
-      &quot;PLAIN_TEXT&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA",
+      "PLAIN_TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Spring Boot.AuthserviceApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Backend-Shop" />
@@ -109,8 +115,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.109" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.109" />
       </set>
     </attachedChunks>
   </component>
@@ -123,6 +129,7 @@
       <updated>1747915782416</updated>
       <workItem from="1747915784272" duration="1255000" />
       <workItem from="1747917063087" duration="9532000" />
+      <workItem from="1748034170534" duration="620000" />
     </task>
     <task id="LOCAL-00001" summary="feat: create user entity">
       <option name="closed" value="true" />
@@ -156,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747949099358</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration">
+      <option name="closed" value="true" />
+      <created>1748034476144</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1748034476144</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,7 +193,8 @@
     <MESSAGE value="feat: create user repository" />
     <MESSAGE value="feat: update user repository" />
     <MESSAGE value="refactor(service-UserService): integrate PasswordEncoder and switch to @AllArgsConstructor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-UserService): integrate PasswordEncoder and switch to @AllArgsConstructor" />
+    <MESSAGE value="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
