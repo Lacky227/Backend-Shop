@@ -39,4 +39,31 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));
         return userRepository.save(user);
     }
+
+
+    public User loginUser(String username, String password) {
+
+        String usernameRegex = "^[a-zA-Z0-9!@#$%^&*()_+\\-=<>?.:,]{5,15}$";
+        if (!Pattern.matches(usernameRegex, username)) {
+            throw new IllegalArgumentException("Недійсний логін. Повинен містити 5-15 символів, включаючи латинські літери, цифри та спеціальні символи, без пробілів і кирилиці.");
+        }
+
+
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("Користувача з таким логіном не знайдено."));
+
+
+        if (password.length() > 50 || password.contains(" ") || password.matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
+            throw new IllegalArgumentException("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
+        }
+
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("Неправильний пароль.");
+        }
+
+        return user;
+    }
+
 }
+
+
