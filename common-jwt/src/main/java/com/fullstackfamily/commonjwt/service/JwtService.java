@@ -24,6 +24,12 @@ public class JwtService {
                 .compact();
     }
 
+    public String extractEmail(String token) {
+        return extractAllClaims(token).getSubject();
+    }
+    public String extractRole(String token) {
+        return extractAllClaims(token).get("role").toString();
+    }
     public Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(getSignInKey())
@@ -35,5 +41,12 @@ public class JwtService {
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
+    }
+    public boolean isTokenValid(String token) {
+        return !isTokenExpired(token);
+    }
+
+    private boolean isTokenExpired(String token) {
+        return extractAllClaims(token).getExpiration().before(new Date());
     }
 }
