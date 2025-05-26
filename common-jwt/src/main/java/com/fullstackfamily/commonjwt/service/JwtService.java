@@ -14,9 +14,9 @@ import java.util.Date;
 public class JwtService {
     private static final String SECRET_KEY = "3F1F6A0A2B4E6F8C9D0E11223344556677889900AABBCCDDEEFF001122334455";
 
-    public String generateToken(String username, String role) {
+    public String generateToken(String email, String role) {
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(email)
                 .claim("role", role)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))

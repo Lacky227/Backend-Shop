@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(config-GatewayConfig): create GatewayConfig" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(service-JwtService): create JWTService for generate token and extract all claims">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/config/SecurityConfig.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,38 +57,17 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/create-api-gareway",
+    "git-widget-placeholder": "fix/authservice-remove-filter",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="KtorApplicationConfigurationType" />
-        <option value="MicronautRunConfigurationType" />
-        <option value="QuarkusRunConfigurationType" />
-        <option value="SpringBootApplicationConfigurationType" />
-      </set>
-    </option>
-  </component>
   <component name="RunManager" selected="Spring Boot.AuthserviceApplication">
-    <configuration name="ApigatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="apigateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.apigateway.ApigatewayApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AuthserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="authservice" />
@@ -178,31 +160,7 @@
       <option name="project" value="LOCAL" />
       <updated>1747912338036</updated>
     </task>
-    <task id="LOCAL-00008" summary="refactor(config-SecurityConfig): remove an imports and security filter chain">
-      <option name="closed" value="true" />
-      <created>1747914332095</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1747914332095</updated>
-    </task>
-    <task id="LOCAL-00009" summary="feat(pom.xml): add dependencies API Gateway, WebFlux, Eureka">
-      <option name="closed" value="true" />
-      <created>1747916483163</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1747916483163</updated>
-    </task>
-    <task id="LOCAL-00010" summary="feat(config-GatewayConfig): create GatewayConfig">
-      <option name="closed" value="true" />
-      <created>1747948404877</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1747948404877</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,9 +175,6 @@
     <MESSAGE value="feat: create a common-jwt service for generating JWT token and extract all claims" />
     <MESSAGE value="chore(pom.xml): add dependencies for JWT" />
     <MESSAGE value="feat(service-JwtService): create JWTService for generate token and extract all claims" />
-    <MESSAGE value="refactor(config-SecurityConfig): remove an imports and security filter chain" />
-    <MESSAGE value="feat(pom.xml): add dependencies API Gateway, WebFlux, Eureka" />
-    <MESSAGE value="feat(config-GatewayConfig): create GatewayConfig" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(config-GatewayConfig): create GatewayConfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(service-JwtService): create JWTService for generate token and extract all claims" />
   </component>
 </project>
