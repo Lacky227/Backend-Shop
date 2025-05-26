@@ -77,7 +77,7 @@ public class UserService {
             throw new IllegalArgumentException("Неправильний пароль.");
         }
         AuthResponse authResponse = new AuthResponse();
-        authResponse.setToken(jwtService.generateToken(user.get().getUsername(), user.get().getRole()));
+        authResponse.setToken(jwtService.generateToken(user.get().getEmail(), user.get().getRole()));
         authResponse.setRole(user.get().getRole());
         return ResponseEntity.ok(authResponse);
     }

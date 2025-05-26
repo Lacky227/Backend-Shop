@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat(dto-AuthResponse): add AuthResponse DTO for authentication response">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="refactor(service-JwtService): replace in generateToken username to email">
       <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +62,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "feature/add-jwt-authservice",
+    "git-widget-placeholder": "feature/refactor-username-email",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -190,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748282653494</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactor(service-JwtService): replace in generateToken username to email">
+      <option name="closed" value="true" />
+      <created>1748286098753</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1748286098753</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +222,8 @@
     <MESSAGE value="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration" />
     <MESSAGE value="feat(dto-LoginRequest): add LoginRequest DTO for user auth" />
     <MESSAGE value="feat(dto-AuthResponse): add AuthResponse DTO for authentication response" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(dto-AuthResponse): add AuthResponse DTO for authentication response" />
+    <MESSAGE value="refactor(service-JwtService): replace in generateToken username to email" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-JwtService): replace in generateToken username to email" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
