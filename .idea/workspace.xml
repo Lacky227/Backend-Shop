@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat(workspace.xml): I dont know" />
+    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat: create user service">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,6 +124,9 @@
       <updated>1747915782416</updated>
       <workItem from="1747915784272" duration="1255000" />
       <workItem from="1747917063087" duration="9532000" />
+      <workItem from="1748009124155" duration="4478000" />
+      <workItem from="1748021957603" duration="1640000" />
+      <workItem from="1748195215266" duration="2317000" />
     </task>
     <task id="LOCAL-00001" summary="feat: create user entity">
       <option name="closed" value="true" />
