@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="refactor(service-JwtService): replace in generateToken username to email">
+    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="refactor(service-UserService): replace in loginUser method generateToken username to email">
       <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748286098753</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="refactor(service-UserService): replace in loginUser method generateToken username to email">
+      <option name="closed" value="true" />
+      <created>1748286331577</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1748286331577</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +231,8 @@
     <MESSAGE value="feat(dto-LoginRequest): add LoginRequest DTO for user auth" />
     <MESSAGE value="feat(dto-AuthResponse): add AuthResponse DTO for authentication response" />
     <MESSAGE value="refactor(service-JwtService): replace in generateToken username to email" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-JwtService): replace in generateToken username to email" />
+    <MESSAGE value="refactor(service-UserService): replace in loginUser method generateToken username to email" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-UserService): replace in loginUser method generateToken username to email" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

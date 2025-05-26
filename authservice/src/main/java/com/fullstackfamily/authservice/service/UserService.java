@@ -70,11 +70,11 @@ public class UserService {
         }
 
         if (request.getPassword().length() > 50 || request.getPassword().contains(" ") || request.getPassword().matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
-            throw new IllegalArgumentException("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
+            return ResponseEntity.badRequest().body("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
-            throw new IllegalArgumentException("Неправильний пароль.");
+            return ResponseEntity.badRequest().body("Невірний пароль.");
         }
         AuthResponse authResponse = new AuthResponse();
         authResponse.setToken(jwtService.generateToken(user.get().getEmail(), user.get().getRole()));
