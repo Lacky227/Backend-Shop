@@ -1,8 +1,10 @@
 package com.fullstackfamily.authservice.service;
 
+import com.fullstackfamily.authservice.dto.RegisterRequest;
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,30 +16,35 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public User registerUser(User user) {
+    public ResponseEntity<String> registerUser(RegisterRequest request) {
 
-        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-            throw new IllegalArgumentException("Ім'я користувача вже зайняте");
+        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
+            return ResponseEntity.badRequest().body("Ім'я користувача вже зайняте");
         }
 
-        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("Електронна пошта вже використовується");
+        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+            return ResponseEntity.badRequest().body("Почта користувача вже зайнята");
         }
 
 
         String usernameRegex = "^[a-zA-Z0-9!@#$%^&*()_+\\-=<>?.:,]{5,15}$";
-        if (!Pattern.matches(usernameRegex, user.getUsername())) {
-            throw new IllegalArgumentException("Недійсне ім'я користувача. Повинно містити 5-15 символів, включаючи дозволені символи.");
+        if (!Pattern.matches(usernameRegex, request.getUsername())) {
+            return ResponseEntity.badRequest().body("Недійсне ім'я користувача. Повинно містити 5-15 символів, включаючи дозволені символи.");
         }
 
 
-        String password = user.getPassword();
+        String password = request.getPassword();
         if (password.length() > 50 || password.contains(" ") || password.matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
-            throw new IllegalArgumentException("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
+            return ResponseEntity.badRequest().body("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
         }
-
+        User user = new User();
+        user.setUsername(request.getUsername());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
+        user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(password));
-        return userRepository.save(user);
+        userRepository.save(user);
+        return ResponseEntity.ok("Зарегистрировано");
     }
 
 
