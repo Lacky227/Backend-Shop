@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat(dto-LoginRequest): add LoginRequest DTO for user auth">
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748034476144</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat(dto-LoginRequest): add LoginRequest DTO for user auth">
+      <option name="closed" value="true" />
+      <created>1748280948951</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1748280948951</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,7 +201,8 @@
     <MESSAGE value="feat: update user repository" />
     <MESSAGE value="refactor(service-UserService): integrate PasswordEncoder and switch to @AllArgsConstructor" />
     <MESSAGE value="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration" />
+    <MESSAGE value="feat(dto-LoginRequest): add LoginRequest DTO for user auth" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(dto-LoginRequest): add LoginRequest DTO for user auth" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
