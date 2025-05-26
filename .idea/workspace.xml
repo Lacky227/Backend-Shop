@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat: create user service">
+    <list default="true" id="a5f6c1cc-b973-46cd-87d9-37cea5647496" name="Changes" comment="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +37,12 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Lacky227/Backend-Shop.git&quot;,
-    &quot;accountId&quot;: &quot;19ac6e48-c4ba-41e6-bd67-df7c6bc9cff0&quot;
+    &quot;accountId&quot;: &quot;2d7ef67e-c1ec-4ed3-abd3-e51150d58f08&quot;
   }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
 }</component>
   <component name="MavenRunner">
     <option name="jreName" value="jbr-21" />
@@ -57,6 +60,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;feature/addUser&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -110,8 +114,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.109" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.109" />
       </set>
     </attachedChunks>
   </component>
@@ -124,9 +128,7 @@
       <updated>1747915782416</updated>
       <workItem from="1747915784272" duration="1255000" />
       <workItem from="1747917063087" duration="9532000" />
-      <workItem from="1748009124155" duration="4478000" />
-      <workItem from="1748021957603" duration="1640000" />
-      <workItem from="1748195215266" duration="2317000" />
+      <workItem from="1748034170534" duration="620000" />
     </task>
     <task id="LOCAL-00001" summary="feat: create user entity">
       <option name="closed" value="true" />
@@ -152,7 +154,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747945179762</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor(service-UserService): integrate PasswordEncoder and switch to @AllArgsConstructor">
+      <option name="closed" value="true" />
+      <created>1747949099358</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747949099358</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration">
+      <option name="closed" value="true" />
+      <created>1748034476144</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1748034476144</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -173,7 +191,9 @@
     <MESSAGE value="feat: create user entity" />
     <MESSAGE value="feat: create user repository" />
     <MESSAGE value="feat: update user repository" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: update user repository" />
+    <MESSAGE value="refactor(service-UserService): integrate PasswordEncoder and switch to @AllArgsConstructor" />
+    <MESSAGE value="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(dto-RegisterRequest): add RegisterRequest DTO for user registration" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
