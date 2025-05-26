@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(pom.xml): add dependency common-jwt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway">
+      <change beforePath="$PROJECT_DIR$/apigateway/src/main/java/com/fullstackfamily/apigateway/config/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/apigateway/src/main/java/com/fullstackfamily/apigateway/config/GatewayConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +186,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748289997521</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat(config-JwtConfig): add JwtConfig for JwtService bean initialization">
+      <option name="closed" value="true" />
+      <created>1748297462679</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1748297462679</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway">
+      <option name="closed" value="true" />
+      <created>1748297589396</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1748297589396</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +218,8 @@
     <MESSAGE value="chore(pom.xml): add dependencies for JWT" />
     <MESSAGE value="feat(service-JwtService): create JWTService for generate token and extract all claims" />
     <MESSAGE value="feat(pom.xml): add dependency common-jwt" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(pom.xml): add dependency common-jwt" />
+    <MESSAGE value="feat(config-JwtConfig): add JwtConfig for JwtService bean initialization" />
+    <MESSAGE value="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway" />
   </component>
 </project>
