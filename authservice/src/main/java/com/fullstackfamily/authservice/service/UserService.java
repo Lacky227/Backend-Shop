@@ -1,14 +1,19 @@
 package com.fullstackfamily.authservice.service;
 
+import com.fullstackfamily.authservice.dto.AuthResponse;
 import com.fullstackfamily.authservice.dto.LoginRequest;
 import com.fullstackfamily.authservice.dto.RegisterRequest;
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
+import com.fullstackfamily.commonjwt.service.JwtService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
@@ -16,6 +21,7 @@ import java.util.regex.Pattern;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService = new JwtService();
 
     public ResponseEntity<String> registerUser(RegisterRequest request) {
 
@@ -49,29 +55,32 @@ public class UserService {
     }
 
 
-    public User loginUser(LoginRequest request) {
+    public ResponseEntity<?> loginUser(LoginRequest request) {
 
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         if (!Pattern.matches(emailRegex, request.getEmail())) {
-            throw new IllegalArgumentException("Недійсний email. Введіть коректну адресу електронної пошти.");
+            return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
         }
 
 
-        User user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("Користувача з таким логіном не знайдено."));
+        Optional<User> user = userRepository.findByEmail(request.getEmail());
 
+        if (user.isEmpty()) {
+            return ResponseEntity.badRequest().body("Невірний email.");
+        }
 
         if (request.getPassword().length() > 50 || request.getPassword().contains(" ") || request.getPassword().matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
             throw new IllegalArgumentException("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
         }
 
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
             throw new IllegalArgumentException("Неправильний пароль.");
         }
-
-        return user;
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setToken(jwtService.generateToken(user.get().getUsername(), user.get().getRole()));
+        authResponse.setRole(user.get().getRole());
+        return ResponseEntity.ok(authResponse);
     }
-
 }
 
 
