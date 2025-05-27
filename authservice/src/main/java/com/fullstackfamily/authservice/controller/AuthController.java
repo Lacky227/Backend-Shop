@@ -1,4 +1,4 @@
-package com.fullstackfamily.authservice.Controller;
+package com.fullstackfamily.authservice.controller;
 
 
 import com.fullstackfamily.authservice.dto.LoginRequest;
