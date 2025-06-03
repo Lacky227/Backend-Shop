@@ -26,7 +26,7 @@ public class UserService {
     public ResponseEntity<String> registerUser(RegisterRequest request) {
 
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Ім'я користувача вже зайняте");
+            return ResponseEntity.badRequest().body("Ім'я користувача зайняте");
         }
 
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
