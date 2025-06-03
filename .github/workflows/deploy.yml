@@ -1,0 +1,33 @@
+name: Deploy to Google VM
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Upload project files to VM via SCP
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_KEY }}
+          source: "."
+          target: "/home/${{ secrets.VM_USER }}/Backend-Shop"
+
+      - name: Run docker-compose on VM via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_KEY }}
+          script: |
+            cd /home/${{ secrets.VM_USER }}/Backend-Shop
+            docker-compose down
+            docker-compose up --build -d
