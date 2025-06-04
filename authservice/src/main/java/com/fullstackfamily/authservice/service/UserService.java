@@ -7,8 +7,6 @@ import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
 import com.fullstackfamily.commonjwt.service.JwtService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
