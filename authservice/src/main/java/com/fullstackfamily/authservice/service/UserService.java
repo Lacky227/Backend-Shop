@@ -5,7 +5,6 @@ import com.fullstackfamily.authservice.dto.LoginRequest;
 import com.fullstackfamily.authservice.dto.RegisterRequest;
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
-import com.fullstackfamily.commonjwt.service.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
