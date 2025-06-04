@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(api-gateway-config.GatewayConfig): I don`t know">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-    </list>
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: reset build in Dockerfile" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -228,7 +226,31 @@
       <option name="project" value="LOCAL" />
       <updated>1748378512065</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="feat: add build in Dockerfile">
+      <option name="closed" value="true" />
+      <created>1749052647454</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1749052647454</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: reset build in Dockerfile">
+      <option name="closed" value="true" />
+      <created>1749052726556</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1749052726556</updated>
+    </task>
+    <task id="LOCAL-00014" summary="feat: reset build in Dockerfile">
+      <option name="closed" value="true" />
+      <created>1749052821742</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1749052821742</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +269,19 @@
     <MESSAGE value="feat(config-JwtConfig): add JwtConfig for JwtService bean initialization" />
     <MESSAGE value="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway" />
     <MESSAGE value="chore(auth-service-application.properties): add configuration with PostgreSQL and rechange to port 8081" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore(auth-service-application.properties): add configuration with PostgreSQL and rechange to port 8081" />
+    <MESSAGE value="feat: add build in Dockerfile" />
+    <MESSAGE value="feat: reset build in Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: reset build in Dockerfile" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
