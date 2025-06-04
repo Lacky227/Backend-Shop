@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService = new JwtService();
+    private final JwtService jwtService;
 
     public ResponseEntity<String> registerUser(RegisterRequest request) {
 
