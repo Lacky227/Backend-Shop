@@ -1,6 +1,6 @@
 package com.fullstackfamily.apigateway.filter;
 
-import com.fullstackfamily.commonjwt.service.JwtService;
+import com.fullstackfamily.apigateway.service.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
