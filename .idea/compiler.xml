@@ -14,12 +14,14 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
         </processorPath>
         <module name="apigateway" />
         <module name="authservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="backend-shop" target="1.5" />
       <module name="common-jwt" target="21" />
     </bytecodeTargetLevel>
   </component>

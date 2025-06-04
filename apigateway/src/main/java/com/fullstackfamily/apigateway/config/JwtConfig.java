@@ -1,6 +1,6 @@
 package com.fullstackfamily.apigateway.config;
 
-import com.fullstackfamily.commonjwt.service.JwtService;
+import com.fullstackfamily.apigateway.service.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
