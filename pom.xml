@@ -10,7 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>common-jwt</module>
         <module>authservice</module>
         <module>apigateway</module>
     </modules>

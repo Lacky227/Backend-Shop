@@ -5,8 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: reset build version current">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/java/com/fullstackfamily/commonjwt/CommonJwtApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/java/com/fullstackfamily/commonjwt/service/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/test/java/com/fullstackfamily/commonjwt/CommonJwtApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,12 +45,12 @@
     &quot;assignee&quot;: &quot;Lacky227&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Lacky227/Backend-Shop.git&quot;,
-    &quot;accountId&quot;: &quot;2d7ef67e-c1ec-4ed3-abd3-e51150d58f08&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Lacky227/Backend-Shop",
+    "accountId": "cc9ff338-c05d-4921-abb0-176499c38a37"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -65,7 +74,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "develop",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -123,8 +132,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
       </set>
     </attachedChunks>
   </component>
