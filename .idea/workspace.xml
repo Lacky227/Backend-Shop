@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: reset build in Dockerfile">
-      <change beforePath="$PROJECT_DIR$/apigateway/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/apigateway/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/Dockerfile" afterDir="false" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: fix space">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/java/com/fullstackfamily/commonjwt/CommonJwtApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/java/com/fullstackfamily/commonjwt/service/JwtService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-jwt/src/test/java/com/fullstackfamily/commonjwt/CommonJwtApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +48,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Lacky227/Backend-Shop.git&quot;,
-    &quot;accountId&quot;: &quot;2d7ef67e-c1ec-4ed3-abd3-e51150d58f08&quot;
+    &quot;url&quot;: &quot;https://github.com/Lacky227/Backend-Shop&quot;,
+    &quot;accountId&quot;: &quot;cc9ff338-c05d-4921-abb0-176499c38a37&quot;
   }
 }</component>
   <component name="KubernetesApiPersistence">{}</component>
@@ -65,7 +75,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "hotfix/validation-login",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -123,8 +133,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
+        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
       </set>
     </attachedChunks>
   </component>
@@ -261,11 +271,54 @@
       <option name="project" value="LOCAL" />
       <updated>1749053030674</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat: reset build version">
+      <option name="closed" value="true" />
+      <created>1749053318832</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1749053318832</updated>
+    </task>
+    <task id="LOCAL-00017" summary="feat: reset build version current">
+      <option name="closed" value="true" />
+      <created>1749053577188</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1749053577188</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat: fix space">
+      <option name="closed" value="true" />
+      <created>1749155954502</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1749155954502</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: fix space">
+      <option name="closed" value="true" />
+      <created>1749155958441</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1749155958441</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init develop 2" />
@@ -282,17 +335,9 @@
     <MESSAGE value="chore(auth-service-application.properties): add configuration with PostgreSQL and rechange to port 8081" />
     <MESSAGE value="feat: add build in Dockerfile" />
     <MESSAGE value="feat: reset build in Dockerfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: reset build in Dockerfile" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: reset build version" />
+    <MESSAGE value="feat: reset build version current" />
+    <MESSAGE value="feat: fix space" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: fix space" />
   </component>
 </project>

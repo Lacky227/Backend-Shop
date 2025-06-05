@@ -60,12 +60,6 @@ public class UserService {
             return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
         }
 
-        if (!userRepository.findByEmail(request.getEmail()).equals("")) {
-            return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
-
-        }
-
-
         Optional<User> user = userRepository.findByEmail(request.getEmail());
 
         if (user.isEmpty()) {
