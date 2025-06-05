@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: reset build version current">
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
-    </list>
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: fix space" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -276,7 +274,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749053577188</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="feat: fix space">
+      <option name="closed" value="true" />
+      <created>1749155954502</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1749155954502</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: fix space">
+      <option name="closed" value="true" />
+      <created>1749155958441</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1749155958441</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,6 +324,7 @@
     <MESSAGE value="feat: reset build in Dockerfile" />
     <MESSAGE value="feat: reset build version" />
     <MESSAGE value="feat: reset build version current" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: reset build version current" />
+    <MESSAGE value="feat: fix space" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: fix space" />
   </component>
 </project>
