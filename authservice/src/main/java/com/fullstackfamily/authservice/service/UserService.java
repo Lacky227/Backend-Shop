@@ -38,9 +38,10 @@ public class UserService {
 
 
         String password = request.getPassword();
-        if (password.length() > 50 || password.contains(" ") || password.matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
+        if (password.length() > 50 || password.contains("") || password.matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
             return ResponseEntity.badRequest().body("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
         }
+
         User user = new User();
         user.setUsername(request.getUsername());
         user.setFirstName(request.getFirstName());
@@ -59,6 +60,11 @@ public class UserService {
             return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
         }
 
+        if (!userRepository.findByEmail(request.getEmail()).equals("")) {
+            return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
+
+        }
+
 
         Optional<User> user = userRepository.findByEmail(request.getEmail());
 
@@ -66,7 +72,7 @@ public class UserService {
             return ResponseEntity.badRequest().body("Невірний email.");
         }
 
-        if (request.getPassword().length() > 50 || request.getPassword().contains(" ") || request.getPassword().matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
+        if (request.getPassword().length() > 50 || request.getPassword().contains("") || request.getPassword().matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
             return ResponseEntity.badRequest().body("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
         }
 
