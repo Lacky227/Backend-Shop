@@ -20,6 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="backend-shop" target="1.5" />
       <module name="common-jwt" target="21" />
     </bytecodeTargetLevel>
   </component>

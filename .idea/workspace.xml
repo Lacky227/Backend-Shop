@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: fix space">
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(service-UserService): use ValidationUtils class for validation">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/java/com/fullstackfamily/commonjwt/CommonJwtApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/java/com/fullstackfamily/commonjwt/service/JwtService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-jwt/src/test/java/com/fullstackfamily/commonjwt/CommonJwtApplicationTests.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -66,6 +56,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -75,7 +66,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "hotfix/validation-login",
+    "git-widget-placeholder": "refactor/login-register",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -86,7 +77,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "profiler.jvm",
+    "settings.editor.selected.configurable": "Docker",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -105,7 +96,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AuthserviceApplication">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
     <configuration name="ApigatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="apigateway" />
@@ -129,6 +120,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -150,6 +158,8 @@
       <workItem from="1747910613381" duration="548000" />
       <workItem from="1747913247638" duration="351000" />
       <workItem from="1748982830284" duration="2293000" />
+      <workItem from="1749206770248" duration="3888000" />
+      <workItem from="1749211074864" duration="484000" />
     </task>
     <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
       <option name="closed" value="true" />
@@ -303,7 +313,39 @@
       <option name="project" value="LOCAL" />
       <updated>1749155958441</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="refactor(validation-Valid): put methods in static">
+      <option name="closed" value="true" />
+      <created>1749207003377</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1749207003377</updated>
+    </task>
+    <task id="LOCAL-00021" summary="refactor(validation-Valid): rename method usernameRegex to usernameInvalid">
+      <option name="closed" value="true" />
+      <created>1749208169485</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1749208169485</updated>
+    </task>
+    <task id="LOCAL-00022" summary="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass">
+      <option name="closed" value="true" />
+      <created>1749208584776</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1749208584776</updated>
+    </task>
+    <task id="LOCAL-00023" summary="refactor(service-UserService): use ValidationUtils class for validation">
+      <option name="closed" value="true" />
+      <created>1749208800281</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1749208800281</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,6 +380,10 @@
     <MESSAGE value="feat: reset build version" />
     <MESSAGE value="feat: reset build version current" />
     <MESSAGE value="feat: fix space" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: fix space" />
+    <MESSAGE value="refactor(validation-Valid): put methods in static" />
+    <MESSAGE value="refactor(validation-Valid): rename method usernameRegex to usernameInvalid" />
+    <MESSAGE value="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass" />
+    <MESSAGE value="refactor(service-UserService): use ValidationUtils class for validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-UserService): use ValidationUtils class for validation" />
   </component>
 </project>
