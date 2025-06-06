@@ -12,7 +12,7 @@ public class Valid {
                 password.length() > 50 ||
                 password.matches(".*[а-яА-ЯїЇєЄіІґҐ].*");
     }
-    public static boolean usernameRegex(String username) {
+    public static boolean usernameInvalid(String username) {
         return username == null || username.isEmpty() ||
                 !username.matches("^[a-zA-Z0-9!@#$%^&*()_+\\-=<>?.:,]{5,15}$");
     }
