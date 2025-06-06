@@ -5,13 +5,13 @@ import com.fullstackfamily.authservice.dto.LoginRequest;
 import com.fullstackfamily.authservice.dto.RegisterRequest;
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
+import com.fullstackfamily.authservice.validation.ValidationUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.regex.Pattern;
 
 @Service
 @AllArgsConstructor
@@ -22,24 +22,20 @@ public class UserService {
 
     public ResponseEntity<String> registerUser(RegisterRequest request) {
 
-        if (userRepository.findByUsername(request.getUsername()).isPresent()) {
+        if (ValidationUtils.usernameInvalid(request.getUsername())) {
+            return ResponseEntity.badRequest().body("Недійсне ім'я користувача. Повинно містити 5-15 символів, включаючи дозволені символи.");
+        } else if (userRepository.findByUsername(request.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Ім'я користувача вже зайняте");
         }
 
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+        if (ValidationUtils.emailInvalid(request.getEmail())) {
+            return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
+        } else if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             return ResponseEntity.badRequest().body("Почта користувача вже зайнята");
         }
 
-
-        String usernameRegex = "^[a-zA-Z0-9!@#$%^&*()_+\\-=<>?.:,]{5,15}$";
-        if (!Pattern.matches(usernameRegex, request.getUsername())) {
-            return ResponseEntity.badRequest().body("Недійсне ім'я користувача. Повинно містити 5-15 символів, включаючи дозволені символи.");
-        }
-
-
-        String password = request.getPassword();
-        if (password.length() > 50 || password.contains("") || password.matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
-            return ResponseEntity.badRequest().body("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
+        if (ValidationUtils.passwordInvalid(request.getPassword())) {
+            return ResponseEntity.badRequest().body("Недійсний пароль. Має бути НЕ пустим, містити максимум 50 символів, без кирилиці та пробілів.");
         }
 
         User user = new User();
@@ -47,7 +43,7 @@ public class UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
-        user.setPassword(passwordEncoder.encode(password));
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
         return ResponseEntity.ok("Зарегистрировано");
     }
@@ -55,22 +51,18 @@ public class UserService {
 
     public ResponseEntity<?> loginUser(LoginRequest request) {
 
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        if (!Pattern.matches(emailRegex, request.getEmail())) {
+        if (ValidationUtils.emailInvalid(request.getEmail())) {
             return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
         }
 
         Optional<User> user = userRepository.findByEmail(request.getEmail());
-
         if (user.isEmpty()) {
-            return ResponseEntity.badRequest().body("Невірний email.");
+            return ResponseEntity.badRequest().body("НЕ знайдено користувача. Будь ласка перевірте email.");
         }
 
-        if (request.getPassword().length() > 50 || request.getPassword().contains("") || request.getPassword().matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) {
-            return ResponseEntity.badRequest().body("Недійсний пароль. Має містити максимум 50 символів, без кирилиці та пробілів.");
-        }
-
-        if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
+        if (ValidationUtils.passwordInvalid(request.getPassword())) {
+            return ResponseEntity.badRequest().body("Недійсний пароль. Має бути НЕ пустим, містити максимум 50 символів, без кирилиці та пробілів.");
+        } else if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
             return ResponseEntity.badRequest().body("Невірний пароль.");
         }
         AuthResponse authResponse = new AuthResponse();
