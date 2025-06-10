@@ -17,11 +17,12 @@
         </processorPath>
         <module name="apigateway" />
         <module name="authservice" />
+        <module name="notificationservice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="backend-shop" target="1.5" />
       <module name="common-jwt" target="21" />
+      <module name="productservice" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -29,6 +30,7 @@
       <module name="apigateway" options="-parameters" />
       <module name="authservice" options="-parameters" />
       <module name="common-jwt" options="-parameters" />
+      <module name="notificationservice" options="-parameters" />
     </option>
   </component>
 </project>

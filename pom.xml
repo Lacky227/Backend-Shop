@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>notificationservice</module>
         <module>authservice</module>
         <module>apigateway</module>
     </modules>
