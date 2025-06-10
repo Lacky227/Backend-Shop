@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document(collation = "subscribers")
-public class Subscribe {
+public class Subscriber {
     @Id
     private String id;
     private String email;
