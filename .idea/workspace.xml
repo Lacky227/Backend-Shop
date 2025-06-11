@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(entity-Subscriber): rechange collection">
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/validation/ValidationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/validation/ValidationUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +18,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
         <option value="Dockerfile" />
       </list>
@@ -25,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/create-product-service" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,27 +57,23 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Docker.docker-compose.yml.notification-service: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "feature/create-notification-service",
+    "git-widget-placeholder": "feature/upgrade-patterns-auth",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "/home/artur/IdeaProjects/Backend-Shop/productservice/src/main/java/com/fullstackfamily/Main.java",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -145,24 +142,8 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.notification-service: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="notification-service" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.notification-service: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
@@ -190,12 +171,6 @@
       <workItem from="1748982830284" duration="2293000" />
       <workItem from="1749206770248" duration="3888000" />
       <workItem from="1749211074864" duration="484000" />
-      <workItem from="1749406997232" duration="998000" />
-      <workItem from="1749492427827" duration="718000" />
-      <workItem from="1749573285181" duration="1222000" />
-      <workItem from="1749576686430" duration="8016000" />
-      <workItem from="1749636951075" duration="1958000" />
-      <workItem from="1749640169015" duration="6150000" />
     </task>
     <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
       <option name="closed" value="true" />
@@ -381,159 +356,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749208800281</updated>
     </task>
-    <task id="LOCAL-00024" summary="feat: create NotificationService">
+    <task id="LOCAL-00024" summary="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email">
       <option name="closed" value="true" />
-      <created>1749577035114</created>
+      <created>1749649334788</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1749577035114</updated>
+      <updated>1749649334788</updated>
     </task>
-    <task id="LOCAL-00025" summary="chore(application.properties): add configuration mail sender">
-      <option name="closed" value="true" />
-      <created>1749577471828</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1749577471828</updated>
-    </task>
-    <task id="LOCAL-00026" summary="feat(entity-Subscribe): create entity for subscribers">
-      <option name="closed" value="true" />
-      <created>1749577741198</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1749577741198</updated>
-    </task>
-    <task id="LOCAL-00027" summary="feat(entity-Mail): create entity for sender">
-      <option name="closed" value="true" />
-      <created>1749579843141</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1749579843141</updated>
-    </task>
-    <task id="LOCAL-00028" summary="refactor(entity-Subscriber): rename Subscribe to Subscriber">
-      <option name="closed" value="true" />
-      <created>1749580088492</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1749580088492</updated>
-    </task>
-    <task id="LOCAL-00029" summary="feat(repository-SubscriberRepository): create repository for Subscriber">
-      <option name="closed" value="true" />
-      <created>1749580696225</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1749580696225</updated>
-    </task>
-    <task id="LOCAL-00030" summary="feat(validation-ValidationUtils): create utils class for validation email">
-      <option name="closed" value="true" />
-      <created>1749637420951</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1749637420951</updated>
-    </task>
-    <task id="LOCAL-00031" summary="refactor(validation-ValidationUtils): remove range from(14-72) to(10-50)">
-      <option name="closed" value="true" />
-      <created>1749640574588</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1749640574588</updated>
-    </task>
-    <task id="LOCAL-00032" summary="feat(dto-EmailRequest): create DTO class for request email">
-      <option name="closed" value="true" />
-      <created>1749641007822</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1749641007822</updated>
-    </task>
-    <task id="LOCAL-00033" summary="feat(service-EmailService): create service class for subscribe and unsubscribe">
-      <option name="closed" value="true" />
-      <created>1749641129674</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1749641129674</updated>
-    </task>
-    <task id="LOCAL-00034" summary="feat(controller-EmailController): create controller for sub and unsub">
-      <option name="closed" value="true" />
-      <created>1749641326570</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1749641326570</updated>
-    </task>
-    <task id="LOCAL-00035" summary="refactor(validation-ValidationUtils): update pattern">
-      <option name="closed" value="true" />
-      <created>1749641532018</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1749641532018</updated>
-    </task>
-    <task id="LOCAL-00036" summary="refactor(validation-ValidationUtils): remove excess">
-      <option name="closed" value="true" />
-      <created>1749641599502</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1749641599502</updated>
-    </task>
-    <task id="LOCAL-00037" summary="feat: add DockerFile">
-      <option name="closed" value="true" />
-      <created>1749642276178</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1749642276178</updated>
-    </task>
-    <task id="LOCAL-00038" summary="feat(config-GatewayConfig): add path to notification-service">
-      <option name="closed" value="true" />
-      <created>1749643361758</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1749643361758</updated>
-    </task>
-    <task id="LOCAL-00039" summary="feat(application.properties): add connect to mongodb">
-      <option name="closed" value="true" />
-      <created>1749643492529</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1749643492529</updated>
-    </task>
-    <task id="LOCAL-00040" summary="feat(docker-compose.yml): add mongodb and notification-service">
-      <option name="closed" value="true" />
-      <created>1749643577578</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1749643577578</updated>
-    </task>
-    <task id="LOCAL-00041" summary="chore(application.properties): rechange port">
-      <option name="closed" value="true" />
-      <created>1749644696412</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1749644696412</updated>
-    </task>
-    <task id="LOCAL-00042" summary="refactor(entity-Subscriber): rechange collection">
-      <option name="closed" value="true" />
-      <created>1749645573648</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1749645573648</updated>
-    </task>
-    <option name="localTasksCounter" value="43" />
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,31 +382,28 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init develop 2" />
+    <MESSAGE value="feat(config-SecurityConfig): create SecurityConfig for filter Http request" />
+    <MESSAGE value="feat(service-JwtService): create JwtService for generate JWT token" />
+    <MESSAGE value="feat(service-JwtService): add role for generating token" />
+    <MESSAGE value="feat(service-JwtService): add PasswordEncoder by BCryptPasswordEncoder" />
+    <MESSAGE value="feat: create a common-jwt service for generating JWT token and extract all claims" />
+    <MESSAGE value="chore(pom.xml): add dependencies for JWT" />
+    <MESSAGE value="feat(service-JwtService): create JWTService for generate token and extract all claims" />
+    <MESSAGE value="feat(pom.xml): add dependency common-jwt" />
+    <MESSAGE value="feat(config-JwtConfig): add JwtConfig for JwtService bean initialization" />
+    <MESSAGE value="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway" />
+    <MESSAGE value="chore(auth-service-application.properties): add configuration with PostgreSQL and rechange to port 8081" />
+    <MESSAGE value="feat: add build in Dockerfile" />
+    <MESSAGE value="feat: reset build in Dockerfile" />
+    <MESSAGE value="feat: reset build version" />
     <MESSAGE value="feat: reset build version current" />
     <MESSAGE value="feat: fix space" />
     <MESSAGE value="refactor(validation-Valid): put methods in static" />
     <MESSAGE value="refactor(validation-Valid): rename method usernameRegex to usernameInvalid" />
     <MESSAGE value="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass" />
     <MESSAGE value="refactor(service-UserService): use ValidationUtils class for validation" />
-    <MESSAGE value="feat: create NotificationService" />
-    <MESSAGE value="chore(application.properties): add configuration mail sender" />
-    <MESSAGE value="feat(entity-Subscribe): create entity for subscribers" />
-    <MESSAGE value="feat(entity-Mail): create entity for sender" />
-    <MESSAGE value="refactor(entity-Subscriber): rename Subscribe to Subscriber" />
-    <MESSAGE value="feat(repository-SubscriberRepository): create repository for Subscriber" />
-    <MESSAGE value="feat(validation-ValidationUtils): create utils class for validation email" />
-    <MESSAGE value="refactor(validation-ValidationUtils): remove range from(14-72) to(10-50)" />
-    <MESSAGE value="feat(dto-EmailRequest): create DTO class for request email" />
-    <MESSAGE value="feat(service-EmailService): create service class for subscribe and unsubscribe" />
-    <MESSAGE value="feat(controller-EmailController): create controller for sub and unsub" />
-    <MESSAGE value="refactor(validation-ValidationUtils): update pattern" />
-    <MESSAGE value="refactor(validation-ValidationUtils): remove excess" />
-    <MESSAGE value="feat: add DockerFile" />
-    <MESSAGE value="feat(config-GatewayConfig): add path to notification-service" />
-    <MESSAGE value="feat(application.properties): add connect to mongodb" />
-    <MESSAGE value="feat(docker-compose.yml): add mongodb and notification-service" />
-    <MESSAGE value="chore(application.properties): rechange port" />
-    <MESSAGE value="refactor(entity-Subscriber): rechange collection" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(entity-Subscriber): rechange collection" />
+    <MESSAGE value="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email" />
   </component>
 </project>
