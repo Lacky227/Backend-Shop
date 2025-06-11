@@ -18,7 +18,7 @@ public class EmailService {
     private final SubscriberRepository subscriberRepository;
 
     public ResponseEntity<String> subscribe(EmailRequest emailRequest) {
-        if (ValidationUtils.validateEmail(emailRequest.getEmail())) {
+        if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
             return ResponseEntity.badRequest().body("Email недійсний.");
         }
 
@@ -46,7 +46,7 @@ public class EmailService {
     }
 
     public ResponseEntity<String> unsubscribe(EmailRequest emailRequest) {
-        if (ValidationUtils.validateEmail(emailRequest.getEmail())) {
+        if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
             return ResponseEntity.badRequest().body("Email недійсний.");
         }
 
