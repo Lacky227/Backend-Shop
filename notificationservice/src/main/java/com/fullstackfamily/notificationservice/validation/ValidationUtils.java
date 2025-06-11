@@ -10,7 +10,7 @@ public class ValidationUtils {
 
     public boolean validateEmail(String email) {
         if (email == null || email.isEmpty()) return true;
-        if (email.length() < 14 || email.length() > 82) return true;
+        if (email.length() < 10 || email.length() > 50) return true;
         return !email.matches(EMAIL_PATTERN);
     }
 }
