@@ -6,11 +6,10 @@ import java.util.regex.Pattern;
 
 @UtilityClass
 public class ValidationUtils {
-    private final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.com$";
+    private final String EMAIL_PATTERN = "^(?=.{10,50}$)[A-Za-z0-9](?!.*[._+-]{2})[A-Za-z0-9+_.-]*[A-Za-z0-9]@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.(com|org|ua|net)$";;
 
     public boolean validateEmail(String email) {
         if (email == null || email.isEmpty()) return true;
-        if (email.length() < 10 || email.length() > 50) return true;
         return !email.matches(EMAIL_PATTERN);
     }
 }
