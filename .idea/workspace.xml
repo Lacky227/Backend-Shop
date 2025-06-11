@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/validation/ValidationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/validation/ValidationUtils.java" afterDir="false" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="chore: compiler.xml and workspace.xml">
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -364,7 +362,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749649334788</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="refactor(validation-ValidationUtils): upgrade method for valid email and password">
+      <option name="closed" value="true" />
+      <created>1749649672857</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1749649672857</updated>
+    </task>
+    <task id="LOCAL-00026" summary="chore: compiler.xml and workspace.xml">
+      <option name="closed" value="true" />
+      <created>1749649700244</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1749649700244</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -404,6 +418,8 @@
     <MESSAGE value="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass" />
     <MESSAGE value="refactor(service-UserService): use ValidationUtils class for validation" />
     <MESSAGE value="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email" />
+    <MESSAGE value="refactor(validation-ValidationUtils): upgrade method for valid email and password" />
+    <MESSAGE value="chore: compiler.xml and workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: compiler.xml and workspace.xml" />
   </component>
 </project>
