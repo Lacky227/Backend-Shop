@@ -8,6 +8,8 @@ public class ValidationUtils {
             "^(?=.{10,50}$)[A-Za-z0-9](?!.*[._+-]{2})[A-Za-z0-9+_.-]*[A-Za-z0-9]@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*\\.(com|org|ua|net)$";
     private final String PASSWORD_PATTERN =
             "^(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+=\\-\\[\\]{};':\"\\\\|,.<>/?]).{8,30}$";
+    private final String NAME_PATTERN =
+            "^[A-Za-zА-Яа-яЇїІіЄєҐґ\\-\\s]{1,15}$";
 
     public boolean emailInvalid(String email) {
         if (email == null || email.isEmpty()) return true;
@@ -16,12 +18,12 @@ public class ValidationUtils {
 
     public boolean passwordInvalid(String password) {
         if (password == null || password.isEmpty()) return true;
-        if (password.length() < 8 || password.length() > 30) return true;
         if (password.matches(".*[а-яА-ЯїЇєЄіІґҐ].*")) return true;
         return !password.matches(PASSWORD_PATTERN);
     }
-    public boolean usernameInvalid(String username) {
-        return username == null || username.isEmpty() ||
-                !username.matches("^[a-zA-Z0-9!@#$%^&*()_+\\-=<>?.:,]{5,15}$");
+
+    public boolean nameInvalid(String name) {
+        if (name == null || name.isEmpty()) return true;
+        return !name.matches(NAME_PATTERN);
     }
 }
