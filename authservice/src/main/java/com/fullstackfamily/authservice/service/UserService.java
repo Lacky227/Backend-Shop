@@ -51,19 +51,12 @@ public class UserService {
 
 
     public ResponseEntity<?> loginUser(LoginRequest request) {
-
-        if (ValidationUtils.emailInvalid(request.getEmail())) {
-            return ResponseEntity.badRequest().body("Недійсний email. Введіть коректний email.");
-        }
-
         Optional<User> user = userRepository.findByEmail(request.getEmail());
         if (user.isEmpty()) {
             return ResponseEntity.badRequest().body("НЕ знайдено користувача. Будь ласка перевірте email.");
         }
 
-        if (ValidationUtils.passwordInvalid(request.getPassword())) {
-            return ResponseEntity.badRequest().body("Недійсний пароль. Будь ласка перевірте.");
-        } else if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
             return ResponseEntity.badRequest().body("Невірний пароль.");
         }
         AuthResponse authResponse = new AuthResponse();
