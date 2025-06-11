@@ -21,13 +21,11 @@ public class UserService {
     private final JwtService jwtService;
 
     public ResponseEntity<String> registerUser(RegisterRequest request) {
-
-        if (ValidationUtils.usernameInvalid(request.getUsername())) {
-            return ResponseEntity.badRequest().body("Ім’я користувача має бути 5–15 символів: латиниця, цифри, _ . -");
-        } else if (userRepository.findByUsername(request.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Ім’я користувача вже зайняте.");
+        if (ValidationUtils.firstNameInvalid(request.getFirstName())){
+            return ResponseEntity.badRequest().body("Ім’я є обов’язковим. Має містити від 1 до 15 символів.");
+        } else if (ValidationUtils.firstNameInvalid(request.getLastName())) {
+            return ResponseEntity.badRequest().body("Прізвище не коректне. Має містити від 1 до 15 символів.");
         }
-
         if (ValidationUtils.emailInvalid(request.getEmail())) {
             return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
         } else if (userRepository.findByEmail(request.getEmail()).isPresent()) {
@@ -39,7 +37,6 @@ public class UserService {
         }
 
         User user = new User();
-        user.setUsername(request.getUsername());
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
