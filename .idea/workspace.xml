@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="chore: workspace.xml" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(deploy.yml): rechange command docker-compose">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/repository/UserRepository.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,7 +171,7 @@
       <workItem from="1748982830284" duration="2293000" />
       <workItem from="1749206770248" duration="3888000" />
       <workItem from="1749211074864" duration="484000" />
-      <workItem from="1749665423126" duration="304000" />
+      <workItem from="1749665423126" duration="2325000" />
     </task>
     <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
       <option name="closed" value="true" />
@@ -410,7 +413,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749665558421</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="refactor(deploy.yml): rechange command docker-compose">
+      <option name="closed" value="true" />
+      <created>1749665890496</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1749665890496</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +439,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(service-JwtService): add role for generating token" />
     <MESSAGE value="feat(service-JwtService): add PasswordEncoder by BCryptPasswordEncoder" />
     <MESSAGE value="feat: create a common-jwt service for generating JWT token and extract all claims" />
     <MESSAGE value="chore(pom.xml): add dependencies for JWT" />
@@ -453,6 +463,7 @@
     <MESSAGE value="refactor(validation-ValidationUtils): divide method nameInvalid" />
     <MESSAGE value="chore: workspace.xml" />
     <MESSAGE value="refactor(deploy.yml): rechange command docker compose" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(deploy.yml): rechange command docker compose" />
+    <MESSAGE value="refactor(deploy.yml): rechange command docker-compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(deploy.yml): rechange command docker-compose" />
   </component>
 </project>
