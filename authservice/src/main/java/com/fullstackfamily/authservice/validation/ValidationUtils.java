@@ -22,8 +22,10 @@ public class ValidationUtils {
         return !password.matches(PASSWORD_PATTERN);
     }
 
-    public boolean nameInvalid(String name) {
-        if (name == null || name.isEmpty()) return true;
-        return !name.matches(NAME_PATTERN);
+    public boolean firstNameInvalid(String name) {
+        return name == null || name.isEmpty() || name.matches(NAME_PATTERN);
+    }
+    public boolean lastNameInvalid(String name) {
+        return name != null && !name.isEmpty() && !name.matches(NAME_PATTERN);
     }
 }
