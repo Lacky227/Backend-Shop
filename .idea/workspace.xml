@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="chore: workspace.xml">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="chore: workspace.xml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +22,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="release/0.2.2" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -170,6 +168,7 @@
       <workItem from="1748982830284" duration="2293000" />
       <workItem from="1749206770248" duration="3888000" />
       <workItem from="1749211074864" duration="484000" />
+      <workItem from="1749665423126" duration="304000" />
     </task>
     <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
       <option name="closed" value="true" />
@@ -395,7 +394,23 @@
       <option name="project" value="LOCAL" />
       <updated>1749659108425</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="chore: workspace.xml">
+      <option name="closed" value="true" />
+      <created>1749665513212</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1749665513212</updated>
+    </task>
+    <task id="LOCAL-00030" summary="refactor(deploy.yml): rechange command docker compose">
+      <option name="closed" value="true" />
+      <created>1749665558421</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1749665558421</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,8 +428,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(config-SecurityConfig): create SecurityConfig for filter Http request" />
-    <MESSAGE value="feat(service-JwtService): create JwtService for generate JWT token" />
     <MESSAGE value="feat(service-JwtService): add role for generating token" />
     <MESSAGE value="feat(service-JwtService): add PasswordEncoder by BCryptPasswordEncoder" />
     <MESSAGE value="feat: create a common-jwt service for generating JWT token and extract all claims" />
@@ -438,6 +451,8 @@
     <MESSAGE value="chore: compiler.xml and workspace.xml" />
     <MESSAGE value="refactor(validation-ValidationUtils): remove validation username and add pattern for valid name(first, last)" />
     <MESSAGE value="refactor(validation-ValidationUtils): divide method nameInvalid" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(validation-ValidationUtils): divide method nameInvalid" />
+    <MESSAGE value="chore: workspace.xml" />
+    <MESSAGE value="refactor(deploy.yml): rechange command docker compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(deploy.yml): rechange command docker compose" />
   </component>
 </project>

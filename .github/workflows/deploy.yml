@@ -29,5 +29,5 @@ jobs:
           key: ${{ secrets.VM_KEY }}
           script: |
             cd /home/${{ secrets.VM_USER }}/Backend-Shop
-            docker compose down
-            docker compose up --build -d
+            docker-compose down
+            docker-compose up --build -d
