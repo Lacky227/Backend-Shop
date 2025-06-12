@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(template): create html template">
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(service-EmailService): add parse html and set text">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/service/EmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/templates/malling.html" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/templates/malling-template.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -433,7 +432,55 @@
       <option name="project" value="LOCAL" />
       <updated>1749734634291</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="feat(dto-MallingRequest): create DTO class for malling">
+      <option name="closed" value="true" />
+      <created>1749736759876</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1749736759876</updated>
+    </task>
+    <task id="LOCAL-00034" summary="refactor(template): rename malling to malling-template">
+      <option name="closed" value="true" />
+      <created>1749737106099</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1749737106099</updated>
+    </task>
+    <task id="LOCAL-00035" summary="feat(service-EmailService): create method for send email">
+      <option name="closed" value="true" />
+      <created>1749737155979</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1749737155979</updated>
+    </task>
+    <task id="LOCAL-00036" summary="chore: workspace.xml">
+      <option name="closed" value="true" />
+      <created>1749737168682</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1749737168682</updated>
+    </task>
+    <task id="LOCAL-00037" summary="chore(pom.xml): add dependency for parse html">
+      <option name="closed" value="true" />
+      <created>1749739297299</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1749739297299</updated>
+    </task>
+    <task id="LOCAL-00038" summary="feat(service-EmailService): add parse html and set text">
+      <option name="closed" value="true" />
+      <created>1749739419769</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1749739419769</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,11 +498,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: create a common-jwt service for generating JWT token and extract all claims" />
-    <MESSAGE value="chore(pom.xml): add dependencies for JWT" />
-    <MESSAGE value="feat(service-JwtService): create JWTService for generate token and extract all claims" />
-    <MESSAGE value="feat(pom.xml): add dependency common-jwt" />
-    <MESSAGE value="feat(config-JwtConfig): add JwtConfig for JwtService bean initialization" />
     <MESSAGE value="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway" />
     <MESSAGE value="chore(auth-service-application.properties): add configuration with PostgreSQL and rechange to port 8081" />
     <MESSAGE value="feat: add build in Dockerfile" />
@@ -472,10 +514,15 @@
     <MESSAGE value="chore: compiler.xml and workspace.xml" />
     <MESSAGE value="refactor(validation-ValidationUtils): remove validation username and add pattern for valid name(first, last)" />
     <MESSAGE value="refactor(validation-ValidationUtils): divide method nameInvalid" />
-    <MESSAGE value="chore: workspace.xml" />
     <MESSAGE value="refactor(deploy.yml): rechange command docker compose" />
     <MESSAGE value="refactor(deploy.yml): rechange command docker-compose" />
     <MESSAGE value="feat(template): create html template" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(template): create html template" />
+    <MESSAGE value="feat(dto-MallingRequest): create DTO class for malling" />
+    <MESSAGE value="refactor(template): rename malling to malling-template" />
+    <MESSAGE value="feat(service-EmailService): create method for send email" />
+    <MESSAGE value="chore: workspace.xml" />
+    <MESSAGE value="chore(pom.xml): add dependency for parse html" />
+    <MESSAGE value="feat(service-EmailService): add parse html and set text" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(service-EmailService): add parse html and set text" />
   </component>
 </project>
