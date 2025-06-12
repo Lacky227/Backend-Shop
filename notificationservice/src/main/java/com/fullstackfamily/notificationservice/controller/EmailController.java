@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/notification")
 @AllArgsConstructor
-@CrossOrigin("*")
 public class EmailController {
     private EmailService emailService;
 
