@@ -8,9 +8,7 @@ import com.fullstackfamily.notificationservice.validation.ValidationUtils;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -23,7 +21,6 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class EmailService {
 
     private final SubscriberRepository subscriberRepository;
@@ -49,11 +46,8 @@ public class EmailService {
             mallingRequest.setEmail(emailRequest.getEmail());
             mallingRequest.setSubject("Дякую що ви повернулись до нас");
             try {
-                log.info("Sending malling request to subscriber '{}'", subscriber.getEmail());
                 sendEmail(mallingRequest);
-                log.info("Sent malling request to subscriber '{}'", subscriber.getEmail());
             } catch (MessagingException e) {
-                log.error(e.getMessage());
                 throw new RuntimeException(e);
             }
             return ResponseEntity.status(HttpStatus.ACCEPTED)
@@ -68,9 +62,7 @@ public class EmailService {
         mallingRequest.setEmail(emailRequest.getEmail());
         mallingRequest.setSubject("Дякую за підписку");
         try {
-            log.info("Sending malling request to subscriber '{}'", newSubscriber.getEmail());
             sendEmail(mallingRequest);
-            log.info("Sent malling request to subscriber '{}'", newSubscriber.getEmail());
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
