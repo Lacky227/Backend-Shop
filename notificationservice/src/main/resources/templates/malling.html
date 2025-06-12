@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Підписка успішна</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #4CAF50;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Вітаємо!</h2>
+    <p th:text="'Шановний(а) ' + ${name} + ','">Шановний(а) Користувачу,</p>
+    <p>Ви успішно підписалися на нашу розсилку. Відтепер ви першими дізнаєтесь про:</p>
+    <ul>
+        <li>Нові продукти</li>
+        <li>Спеціальні пропозиції</li>
+        <li>Ексклюзивні знижки</li>
+    </ul>
+    <p>Дякуємо, що залишаєтесь з нами!</p>
+    <a class="btn" th:href="@{https://lucky-shop-one.vercel.app}">Перейти на сайт</a>
+
+    <div class="footer">
+        Якщо ви не підписувались на цю розсилку, просто ігноруйте цей лист.
+    </div>
+</div>
+</body>
+</html>
