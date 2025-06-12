@@ -30,9 +30,6 @@ public class EmailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender mailSender;
 
-    @Value("${spring.mail.username}")
-    private String FROM_EMAIL;
-
     public ResponseEntity<String> subscribe(EmailRequest emailRequest) {
         if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
             return ResponseEntity.badRequest().body("Email недійсний.");
@@ -114,6 +111,7 @@ public class EmailService {
         MimeMessage mime = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mime, true);
 
+        String FROM_EMAIL = "Lucky Shop <notification.veedev@gmail.com>";
         helper.setFrom(FROM_EMAIL);
         helper.setTo(request.getEmail());
         helper.setSubject(request.getSubject());
