@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(service-EmailService): add parse html and set text">
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(service-UserService): use ValidationUtils class for validation">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/authservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Dockerfile" />
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -37,12 +39,12 @@
     &quot;assignee&quot;: &quot;Lacky227&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Lacky227/Backend-Shop&quot;,
-    &quot;accountId&quot;: &quot;cc9ff338-c05d-4921-abb0-176499c38a37&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Lacky227/Backend-Shop.git",
+    "accountId": "19ac6e48-c4ba-41e6-bd67-df7c6bc9cff0"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -57,7 +59,6 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -68,7 +69,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "feature/add-send-email",
+    "git-widget-placeholder": "Controller",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -146,17 +147,14 @@
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26094.121" />
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-IU-251.26094.121" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
       </set>
     </attachedChunks>
   </component>
@@ -174,7 +172,7 @@
       <workItem from="1748982830284" duration="2293000" />
       <workItem from="1749206770248" duration="3888000" />
       <workItem from="1749211074864" duration="484000" />
-      <workItem from="1749665423126" duration="2325000" />
+      <workItem from="1749758810519" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
       <option name="closed" value="true" />
@@ -360,127 +358,7 @@
       <option name="project" value="LOCAL" />
       <updated>1749208800281</updated>
     </task>
-    <task id="LOCAL-00024" summary="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email">
-      <option name="closed" value="true" />
-      <created>1749649334788</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1749649334788</updated>
-    </task>
-    <task id="LOCAL-00025" summary="refactor(validation-ValidationUtils): upgrade method for valid email and password">
-      <option name="closed" value="true" />
-      <created>1749649672857</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1749649672857</updated>
-    </task>
-    <task id="LOCAL-00026" summary="chore: compiler.xml and workspace.xml">
-      <option name="closed" value="true" />
-      <created>1749649700244</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1749649700244</updated>
-    </task>
-    <task id="LOCAL-00027" summary="refactor(validation-ValidationUtils): remove validation username and add pattern for valid name(first, last)">
-      <option name="closed" value="true" />
-      <created>1749658232749</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1749658232749</updated>
-    </task>
-    <task id="LOCAL-00028" summary="refactor(validation-ValidationUtils): divide method nameInvalid">
-      <option name="closed" value="true" />
-      <created>1749659108425</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1749659108425</updated>
-    </task>
-    <task id="LOCAL-00029" summary="chore: workspace.xml">
-      <option name="closed" value="true" />
-      <created>1749665513212</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1749665513212</updated>
-    </task>
-    <task id="LOCAL-00030" summary="refactor(deploy.yml): rechange command docker compose">
-      <option name="closed" value="true" />
-      <created>1749665558421</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1749665558421</updated>
-    </task>
-    <task id="LOCAL-00031" summary="refactor(deploy.yml): rechange command docker-compose">
-      <option name="closed" value="true" />
-      <created>1749665890496</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1749665890496</updated>
-    </task>
-    <task id="LOCAL-00032" summary="feat(template): create html template">
-      <option name="closed" value="true" />
-      <created>1749734634291</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1749734634291</updated>
-    </task>
-    <task id="LOCAL-00033" summary="feat(dto-MallingRequest): create DTO class for malling">
-      <option name="closed" value="true" />
-      <created>1749736759876</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1749736759876</updated>
-    </task>
-    <task id="LOCAL-00034" summary="refactor(template): rename malling to malling-template">
-      <option name="closed" value="true" />
-      <created>1749737106099</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1749737106099</updated>
-    </task>
-    <task id="LOCAL-00035" summary="feat(service-EmailService): create method for send email">
-      <option name="closed" value="true" />
-      <created>1749737155979</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1749737155979</updated>
-    </task>
-    <task id="LOCAL-00036" summary="chore: workspace.xml">
-      <option name="closed" value="true" />
-      <created>1749737168682</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1749737168682</updated>
-    </task>
-    <task id="LOCAL-00037" summary="chore(pom.xml): add dependency for parse html">
-      <option name="closed" value="true" />
-      <created>1749739297299</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1749739297299</updated>
-    </task>
-    <task id="LOCAL-00038" summary="feat(service-EmailService): add parse html and set text">
-      <option name="closed" value="true" />
-      <created>1749739419769</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1749739419769</updated>
-    </task>
-    <option name="localTasksCounter" value="39" />
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,6 +376,16 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init develop 2" />
+    <MESSAGE value="feat(config-SecurityConfig): create SecurityConfig for filter Http request" />
+    <MESSAGE value="feat(service-JwtService): create JwtService for generate JWT token" />
+    <MESSAGE value="feat(service-JwtService): add role for generating token" />
+    <MESSAGE value="feat(service-JwtService): add PasswordEncoder by BCryptPasswordEncoder" />
+    <MESSAGE value="feat: create a common-jwt service for generating JWT token and extract all claims" />
+    <MESSAGE value="chore(pom.xml): add dependencies for JWT" />
+    <MESSAGE value="feat(service-JwtService): create JWTService for generate token and extract all claims" />
+    <MESSAGE value="feat(pom.xml): add dependency common-jwt" />
+    <MESSAGE value="feat(config-JwtConfig): add JwtConfig for JwtService bean initialization" />
     <MESSAGE value="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway" />
     <MESSAGE value="chore(auth-service-application.properties): add configuration with PostgreSQL and rechange to port 8081" />
     <MESSAGE value="feat: add build in Dockerfile" />
@@ -509,20 +397,6 @@
     <MESSAGE value="refactor(validation-Valid): rename method usernameRegex to usernameInvalid" />
     <MESSAGE value="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass" />
     <MESSAGE value="refactor(service-UserService): use ValidationUtils class for validation" />
-    <MESSAGE value="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email" />
-    <MESSAGE value="refactor(validation-ValidationUtils): upgrade method for valid email and password" />
-    <MESSAGE value="chore: compiler.xml and workspace.xml" />
-    <MESSAGE value="refactor(validation-ValidationUtils): remove validation username and add pattern for valid name(first, last)" />
-    <MESSAGE value="refactor(validation-ValidationUtils): divide method nameInvalid" />
-    <MESSAGE value="refactor(deploy.yml): rechange command docker compose" />
-    <MESSAGE value="refactor(deploy.yml): rechange command docker-compose" />
-    <MESSAGE value="feat(template): create html template" />
-    <MESSAGE value="feat(dto-MallingRequest): create DTO class for malling" />
-    <MESSAGE value="refactor(template): rename malling to malling-template" />
-    <MESSAGE value="feat(service-EmailService): create method for send email" />
-    <MESSAGE value="chore: workspace.xml" />
-    <MESSAGE value="chore(pom.xml): add dependency for parse html" />
-    <MESSAGE value="feat(service-EmailService): add parse html and set text" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(service-EmailService): add parse html and set text" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-UserService): use ValidationUtils class for validation" />
   </component>
 </project>
