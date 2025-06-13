@@ -55,6 +55,12 @@ services:
       SPRING_DATASOURCE_PASSWORD: shoppass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SERVER_PORT: 8081
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.auth.rule=Host(`auth-retail.duckdns.org`)"
+      - "traefik.http.routers.auth.entrypoints=websecure"
+      - "traefik.http.routers.auth.tls.certresolver=myresolver"
+      - "traefik.http.services.auth.loadbalancer.server.port=8081"
     restart: always
 
   api-gateway:
@@ -89,6 +95,12 @@ services:
       SPRING_MAIL_USERNAME: notification.veedev@gmail.com
       SPRING_MAIL_PASSWORD: otfm qmpu uexj rjni
       SERVER_PORT: 8083
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.notification.rule=Host(`notify-retail.duckdns.org`)"
+      - "traefik.http.routers.notification.entrypoints=websecure"
+      - "traefik.http.routers.notification.tls.certresolver=myresolver"
+      - "traefik.http.services.notification.loadbalancer.server.port=8083"
     restart: always
 
 volumes:
