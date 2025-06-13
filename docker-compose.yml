@@ -23,6 +23,25 @@ services:
       - mongodata:/data/db
     restart: always
 
+  traefik:
+    image: traefik:v2.11.25
+    container_name: traefik
+    command:
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=tishko.artyr@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+
   auth-service:
     build:
       context: authservice
@@ -35,8 +54,7 @@ services:
       SPRING_DATASOURCE_USERNAME: shopuser
       SPRING_DATASOURCE_PASSWORD: shoppass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
-    ports:
-      - "8081:8081"
+      SERVER_PORT: 8081
     restart: always
 
   api-gateway:
@@ -49,6 +67,12 @@ services:
     environment:
       AUTH_SERVICE_URL: http://auth-service:8081
       NOTIFICATION_SERVICE_URL: http://notification-service:8083
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gateway.rule=Host(`gw-retail.duckdns.org`)"
+      - "traefik.http.routers.gateway.entrypoints=websecure"
+      - "traefik.http.routers.gateway.tls.certresolver=myresolver"
+      - "traefik.http.services.gateway.loadbalancer.server.port=8080"
     ports:
       - "8080:8080"
     restart: always
@@ -64,8 +88,7 @@ services:
       SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/notificationDB
       SPRING_MAIL_USERNAME: notification.veedev@gmail.com
       SPRING_MAIL_PASSWORD: otfm qmpu uexj rjni
-    ports:
-      - "8083:8083"
+      SERVER_PORT: 8083
     restart: always
 
 volumes:
