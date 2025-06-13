@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(service-EmailService): add parse html and set text">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,11 +65,12 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "feature/add-send-email",
+    "git-widget-placeholder": "feature/add-https",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
