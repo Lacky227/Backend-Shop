@@ -7,6 +7,7 @@ import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
 import com.fullstackfamily.authservice.validation.ValidationUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,11 @@ public class UserService {
         } else if (ValidationUtils.firstNameInvalid(request.getLastName())) {
             return ResponseEntity.badRequest().body("Прізвище не коректне. Має містити від 1 до 15 символів.");
         }
+
         if (ValidationUtils.emailInvalid(request.getEmail())) {
             return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
         } else if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            return ResponseEntity.badRequest().body("Email вже використовується.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email вже використовується.");
         }
 
         if (ValidationUtils.passwordInvalid(request.getPassword())) {
@@ -43,19 +45,20 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
 
-        return ResponseEntity.ok("Зареєстровано.");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Зареєстровано.");
     }
 
 
     public ResponseEntity<?> loginUser(LoginRequest request) {
         Optional<User> user = userRepository.findByEmail(request.getEmail());
         if (user.isEmpty()) {
-            return ResponseEntity.badRequest().body("НЕ знайдено користувача. Будь ласка перевірте email.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Не знайдено користувача. Будь ласка, перевірте email.");
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
-            return ResponseEntity.badRequest().body("Невірний пароль.");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Невірний пароль.");
         }
+
         AuthResponse authResponse = new AuthResponse();
         authResponse.setToken(jwtService.generateToken(user.get().getEmail(), user.get().getRole()));
         authResponse.setRole(user.get().getRole());
