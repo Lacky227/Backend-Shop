@@ -38,7 +38,7 @@ public class EmailController {
                     content =  @Content(schema = @Schema(implementation = String.class))),
     })
     @PostMapping("/sub")
-    public ResponseEntity<String> subscribe(@RequestBody EmailRequest emailRequest) {
+    public ResponseEntity<?> subscribe(@RequestBody EmailRequest emailRequest) {
         return emailService.subscribe(emailRequest);
     }
 
@@ -61,7 +61,7 @@ public class EmailController {
                     content =  @Content(schema = @Schema(implementation = String.class))),
     })
     @PostMapping("/unsub")
-    public ResponseEntity<String> unsubscribe(@RequestBody EmailRequest emailRequest) {
+    public ResponseEntity<?> unsubscribe(@RequestBody EmailRequest emailRequest) {
         return emailService.unsubscribe(emailRequest);
     }
 }
