@@ -3,6 +3,8 @@ package com.fullstackfamily.notificationservice.controller;
 import com.fullstackfamily.notificationservice.dto.EmailRequest;
 import com.fullstackfamily.notificationservice.service.EmailService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,9 +24,18 @@ public class EmailController {
             description = "Додає email до списку підписників для отримання сповіщень і відправляє на вказаний email повідомлення."
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "Успішно підписано або повторно підписано."),
-            @ApiResponse(responseCode = "400", description = "Недійсний email або email вже підписано."),
-            @ApiResponse(responseCode = "500", description = "Помилка сервера при відправці email.")
+            @ApiResponse(
+                    responseCode = "202",
+                    description = "Успішно підписано або повторно підписано.",
+                    content = @Content(schema = @Schema(implementation = String.class))),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Недійсний email або email вже підписано.",
+                    content = @Content(schema = @Schema(implementation = String.class))),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Помилка сервера при відправці email.",
+                    content =  @Content(schema = @Schema(implementation = String.class))),
     })
     @PostMapping("/sub")
     public ResponseEntity<String> subscribe(@RequestBody EmailRequest emailRequest) {
@@ -36,9 +47,18 @@ public class EmailController {
             description = "Видаляє email зі списку підписників."
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "202", description = "Успішно відписано або email не був підписаний."),
-            @ApiResponse(responseCode = "400", description = "Недійсний email або email вже відписано."),
-            @ApiResponse(responseCode = "500", description = "Помилка сервера при обробці запиту.")
+            @ApiResponse(
+                    responseCode = "202",
+                    description = "Успішно відписано або email не був підписаний.",
+                    content = @Content(schema = @Schema(implementation = String.class))),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Недійсний email або email вже відписано.",
+                    content = @Content(schema = @Schema(implementation = String.class))),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Помилка сервера при обробці запиту.",
+                    content =  @Content(schema = @Schema(implementation = String.class))),
     })
     @PostMapping("/unsub")
     public ResponseEntity<String> unsubscribe(@RequestBody EmailRequest emailRequest) {
