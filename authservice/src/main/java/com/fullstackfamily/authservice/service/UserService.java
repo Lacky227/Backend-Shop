@@ -1,5 +1,6 @@
 package com.fullstackfamily.authservice.service;
 
+import com.fullstackfamily.authservice.dto.ApiResponse;
 import com.fullstackfamily.authservice.dto.AuthResponse;
 import com.fullstackfamily.authservice.dto.LoginRequest;
 import com.fullstackfamily.authservice.dto.RegisterRequest;
@@ -21,21 +22,26 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    public ResponseEntity<String> registerUser(RegisterRequest request) {
-        if (ValidationUtils.firstNameInvalid(request.getFirstName())){
-            return ResponseEntity.badRequest().body("Ім’я є обов’язковим. Має містити від 1 до 15 символів.");
+    public ResponseEntity<ApiResponse> registerUser(RegisterRequest request) {
+        if (ValidationUtils.firstNameInvalid(request.getFirstName())) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse("Ім’я є обов’язковим. Має містити від 1 до 15 символів."));
         } else if (ValidationUtils.firstNameInvalid(request.getLastName())) {
-            return ResponseEntity.badRequest().body("Прізвище не коректне. Має містити від 1 до 15 символів.");
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse("Прізвище не коректне. Має містити від 1 до 15 символів."));
         }
 
         if (ValidationUtils.emailInvalid(request.getEmail())) {
-            return ResponseEntity.badRequest().body("Недійсний email. Введіть коректну адресу електронної пошти.");
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse("Недійсний email. Введіть коректну адресу електронної пошти."));
         } else if (userRepository.findByEmail(request.getEmail()).isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email вже використовується.");
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ApiResponse("Email вже використовується."));
         }
 
         if (ValidationUtils.passwordInvalid(request.getPassword())) {
-            return ResponseEntity.badRequest().body("Недійсний пароль. Повинен містити 8–30 символів, 1 велику літеру, 1 цифру, 1 спецсимвол. Без кирилиці.");
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse("Недійсний пароль. Повинен містити 8–30 символів, 1 велику літеру, 1 цифру, 1 спецсимвол. Без кирилиці."));
         }
 
         User user = new User();
@@ -45,7 +51,8 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
 
-        return ResponseEntity.status(HttpStatus.CREATED).body("Зареєстровано.");
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new ApiResponse("Зареєстровано."));
     }
 
 
