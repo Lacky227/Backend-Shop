@@ -1,5 +1,6 @@
 package com.fullstackfamily.notificationservice.service;
 
+import com.fullstackfamily.notificationservice.dto.ApiResponse;
 import com.fullstackfamily.notificationservice.dto.EmailRequest;
 import com.fullstackfamily.notificationservice.dto.MallingRequest;
 import com.fullstackfamily.notificationservice.entity.Subscriber;
@@ -27,9 +28,10 @@ public class EmailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender mailSender;
 
-    public ResponseEntity<String> subscribe(EmailRequest emailRequest) {
+    public ResponseEntity<ApiResponse> subscribe(EmailRequest emailRequest) {
         if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
-            return ResponseEntity.badRequest().body("Email недійсний.");
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse("Email недійсний."));
         }
 
         Optional<Subscriber> subscriberOpt = subscriberRepository.findByEmail(emailRequest.getEmail());
@@ -38,41 +40,49 @@ public class EmailService {
             Subscriber subscriber = subscriberOpt.get();
             if (subscriber.isSubscribed()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("Цей email вже підписано.");
+                        .body(new ApiResponse("Цей email вже підписано."));
             }
+
             subscriber.setSubscribed(true);
             subscriberRepository.save(subscriber);
+
             MallingRequest mallingRequest = new MallingRequest();
             mallingRequest.setEmail(emailRequest.getEmail());
             mallingRequest.setSubject("Дякую що ви повернулись до нас");
+
             try {
                 sendEmail(mallingRequest);
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
+
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body("Успішно повторно підписано.");
+                    .body(new ApiResponse("Успішно повторно підписано."));
         }
 
         Subscriber newSubscriber = new Subscriber();
         newSubscriber.setEmail(emailRequest.getEmail());
         newSubscriber.setSubscribed(true);
         subscriberRepository.save(newSubscriber);
+
         MallingRequest mallingRequest = new MallingRequest();
         mallingRequest.setEmail(emailRequest.getEmail());
         mallingRequest.setSubject("Дякую за підписку");
+
         try {
             sendEmail(mallingRequest);
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
+
         return ResponseEntity.status(HttpStatus.ACCEPTED)
-                .body("Успішно підписано.");
+                .body(new ApiResponse("Успішно підписано."));
     }
 
-    public ResponseEntity<String> unsubscribe(EmailRequest emailRequest) {
+    public ResponseEntity<ApiResponse> unsubscribe(EmailRequest emailRequest) {
         if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
-            return ResponseEntity.badRequest().body("Email недійсний.");
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse("Email недійсний."));
         }
 
         Optional<Subscriber> subscriberOpt = subscriberRepository.findByEmail(emailRequest.getEmail());
@@ -81,16 +91,18 @@ public class EmailService {
             Subscriber subscriber = subscriberOpt.get();
             if (!subscriber.isSubscribed()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body("Цей email вже відписано.");
+                        .body(new ApiResponse("Цей email вже відписано."));
             }
+
             subscriber.setSubscribed(false);
             subscriberRepository.save(subscriber);
+
             return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body("Успішно відписано.");
+                    .body(new ApiResponse("Успішно відписано."));
         }
 
         return ResponseEntity.status(HttpStatus.ACCEPTED)
-                .body("Цей email не був підписаний.");
+                .body(new ApiResponse("Цей email не був підписаний."));
     }
 
     private void sendEmail(MallingRequest request) throws MessagingException {
