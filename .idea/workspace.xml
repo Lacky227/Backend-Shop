@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat: apply ApiResponse">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="chore: workspace.xml">
+      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/controller/EmailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/java/com/fullstackfamily/notificationservice/controller/EmailController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -496,7 +496,31 @@
       <option name="project" value="LOCAL" />
       <updated>1750006764915</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="feat(dto-ApiResponse): create class for send message">
+      <option name="closed" value="true" />
+      <created>1750006914154</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1750006914154</updated>
+    </task>
+    <task id="LOCAL-00042" summary="feat: apply ApiResponse">
+      <option name="closed" value="true" />
+      <created>1750007011607</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1750007011607</updated>
+    </task>
+    <task id="LOCAL-00043" summary="chore: workspace.xml">
+      <option name="closed" value="true" />
+      <created>1750007026713</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1750007026713</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,7 +538,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: add build in Dockerfile" />
     <MESSAGE value="feat: reset build in Dockerfile" />
     <MESSAGE value="feat: reset build version" />
     <MESSAGE value="feat: reset build version current" />
@@ -534,11 +557,12 @@
     <MESSAGE value="feat(dto-MallingRequest): create DTO class for malling" />
     <MESSAGE value="refactor(template): rename malling to malling-template" />
     <MESSAGE value="feat(service-EmailService): create method for send email" />
-    <MESSAGE value="chore: workspace.xml" />
     <MESSAGE value="chore(pom.xml): add dependency for parse html" />
     <MESSAGE value="feat(service-EmailService): add parse html and set text" />
     <MESSAGE value="feat(dto-ApiResponse): create class for send response in format application/json" />
+    <MESSAGE value="feat(dto-ApiResponse): create class for send message" />
     <MESSAGE value="feat: apply ApiResponse" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: apply ApiResponse" />
+    <MESSAGE value="chore: workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: workspace.xml" />
   </component>
 </project>
