@@ -107,15 +107,13 @@ public class EmailService {
 
     private void sendEmail(MallingRequest request) throws MessagingException {
         Context context = new Context();
-        context.setVariable("name", request.getEmail());
-
-        String html = templateEngine.process("malling-template", context);
+        String html = templateEngine.process("welcome", context);
         String plainText = Jsoup.parse(html).text();
 
         MimeMessage mime = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mime, true);
 
-        String FROM_EMAIL = "Lucky Shop <notification.veedev@gmail.com>";
+        String FROM_EMAIL = "Lucky Shop <noreply@lucky.com>";
         helper.setFrom(FROM_EMAIL);
         helper.setTo(request.getEmail());
         helper.setSubject(request.getSubject());
