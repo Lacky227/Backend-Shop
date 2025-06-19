@@ -10,7 +10,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
+import java.util.Collections;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -61,6 +67,57 @@ public class UserService {
         authResponse.setRole(user.get().getRole());
         return ResponseEntity.ok(authResponse);
     }
+
+    public ResponseEntity<?> loginWithGoogle(String idToken) {
+        GoogleIdToken.Payload payload = verifyToken(idToken);
+        if (payload == null) {
+            return ResponseEntity.badRequest().body("Invalid ID token");
+        }
+
+        String email = payload.getEmail();
+        String name = (String) payload.get("name");
+
+        // Перевіряємо чи існує користувач
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        User user;
+        if (userOptional.isPresent()) {
+            user = userOptional.get();
+        } else {
+            // Створюємо нового користувача
+            user = new User();
+            user.setEmail(email);
+            user.setFirstName(name);
+            userRepository.save(user);
+        }
+
+        // Створюємо власний JWT
+        String jwt = jwtService.generateToken(user.getEmail(), user.getRole());
+
+        return ResponseEntity.ok(Map.of("token", jwt));
+    }
+
+    private GoogleIdToken.Payload verifyToken(String idTokenString) {
+        try {
+            var transport = GoogleNetHttpTransport.newTrustedTransport();
+            var jsonFactory = JacksonFactory.getDefaultInstance();
+
+            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
+                    .setAudience(Collections.singletonList(""))
+                    .build();
+
+            GoogleIdToken idToken = verifier.verify(idTokenString);
+            if (idToken != null) {
+                return idToken.getPayload();
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
 }
 
 

@@ -24,4 +24,10 @@ public class AuthController {
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         return userService.loginUser(request);
     }
+
+    @PostMapping("/google")
+    public ResponseEntity<?> loginWithGoogle(@RequestBody String idToken) {
+        return userService.loginWithGoogle(idToken);
+    }
+
 }
