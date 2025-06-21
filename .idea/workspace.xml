@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(service-EmailService): refactor send Email">
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(application.properties): configure server port with environment variable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apigateway/src/main/java/com/fullstackfamily/apigateway/config/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/apigateway/src/main/java/com/fullstackfamily/apigateway/config/GatewayConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/productservice/src/main/java/com/fullstackfamily/productservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/productservice/src/main/java/com/fullstackfamily/productservice/entity/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +19,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Dockerfile" />
         <option value="HTML File" />
         <option value="Class" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -68,7 +71,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "refactor/notification-service",
+    "git-widget-placeholder": "feature/create-product-service",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
@@ -133,6 +136,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ProductserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="productservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.productservice.ProductserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -179,22 +189,6 @@
       <workItem from="1749206770248" duration="3888000" />
       <workItem from="1749211074864" duration="484000" />
       <workItem from="1749665423126" duration="2325000" />
-    </task>
-    <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
-      <option name="closed" value="true" />
-      <created>1747848215507</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1747848215507</updated>
-    </task>
-    <task id="LOCAL-00002" summary="feat(service-JwtService): create JwtService for generate JWT token">
-      <option name="closed" value="true" />
-      <created>1747851232254</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1747851232254</updated>
     </task>
     <task id="LOCAL-00003" summary="feat(service-JwtService): add role for generating token">
       <option name="closed" value="true" />
@@ -516,7 +510,79 @@
       <option name="project" value="LOCAL" />
       <updated>1750251623275</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="feat: create module ProductService">
+      <option name="closed" value="true" />
+      <created>1750510656310</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1750510656310</updated>
+    </task>
+    <task id="LOCAL-00044" summary="feat: create module ProductService">
+      <option name="closed" value="true" />
+      <created>1750511628715</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1750511628715</updated>
+    </task>
+    <task id="LOCAL-00045" summary="feat(entity-Product): create entity Product">
+      <option name="closed" value="true" />
+      <created>1750512393548</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1750512393548</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat(application.properties): add connect to database and rechange port">
+      <option name="closed" value="true" />
+      <created>1750521777097</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1750521777097</updated>
+    </task>
+    <task id="LOCAL-00047" summary="feat(repository-ProductRepository): create repository">
+      <option name="closed" value="true" />
+      <created>1750521815811</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1750521815811</updated>
+    </task>
+    <task id="LOCAL-00048" summary="feat(service-ProductService): create service and create method for find all">
+      <option name="closed" value="true" />
+      <created>1750522001512</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1750522001512</updated>
+    </task>
+    <task id="LOCAL-00049" summary="feat(controller-ProductController): create controller and add get-method">
+      <option name="closed" value="true" />
+      <created>1750522735823</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1750522735823</updated>
+    </task>
+    <task id="LOCAL-00050" summary="feat: create Dockerfile">
+      <option name="closed" value="true" />
+      <created>1750522866919</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1750522866920</updated>
+    </task>
+    <task id="LOCAL-00051" summary="feat(application.properties): configure server port with environment variable">
+      <option name="closed" value="true" />
+      <created>1750523132657</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1750523132658</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -534,14 +600,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: reset build version" />
-    <MESSAGE value="feat: reset build version current" />
-    <MESSAGE value="feat: fix space" />
-    <MESSAGE value="refactor(validation-Valid): put methods in static" />
-    <MESSAGE value="refactor(validation-Valid): rename method usernameRegex to usernameInvalid" />
-    <MESSAGE value="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass" />
-    <MESSAGE value="refactor(service-UserService): use ValidationUtils class for validation" />
-    <MESSAGE value="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email" />
     <MESSAGE value="refactor(validation-ValidationUtils): upgrade method for valid email and password" />
     <MESSAGE value="chore: compiler.xml and workspace.xml" />
     <MESSAGE value="refactor(validation-ValidationUtils): remove validation username and add pattern for valid name(first, last)" />
@@ -559,6 +617,14 @@
     <MESSAGE value="feat(entity-Subscriber): remove isSubscribed" />
     <MESSAGE value="feat(entity-Subscriber): return isSubscribed" />
     <MESSAGE value="refactor(service-EmailService): refactor send Email" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-EmailService): refactor send Email" />
+    <MESSAGE value="feat: create module ProductService" />
+    <MESSAGE value="feat(entity-Product): create entity Product" />
+    <MESSAGE value="feat(application.properties): add connect to database and rechange port" />
+    <MESSAGE value="feat(repository-ProductRepository): create repository" />
+    <MESSAGE value="feat(service-ProductService): create service and create method for find all" />
+    <MESSAGE value="feat(controller-ProductController): create controller and add get-method" />
+    <MESSAGE value="feat: create Dockerfile" />
+    <MESSAGE value="feat(application.properties): configure server port with environment variable" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(application.properties): configure server port with environment variable" />
   </component>
 </project>
