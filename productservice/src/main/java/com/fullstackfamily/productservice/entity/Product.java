@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,7 +22,10 @@ public class Product {
     private String name;
 
     @Column(nullable = false)
-    private String genre;
+    private String brand;
+
+    @Column(nullable = false)
+    private String gender;
 
     @Column(nullable = false)
     private String category;
@@ -32,13 +36,13 @@ public class Product {
     private BigDecimal oldPrice;
 
     @Column(nullable = false)
-    private Boolean hasDiscount;
+    private Boolean hasdiscount;
 
     @Column(nullable = false)
-    private List<String> images;
+    private List<String> image = new ArrayList<>();
 
     @Column(nullable = false)
-    private List<String> sizes;
+    private List<String> sizes = new ArrayList<>();
 
     @Column(nullable = false)
     private String color;
