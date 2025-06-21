@@ -18,6 +18,9 @@ public class GatewayConfig {
                 .route("auth-service", r -> r
                                 .path("/auth/**")
                                 .uri("http://auth-service:8081/"))
+                .route("product-service", r -> r
+                        .path("/api/product/all")
+                        .uri("http://product-service:8082/"))
                 .route("notification-service", r -> r
                         .path("/api/notification/**")
                         .uri("http://notification-service:8083/"))
