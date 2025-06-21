@@ -103,6 +103,29 @@ services:
       - "traefik.http.services.notification.loadbalancer.server.port=8083"
     restart: always
 
+  product-service:
+    build:
+      context: productservice
+      dockerfile: Dockerfile
+    container_name: product-service
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/productdb
+      SPRING_DATASOURCE_USERNAME: shopuser
+      SPRING_DATASOURCE_PASSWORD: shoppass
+      SPRING_JPA_HIBERNATE_DDL_AUTO: validate
+      SERVER_PORT: 8082
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.notification.rule=Host(`ps-retail.duckdns.org`)"
+      - "traefik.http.routers.notification.entrypoints=websecure"
+      - "traefik.http.routers.notification.tls.certresolver=myresolver"
+      - "traefik.http.services.notification.loadbalancer.server.port=8082"
+    ports:
+      - "8082:8082"
+    restart: always
+
 volumes:
   pgdata:
   mongodata:
