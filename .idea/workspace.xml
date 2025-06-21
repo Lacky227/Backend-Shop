@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(service-EmailService): add parse html and set text">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/AuthserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/AuthserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/service/UserService.java" afterDir="false" />
-    </list>
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(AuthController jacksone)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -179,7 +172,7 @@
       <workItem from="1749206770248" duration="3888000" />
       <workItem from="1749211074864" duration="484000" />
       <workItem from="1749665423126" duration="2325000" />
-      <workItem from="1750353259720" duration="310000" />
+      <workItem from="1750353259720" duration="632000" />
     </task>
     <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
       <option name="closed" value="true" />
@@ -485,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749739419769</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="feat(AuthController jacksone)">
+      <option name="closed" value="true" />
+      <created>1750353881313</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1750353881313</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat(filter-JwtFilter): add JwtFilter for JWT token validation in Gateway" />
     <MESSAGE value="chore(auth-service-application.properties): add configuration with PostgreSQL and rechange to port 8081" />
     <MESSAGE value="feat: add build in Dockerfile" />
     <MESSAGE value="feat: reset build in Dockerfile" />
@@ -528,6 +528,7 @@
     <MESSAGE value="chore: workspace.xml" />
     <MESSAGE value="chore(pom.xml): add dependency for parse html" />
     <MESSAGE value="feat(service-EmailService): add parse html and set text" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(service-EmailService): add parse html and set text" />
+    <MESSAGE value="feat(AuthController jacksone)" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(AuthController jacksone)" />
   </component>
 </project>
