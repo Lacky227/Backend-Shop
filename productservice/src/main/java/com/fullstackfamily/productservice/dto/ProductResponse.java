@@ -1,0 +1,40 @@
+package com.fullstackfamily.productservice.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+@Data
+@AllArgsConstructor
+public class ProductResponse {
+
+    private String sku;
+
+    private String name;
+
+    private String brand;
+
+    private String gender;
+
+    private String category;
+
+    private BigDecimal price;
+
+    private BigDecimal oldPrice;
+
+    private Boolean hasdiscount;
+
+    private List<String> image;
+
+    private List<String> sizes;
+
+    private String color;
+
+    private String season;
+
+    private String description;
+
+    private String material;
+}
