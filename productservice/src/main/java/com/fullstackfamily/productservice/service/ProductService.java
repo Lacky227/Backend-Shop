@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -33,5 +34,26 @@ public class ProductService {
                         e.getMaterial()))
                 .toList();
         return ResponseEntity.ok(productResponses);
+    }
+    private ResponseEntity<ProductResponse> getProductBySku(String sku) {
+        Optional<Product> product = productRepository.findBySku(sku);
+        return product.map(value ->
+                ResponseEntity.ok(
+                        new ProductResponse(
+                                value.getSku(),
+                                value.getName(),
+                                value.getBrand(),
+                                value.getGender(),
+                                value.getCategory(),
+                                value.getPrice(),
+                                value.getOldPrice(),
+                                value.getHasdiscount(),
+                                value.getImage(),
+                                value.getSizes(),
+                                value.getColor(),
+                                value.getSeason(),
+                                value.getDescription(),
+                                value.getMaterial())))
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }
