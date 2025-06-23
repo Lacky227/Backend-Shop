@@ -35,7 +35,7 @@ public class ProductService {
                 .toList();
         return ResponseEntity.ok(productResponses);
     }
-    private ResponseEntity<ProductResponse> getProductBySku(String sku) {
+    public ResponseEntity<ProductResponse> getProductBySku(String sku) {
         Optional<Product> product = productRepository.findBySku(sku);
         return product.map(value ->
                 ResponseEntity.ok(

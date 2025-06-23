@@ -5,6 +5,7 @@ import com.fullstackfamily.productservice.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,10 @@ public class ProductController {
     @GetMapping("/all")
     public ResponseEntity<List<ProductResponse>> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+    @GetMapping("/{sku}")
+    public ResponseEntity<ProductResponse> getProductBySku(@PathVariable String sku) {
+        return productService.getProductBySku(sku);
     }
 }
