@@ -18,7 +18,9 @@ public class CorsConfig {
         corsConfiguration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:5173",
                 "https://lucky-shop-one.vercel.app",
-                "http://localhost:63343"
+                "http://localhost:63343",
+                "https://dev-lucky-shop-one.vercel.app",
+                "https://test-lucky-shop-one.vercel.app"
 
         ));
         corsConfiguration.setAllowedHeaders(List.of("*"));
