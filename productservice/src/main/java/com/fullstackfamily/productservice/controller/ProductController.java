@@ -1,6 +1,6 @@
 package com.fullstackfamily.productservice.controller;
 
-import com.fullstackfamily.productservice.entity.Product;
+import com.fullstackfamily.productservice.dto.ProductResponse;
 import com.fullstackfamily.productservice.service.ProductService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Product>> getAllProducts() {
-        return productService.findAll();
+    public ResponseEntity<List<ProductResponse>> getAllProducts() {
+        return productService.getAllProducts();
     }
 }
