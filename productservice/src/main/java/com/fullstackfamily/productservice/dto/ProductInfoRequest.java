@@ -9,6 +9,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class ProductInfoRequest {
+    private String sku;
+
     private String name;
 
     private String brand;
