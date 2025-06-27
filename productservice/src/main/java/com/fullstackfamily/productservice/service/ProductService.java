@@ -1,5 +1,7 @@
 package com.fullstackfamily.productservice.service;
 
+import com.fullstackfamily.productservice.dto.ApiResponse;
+import com.fullstackfamily.productservice.dto.ProductInfoRequest;
 import com.fullstackfamily.productservice.dto.ProductResponse;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
@@ -55,5 +57,24 @@ public class ProductService {
                                 value.getDescription(),
                                 value.getMaterial())))
                 .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+    public ResponseEntity<ApiResponse> createProduct(ProductInfoRequest request) {
+        Product product = new Product();
+        product.setSku(request.getSku());
+        product.setName(request.getName());
+        product.setBrand(request.getBrand());
+        product.setGender(request.getGender());
+        product.setCategory(request.getCategory());
+        product.setPrice(request.getPrice());
+        product.setOldPrice(request.getOldPrice());
+        product.setHasdiscount(request.getHasdiscount());
+        product.setImage(request.getImage());
+        product.setSizes(request.getSizes());
+        product.setColor(request.getColor());
+        product.setSeason(request.getSeason());
+        product.setDescription(request.getDescription());
+        product.setMaterial(request.getMaterial());
+        productRepository.save(product);
+        return ResponseEntity.ok(new ApiResponse("Товар успішно створений"));
     }
 }
