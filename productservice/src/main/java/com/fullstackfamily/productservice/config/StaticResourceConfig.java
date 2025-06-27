@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class StaticResourceConfig implements WebMvcConfigurer {
     @Value("${local.name.directory}")
-    private static String RESOURCE_LOCATION;
+    private String RESOURCE_LOCATION;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
