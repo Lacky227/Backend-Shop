@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public class ProductResponse {
 
     private List<String> image;
 
-    private List<String> sizes;
+    private Map<String, Integer> sizes;
 
     private String color;
 
