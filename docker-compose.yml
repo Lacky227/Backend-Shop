@@ -122,11 +122,11 @@ services:
       LOCAL_NAME_DIRECTORY: "file:/opt/lucky-shop/images"
       SERVER_PORT: 8082
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.notification.rule=Host(`ps-retail.duckdns.org`)"
-      - "traefik.http.routers.notification.entrypoints=websecure"
-      - "traefik.http.routers.notification.tls.certresolver=myresolver"
-      - "traefik.http.services.notification.loadbalancer.server.port=8082"
+        - "traefik.enable=true"
+        - "traefik.http.routers.product.rule=Host(`ps-retail.duckdns.org`)"
+        - "traefik.http.routers.product.entrypoints=websecure"
+        - "traefik.http.routers.product.tls.certresolver=myresolver"
+        - "traefik.http.services.product.loadbalancer.server.port=8082"
     ports:
       - "8082:8082"
     restart: always
