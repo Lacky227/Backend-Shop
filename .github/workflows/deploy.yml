@@ -30,4 +30,6 @@ jobs:
           script: |
             cd /home/${{ secrets.VM_USER }}/Backend-Shop
             docker-compose down
+            cd ~/Backend-shop
+            sudo chmod 600 ./letsencrypt/acme.json
             docker-compose up --build -d
