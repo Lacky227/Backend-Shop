@@ -61,8 +61,6 @@ services:
       - "traefik.http.routers.auth.entrypoints=websecure"
       - "traefik.http.routers.auth.tls.certresolver=myresolver"
       - "traefik.http.services.auth.loadbalancer.server.port=8081"
-    ports:
-      - "8081:8081"
     restart: always
 
   api-gateway:
@@ -103,8 +101,6 @@ services:
       - "traefik.http.routers.notification.entrypoints=websecure"
       - "traefik.http.routers.notification.tls.certresolver=myresolver"
       - "traefik.http.services.notification.loadbalancer.server.port=8083"
-    ports:
-      - "8083:8083"
     restart: always
 
   product-service:
@@ -127,8 +123,6 @@ services:
       - "traefik.http.routers.notification.entrypoints=websecure"
       - "traefik.http.routers.notification.tls.certresolver=myresolver"
       - "traefik.http.services.notification.loadbalancer.server.port=8082"
-    ports:
-      - "8082:8082"
     restart: always
 
 volumes:
