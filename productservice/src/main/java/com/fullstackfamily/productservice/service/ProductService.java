@@ -5,9 +5,12 @@ import com.fullstackfamily.productservice.dto.ProductInfoRequest;
 import com.fullstackfamily.productservice.dto.ProductResponse;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
+import com.fullstackfamily.productservice.validation.ValidationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +62,24 @@ public class ProductService {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
     public ResponseEntity<ApiResponse> createProduct(ProductInfoRequest request) {
+        Optional<Product> productBySku = productRepository.findBySku(request.getSku());
+        if (productBySku.isPresent()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiResponse("Товар із цим sku вже є"));
+        } else if (ValidationRequest.isNullOrEmpty(request.getName()) ||
+                ValidationRequest.isNullOrEmpty(request.getBrand()) ||
+                ValidationRequest.isNullOrEmpty(request.getGender()) ||
+                ValidationRequest.isNullOrEmpty(request.getCategory()) ||
+                request.getPrice() == null ||
+                request.getImage() == null || request.getImage().isEmpty() ||
+                request.getSizes() == null || request.getSizes().isEmpty() ||
+                ValidationRequest.isNullOrEmpty(request.getColor()) ||
+                ValidationRequest.isNullOrEmpty(request.getSeason()) ||
+                ValidationRequest.isNullOrEmpty(request.getDescription()) ||
+                ValidationRequest.isNullOrEmpty(request.getMaterial())) {
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Всі обов’язкові поля мають бути заповнені"));
+        }
         Product product = new Product();
         product.setSku(request.getSku());
         product.setName(request.getName());
