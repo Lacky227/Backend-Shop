@@ -5,7 +5,9 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Entity
@@ -41,8 +43,14 @@ public class Product {
     @Column(nullable = false)
     private List<String> image = new ArrayList<>();
 
-    @Column(nullable = false)
-    private List<String> sizes = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(
+            name = "product_sizes",
+            joinColumns = @JoinColumn(name = "product_id")
+    )
+    @MapKeyColumn(name = "size")
+    @Column(name = "quantity")
+    private Map<String, Integer> sizes = new HashMap<>();
 
     @Column(nullable = false)
     private String color;
