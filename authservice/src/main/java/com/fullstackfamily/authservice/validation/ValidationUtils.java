@@ -23,7 +23,7 @@ public class ValidationUtils {
     }
 
     public boolean firstNameInvalid(String name) {
-        return name == null || name.isEmpty() || name.matches(NAME_PATTERN);
+        return name == null || name.isEmpty() || !name.matches(NAME_PATTERN);
     }
     public boolean lastNameInvalid(String name) {
         return name != null && !name.isEmpty() && !name.matches(NAME_PATTERN);
