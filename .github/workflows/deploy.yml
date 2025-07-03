@@ -30,6 +30,9 @@ jobs:
           script: |
             cd /home/${{ secrets.VM_USER }}/Backend-Shop
             docker-compose down
-            cd ~/Backend-shop
-            sudo chmod 600 ./letsencrypt/acme.json
+            if [ -f "./letsencrypt/acme.json" ]; then
+              chmod 600 ./letsencrypt/acme.json
+            else
+              echo "acme.json not found, skipping chmod"
+            fi
             docker-compose up --build -d
