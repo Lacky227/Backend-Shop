@@ -23,7 +23,7 @@ public class ImageService {
             if (file.getSize() == 0 || originalFilename == null || !originalFilename.matches("TSH\\d+-\\d+\\.(png|jpg|jpeg)")) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Не вірний формат файлу або файл не існує"));
             }
-            Path uploadDir = Paths.get(RESOURCE_LOCATION.replace("file:", ""));
+            Path uploadDir = Paths.get(RESOURCE_LOCATION);
             if (!Files.exists(uploadDir)) {
                 Files.createDirectories(uploadDir);
             }
