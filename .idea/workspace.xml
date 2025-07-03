@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(service-EmailService): refactor send Email">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/validation/ValidationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/validation/ValidationUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +57,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.GenerateHash.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
     "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
@@ -69,7 +70,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "fix/pattern-name",
+    "git-widget-placeholder": "release/0.3.2",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
@@ -103,7 +104,20 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+  <component name="RunManager" selected="Application.GenerateHash">
+    <configuration name="GenerateHash" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.fullstackfamily.authservice.GenerateHash" />
+      <module name="authservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.fullstackfamily.authservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ApigatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="apigateway" />
@@ -150,6 +164,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GenerateHash" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
@@ -180,6 +195,7 @@
       <workItem from="1749206770248" duration="3888000" />
       <workItem from="1749211074864" duration="484000" />
       <workItem from="1749665423126" duration="2325000" />
+      <workItem from="1751530532909" duration="2212000" />
     </task>
     <task id="LOCAL-00001" summary="feat(config-SecurityConfig): create SecurityConfig for filter Http request">
       <option name="closed" value="true" />
@@ -535,7 +551,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: reset build version" />
     <MESSAGE value="feat: reset build version current" />
     <MESSAGE value="feat: fix space" />
     <MESSAGE value="refactor(validation-Valid): put methods in static" />
@@ -553,13 +568,14 @@
     <MESSAGE value="feat(dto-MallingRequest): create DTO class for malling" />
     <MESSAGE value="refactor(template): rename malling to malling-template" />
     <MESSAGE value="feat(service-EmailService): create method for send email" />
-    <MESSAGE value="chore: workspace.xml" />
     <MESSAGE value="chore(pom.xml): add dependency for parse html" />
     <MESSAGE value="feat(service-EmailService): add parse html and set text" />
     <MESSAGE value="feat: add new template" />
     <MESSAGE value="feat(entity-Subscriber): remove isSubscribed" />
     <MESSAGE value="feat(entity-Subscriber): return isSubscribed" />
     <MESSAGE value="refactor(service-EmailService): refactor send Email" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-EmailService): refactor send Email" />
+    <MESSAGE value="feat(config-CorsConfig): add new origin" />
+    <MESSAGE value="chore: workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: workspace.xml" />
   </component>
 </project>
