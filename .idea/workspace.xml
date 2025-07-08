@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(service-EmailService): refactor send Email">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/authservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/authservice/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/notificationservice/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/config/OpenApiConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +68,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "fix/swagger-docs",
+    "git-widget-placeholder": "fix/add-open-api-config",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
@@ -152,6 +149,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
@@ -519,7 +517,23 @@
       <option name="project" value="LOCAL" />
       <updated>1750251623275</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="feat: explicitly specified url">
+      <option name="closed" value="true" />
+      <created>1751987996694</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1751987996694</updated>
+    </task>
+    <task id="LOCAL-00044" summary="chore: workspace.xml">
+      <option name="closed" value="true" />
+      <created>1751988009037</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1751988009037</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +551,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: reset build version" />
     <MESSAGE value="feat: reset build version current" />
     <MESSAGE value="feat: fix space" />
     <MESSAGE value="refactor(validation-Valid): put methods in static" />
@@ -555,13 +568,14 @@
     <MESSAGE value="feat(dto-MallingRequest): create DTO class for malling" />
     <MESSAGE value="refactor(template): rename malling to malling-template" />
     <MESSAGE value="feat(service-EmailService): create method for send email" />
-    <MESSAGE value="chore: workspace.xml" />
     <MESSAGE value="chore(pom.xml): add dependency for parse html" />
     <MESSAGE value="feat(service-EmailService): add parse html and set text" />
     <MESSAGE value="feat: add new template" />
     <MESSAGE value="feat(entity-Subscriber): remove isSubscribed" />
     <MESSAGE value="feat(entity-Subscriber): return isSubscribed" />
     <MESSAGE value="refactor(service-EmailService): refactor send Email" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(service-EmailService): refactor send Email" />
+    <MESSAGE value="feat: explicitly specified url" />
+    <MESSAGE value="chore: workspace.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: workspace.xml" />
   </component>
 </project>
