@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(service-EmailService): refactor send Email">
-      <change afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/config/OpenApiConfig.java" afterDir="false" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(config-StaticResourceConfig): remove static resource configuration">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +47,9 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -68,7 +72,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "fix/add-open-api-config",
+    "git-widget-placeholder": "feature/add-integration-cloudinary",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
@@ -80,7 +84,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "Docker",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -129,6 +133,13 @@
     <configuration name="NotificationserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="notificationservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.notificationservice.NotificationserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="productservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.productservice.ProductserviceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -533,7 +544,47 @@
       <option name="project" value="LOCAL" />
       <updated>1751988009037</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="feat: add dependency cloudinary">
+      <option name="closed" value="true" />
+      <created>1751990906588</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1751990906588</updated>
+    </task>
+    <task id="LOCAL-00046" summary="feat: add variables for CloudinaryConfig">
+      <option name="closed" value="true" />
+      <created>1751991295774</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1751991295774</updated>
+    </task>
+    <task id="LOCAL-00047" summary="feat(config-CloudinaryConfig): add configuration cloudinary">
+      <option name="closed" value="true" />
+      <created>1751991673455</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1751991673455</updated>
+    </task>
+    <task id="LOCAL-00048" summary="refactor(service-ImageService): update the service to use cloudinary and add new format names photo">
+      <option name="closed" value="true" />
+      <created>1751992509386</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1751992509386</updated>
+    </task>
+    <task id="LOCAL-00049" summary="feat(config-StaticResourceConfig): remove static resource configuration">
+      <option name="closed" value="true" />
+      <created>1751995351939</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1751995351939</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -551,11 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: reset build version current" />
-    <MESSAGE value="feat: fix space" />
-    <MESSAGE value="refactor(validation-Valid): put methods in static" />
-    <MESSAGE value="refactor(validation-Valid): rename method usernameRegex to usernameInvalid" />
-    <MESSAGE value="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass" />
     <MESSAGE value="refactor(service-UserService): use ValidationUtils class for validation" />
     <MESSAGE value="refactor(validation-ValidationUtils, service-EmailService): rename method for validation email" />
     <MESSAGE value="refactor(validation-ValidationUtils): upgrade method for valid email and password" />
@@ -576,6 +622,11 @@
     <MESSAGE value="refactor(service-EmailService): refactor send Email" />
     <MESSAGE value="feat: explicitly specified url" />
     <MESSAGE value="chore: workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: workspace.xml" />
+    <MESSAGE value="feat: add dependency cloudinary" />
+    <MESSAGE value="feat: add variables for CloudinaryConfig" />
+    <MESSAGE value="feat(config-CloudinaryConfig): add configuration cloudinary" />
+    <MESSAGE value="refactor(service-ImageService): update the service to use cloudinary and add new format names photo" />
+    <MESSAGE value="feat(config-StaticResourceConfig): remove static resource configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(config-StaticResourceConfig): remove static resource configuration" />
   </component>
 </project>
