@@ -3,6 +3,7 @@ package com.fullstackfamily.productservice.service;
 import com.fullstackfamily.productservice.dto.ApiResponse;
 import com.fullstackfamily.productservice.dto.ProductInfoRequest;
 import com.fullstackfamily.productservice.dto.ProductResponse;
+import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
 import com.fullstackfamily.productservice.validation.ValidationRequest;
@@ -31,7 +32,7 @@ public class ProductService {
                         e.getPrice(),
                         e.getOldPrice(),
                         e.getHasdiscount(),
-                        e.getImage(),
+                        e.getImage().stream().map(Images::getUrl).toList(),
                         e.getSizes(),
                         e.getColor(),
                         e.getSeason(),
@@ -53,7 +54,7 @@ public class ProductService {
                                 value.getPrice(),
                                 value.getOldPrice(),
                                 value.getHasdiscount(),
-                                value.getImage(),
+                                value.getImage().stream().map(Images::getUrl).toList(),
                                 value.getSizes(),
                                 value.getColor(),
                                 value.getSeason(),
@@ -70,7 +71,6 @@ public class ProductService {
                 ValidationRequest.isNullOrEmpty(request.getGender()) ||
                 ValidationRequest.isNullOrEmpty(request.getCategory()) ||
                 request.getPrice() == null ||
-                request.getImage() == null || request.getImage().isEmpty() ||
                 request.getSizes() == null || request.getSizes().isEmpty() ||
                 ValidationRequest.isNullOrEmpty(request.getColor()) ||
                 ValidationRequest.isNullOrEmpty(request.getSeason()) ||
@@ -89,7 +89,6 @@ public class ProductService {
         product.setPrice(request.getPrice());
         product.setOldPrice(request.getOldPrice());
         product.setHasdiscount(request.getHasdiscount());
-        product.setImage(request.getImage());
         product.setSizes(request.getSizes());
         product.setColor(request.getColor());
         product.setSeason(request.getSeason());

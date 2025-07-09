@@ -1,5 +1,6 @@
 package com.fullstackfamily.productservice.dto;
 
+import com.fullstackfamily.productservice.entity.Images;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -25,8 +26,6 @@ public class ProductInfoRequest {
     private BigDecimal oldPrice;
 
     private Boolean hasdiscount;
-
-    private List<String> image;
 
     private Map<String, Integer> sizes;
 
