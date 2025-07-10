@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="chore: workspace.xml, compiler.xml">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
-    </list>
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="chore: workspace.xml, deploy.yml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -556,7 +554,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752182178558</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="chore: workspace.xml, deploy.yml">
+      <option name="closed" value="true" />
+      <created>1752182422002</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1752182422002</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -574,7 +580,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor(validation-Valid): put methods in static" />
     <MESSAGE value="refactor(validation-Valid): rename method usernameRegex to usernameInvalid" />
     <MESSAGE value="refactor(validation-ValidationUtils): rename Valid to ValidationUtils with @UtilityClass" />
     <MESSAGE value="refactor(service-UserService): use ValidationUtils class for validation" />
@@ -599,6 +604,7 @@
     <MESSAGE value="chore: workspace.xml" />
     <MESSAGE value="chore: change deploy.yml" />
     <MESSAGE value="chore: workspace.xml, compiler.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: workspace.xml, compiler.xml" />
+    <MESSAGE value="chore: workspace.xml, deploy.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: workspace.xml, deploy.yml" />
   </component>
 </project>
