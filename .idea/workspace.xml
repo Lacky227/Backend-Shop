@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(service-EmailService): refactor send Email">
-      <change afterPath="$PROJECT_DIR$/authservice/src/main/java/com/fullstackfamily/authservice/config/OpenApiConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +69,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "fix/add-open-api-config",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
@@ -129,6 +130,13 @@
     <configuration name="NotificationserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="notificationservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.notificationservice.NotificationserviceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="productservice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.productservice.ProductserviceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
