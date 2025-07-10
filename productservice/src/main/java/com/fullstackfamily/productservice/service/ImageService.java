@@ -38,7 +38,7 @@ public class ImageService {
             Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
             String imageUrl = uploadResult.get("secure_url").toString();
             Images image = new Images();
-            image.setUrl(imageUrl);
+            image.setNewUrl(imageUrl);
             image.setProduct(product.get());
             imageRepository.save(image);
             return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Фото збережено"));
