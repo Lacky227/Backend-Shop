@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ImageRepository extends JpaRepository<Images, Long> {
-    List<Images> findAllByProductSku(String sku);
+    boolean existsByOriginalName(String originalName);
 }
