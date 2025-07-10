@@ -62,8 +62,6 @@ services:
       - "traefik.http.routers.auth.entrypoints=websecure"
       - "traefik.http.routers.auth.tls.certresolver=myresolver"
       - "traefik.http.services.auth.loadbalancer.server.port=8081"
-    ports:
-      - "8081:8081"
     restart: always
 
   api-gateway:
@@ -82,8 +80,6 @@ services:
       - "traefik.http.routers.gateway.entrypoints=websecure"
       - "traefik.http.routers.gateway.tls.certresolver=myresolver"
       - "traefik.http.services.gateway.loadbalancer.server.port=8080"
-    ports:
-      - "8080:8080"
     restart: always
 
   notification-service:
@@ -105,8 +101,6 @@ services:
       - "traefik.http.routers.notification.entrypoints=websecure"
       - "traefik.http.routers.notification.tls.certresolver=myresolver"
       - "traefik.http.services.notification.loadbalancer.server.port=8083"
-    ports:
-      - "8083:8083"
     restart: always
 
   product-service:
@@ -123,7 +117,9 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 10MB
       SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: 10MB
-      LOCAL_NAME_DIRECTORY: "file:/opt/lucky-shop/images"
+      CLOUDINARY_CLOUD_NAME: dnc6uzrjr
+      CLOUDINARY_API_KEY: 136367972677619
+      CLOUDINARY_API_SECRET: RxCQD1JGeNZRoxxVDc6RbQtiXRA
       SERVER_PORT: 8082
     labels:
         - "traefik.enable=true"
@@ -131,8 +127,6 @@ services:
         - "traefik.http.routers.product.entrypoints=websecure"
         - "traefik.http.routers.product.tls.certresolver=myresolver"
         - "traefik.http.services.product.loadbalancer.server.port=8082"
-    ports:
-      - "8082:8082"
     restart: always
 
 volumes:

@@ -40,8 +40,8 @@ public class Product {
     @Column(nullable = false)
     private Boolean hasdiscount;
 
-    @Column(nullable = false)
-    private List<String> image = new ArrayList<>();
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Images> image = new ArrayList<>();
 
     @ElementCollection
     @CollectionTable(
