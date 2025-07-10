@@ -11,8 +11,8 @@ public class Images {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String oldUrl;
-    private String newUrl;
+    private String originalName;
+    private String url;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_sku")

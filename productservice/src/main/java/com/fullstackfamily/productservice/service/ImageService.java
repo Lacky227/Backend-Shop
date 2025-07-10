@@ -35,10 +35,12 @@ public class ImageService {
             if (product.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Товар з SKU '" + sku + "' не знайдено"));
             }
+
             Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
             String imageUrl = uploadResult.get("secure_url").toString();
             Images image = new Images();
-            image.setNewUrl(imageUrl);
+            image.setOriginalName(originalFilename);
+            image.setUrl(imageUrl);
             image.setProduct(product.get());
             imageRepository.save(image);
             return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse("Фото збережено"));
