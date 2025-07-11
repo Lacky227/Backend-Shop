@@ -97,4 +97,12 @@ public class ProductService {
         productRepository.save(product);
         return ResponseEntity.ok(new ApiResponse("Товар успішно створений"));
     }
+    public ResponseEntity<ApiResponse> deleteProduct(String sku) {
+        Optional<Product> product = productRepository.findBySku(sku);
+        if (product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Не знайдено товар"));
+        }
+        productRepository.delete(product.get());
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Товар видалено"));
+    }
 }
