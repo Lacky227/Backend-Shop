@@ -29,4 +29,8 @@ public class ProductController {
     public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductInfoRequest request){
         return productService.createProduct(request);
     }
+    @DeleteMapping("/delete/{sku}")
+    public ResponseEntity<ApiResponse> deleteProduct(@PathVariable String sku){
+        return productService.deleteProduct(sku);
+    }
 }
