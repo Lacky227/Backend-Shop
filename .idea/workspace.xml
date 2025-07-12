@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="feat(controller-ProductController): add endpoint for delete product">
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/templates/malling-template.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/notificationservice/src/main/resources/templates/welcome.html" beforeDir="false" />
+    <list default="true" id="517fc39f-5f6c-40aa-8390-a1bba2f2a7a5" name="Changes" comment="refactor(config-GatewayConfig): divide product service urls into open and protected">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/add-remove-product" />
+        <entry key="$PROJECT_DIR$" value="bugfix/config-gateway" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -80,7 +79,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Spring Boot.ApigatewayApplication.executor": "Run",
     "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
     "node.js.detected.package.eslint": "true",
@@ -201,14 +200,6 @@
       <workItem from="1749665423126" duration="2325000" />
       <workItem from="1752063367651" duration="6945000" />
       <workItem from="1752158301633" duration="7141000" />
-    </task>
-    <task id="LOCAL-00013" summary="feat: reset build in Dockerfile">
-      <option name="closed" value="true" />
-      <created>1749052726556</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1749052726556</updated>
     </task>
     <task id="LOCAL-00014" summary="feat: reset build in Dockerfile">
       <option name="closed" value="true" />
@@ -594,7 +585,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752235629210</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="refactor(config-GatewayConfig): divide product service urls into open and protected">
+      <option name="closed" value="true" />
+      <created>1752322289084</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1752322289084</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -612,8 +611,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="chore(pom.xml): add dependency for parse html" />
-    <MESSAGE value="feat(service-EmailService): add parse html and set text" />
     <MESSAGE value="feat: add new template" />
     <MESSAGE value="feat(entity-Subscriber): remove isSubscribed" />
     <MESSAGE value="feat(entity-Subscriber): return isSubscribed" />
@@ -637,6 +634,8 @@
     <MESSAGE value="refactor(service-ImageService): change method for save image" />
     <MESSAGE value="feat(service-ProductService): add delete product method" />
     <MESSAGE value="feat(controller-ProductController): add endpoint for delete product" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat(controller-ProductController): add endpoint for delete product" />
+    <MESSAGE value="chore: remove forward ports" />
+    <MESSAGE value="refactor(config-GatewayConfig): divide product service urls into open and protected" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(config-GatewayConfig): divide product service urls into open and protected" />
   </component>
 </project>
