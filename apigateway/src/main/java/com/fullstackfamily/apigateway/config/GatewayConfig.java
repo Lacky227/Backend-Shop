@@ -16,10 +16,14 @@ public class GatewayConfig {
     RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
                 .route("auth-service", r -> r
-                                .path("/auth/**")
-                                .uri("http://auth-service:8081/"))
-                .route("product-service", r -> r
-                        .path("/api/product/all")
+                        .path("/auth/**")
+                        .uri("http://auth-service:8081/"))
+                .route("product-service-open", r -> r
+                        .path( "/api/product/**")
+                        .uri("http://product-service:8082/"))
+                .route("product-service-protected", r -> r
+                        .path("/api/files/save-image", "/api/product/create", "/api/product/delete/**")
+                        .filters(f -> f.filter(jwtFilter))
                         .uri("http://product-service:8082/"))
                 .route("notification-service", r -> r
                         .path("/api/notification/**")
