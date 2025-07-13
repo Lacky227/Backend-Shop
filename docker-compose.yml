@@ -24,7 +24,7 @@ services:
     restart: always
 
   traefik:
-    image: traefik:v2.11.25
+    image: traefik:v2.11
     container_name: traefik
     command:
       - "--log.level=DEBUG"
@@ -35,8 +35,10 @@ services:
       - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
       - "--certificatesresolvers.myresolver.acme.dnschallenge=true"
       - "--certificatesresolvers.myresolver.acme.dnschallenge.provider=duckdns"
+      - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=60"
       - "--certificatesresolvers.myresolver.acme.email=tishko.artyr@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.myresolver.acme.domains[0].main=*.duckdns.org"
     environment:
       - DUCKDNS_TOKEN=a3ed416a-186f-4e81-af36-0b7d125c96a8
     volumes:
@@ -67,8 +69,6 @@ services:
       - "traefik.http.routers.auth.entrypoints=websecure"
       - "traefik.http.routers.auth.tls.certresolver=myresolver"
       - "traefik.http.services.auth.loadbalancer.server.port=8081"
-    ports:
-      - "8081:8081"
     restart: always
 
   api-gateway:
@@ -87,8 +87,6 @@ services:
       - "traefik.http.routers.gateway.entrypoints=websecure"
       - "traefik.http.routers.gateway.tls.certresolver=myresolver"
       - "traefik.http.services.gateway.loadbalancer.server.port=8080"
-    ports:
-      - "8080:8080"
     restart: always
 
   notification-service:
@@ -110,8 +108,6 @@ services:
       - "traefik.http.routers.notification.entrypoints=websecure"
       - "traefik.http.routers.notification.tls.certresolver=myresolver"
       - "traefik.http.services.notification.loadbalancer.server.port=8083"
-    ports:
-      - "8083:8083"
     restart: always
 
   product-service:
@@ -131,16 +127,14 @@ services:
       CLOUDINARY_CLOUD_NAME: dnc6uzrjr
       CLOUDINARY_API_KEY: 136367972677619
       CLOUDINARY_API_SECRET: RxCQD1JGeNZRoxxVDc6RbQtiXRA
-      SPRINGDOC_SWAGGER_UI_URL: https://product-retail.duckdns.org/v3/api-docs
+      SPRINGDOC_SWAGGER_UI_URL: https://ps-retail.duckdns.org/v3/api-docs
       SERVER_PORT: 8082
     labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.product.rule=Host(`ps-retail.duckdns.org`)"
-        - "traefik.http.routers.product.entrypoints=websecure"
-        - "traefik.http.routers.product.tls.certresolver=myresolver"
-        - "traefik.http.services.product.loadbalancer.server.port=8082"
-    ports:
-      - "8082:8082"
+      - "traefik.enable=true"
+      - "traefik.http.routers.product.rule=Host(`ps-retail.duckdns.org`)"
+      - "traefik.http.routers.product.entrypoints=websecure"
+      - "traefik.http.routers.product.tls.certresolver=myresolver"
+      - "traefik.http.services.product.loadbalancer.server.port=8082"
     restart: always
 
 volumes:
