@@ -21,7 +21,7 @@ jobs:
           source: "."
           target: "/home/${{ secrets.VM_USER }}/Backend-Shop"
 
-      - name: Run docker-compose on VM via SSH
+      - name: Prepare letsencrypt folder and permissions
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VM_HOST }}
@@ -29,7 +29,23 @@ jobs:
           key: ${{ secrets.VM_KEY }}
           script: |
             cd /home/${{ secrets.VM_USER }}/Backend-Shop
-            docker-compose down
-            cd ~/Backend-shop
-            sudo chmod 600 ./letsencrypt/acme.json
-            docker-compose up --build -d
+
+            mkdir -p ./letsencrypt
+
+            if [ ! -f ./letsencrypt/acme.json ]; then
+              touch ./letsencrypt/acme.json
+              echo '{}' > ./letsencrypt/acme.json
+            fi
+
+            chmod 600 ./letsencrypt/acme.json
+
+      - name: Run docker-compose up with Traefik and other services
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_KEY }}
+          script: |
+            cd /home/${{ secrets.VM_USER }}/Backend-Shop
+
+            docker-compose up --build -d traefik auth-service api-gateway notification-service product-service
