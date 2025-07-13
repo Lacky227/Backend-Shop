@@ -38,7 +38,6 @@ services:
       - "--certificatesresolvers.myresolver.acme.dnschallenge.delayBeforeCheck=60"
       - "--certificatesresolvers.myresolver.acme.email=tishko.artyr@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - "--certificatesresolvers.myresolver.acme.domains[0].main=*.duckdns.org"
     environment:
       - DUCKDNS_TOKEN=a3ed416a-186f-4e81-af36-0b7d125c96a8
     volumes:
