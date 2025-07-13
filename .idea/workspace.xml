@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/productservice/src/main/java/com/fullstackfamily/productservice/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/productservice/src/main/java/com/fullstackfamily/productservice/controller/ProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/productservice/src/main/java/com/fullstackfamily/productservice/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/productservice/src/main/java/com/fullstackfamily/productservice/entity/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apigateway/src/main/java/com/fullstackfamily/apigateway/config/GatewayConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/apigateway/src/main/java/com/fullstackfamily/apigateway/config/GatewayConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +35,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Lacky227&quot;
-  }
-}</component>
+    "lastFilter": {
+      "state": "OPEN",
+      "assignee": "Lacky227"
+    }
+  }</component>
   <component name="GithubProjectSettings">
     <option name="branchProtectionPatterns">
       <list>
@@ -48,63 +49,64 @@
     </option>
   </component>
   <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Lacky227/Backend-Shop&quot;,
-    &quot;accountId&quot;: &quot;cc9ff338-c05d-4921-abb0-176499c38a37&quot;
-  }
-}</component>
+    "selectedUrlAndAccountId": {
+      "url": "https://github.com/Lacky227/Backend-Shop",
+      "accountId": "cc9ff338-c05d-4921-abb0-176499c38a37"
+    }
+  }</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
+    "isMigrated": true
+  }</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
+    "associatedIndex": 6
+  }</component>
   <component name="ProjectId" id="2xPidZ91VvqfFEZdzeiDCq09w3r" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ProductserviceApplication.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.ApigatewayApplication.executor": "Run",
-    "Spring Boot.AuthserviceApplication.executor": "Run",
-    "git-widget-placeholder": "feature/add-swagger-to-productservice",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
+    "keyToString": {
+      "Application.ProductserviceApplication.executor": "Run",
+      "DefaultHtmlFileTemplate": "HTML File",
+      "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
+      "RequestMappingsPanelOrder0": "0",
+      "RequestMappingsPanelOrder1": "1",
+      "RequestMappingsPanelWidth0": "75",
+      "RequestMappingsPanelWidth1": "75",
+      "RunOnceActivity.ShowReadmeOnStart": "true",
+      "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+      "RunOnceActivity.git.unshallow": "true",
+      "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+      "Spring Boot.ApigatewayApplication.executor": "Run",
+      "Spring Boot.AuthserviceApplication.executor": "Run",
+      "git-widget-placeholder": "feature/add-swagger-to-productservice",
+      "ignore.virus.scanning.warn.message": "true",
+      "kotlin-language-version-configured": "true",
+      "last_opened_file_path": "/home/artur/IdeaProjects/Backend-Shop/notificationservice/src/main/resources/templates",
+      "node.js.detected.package.eslint": "true",
+      "node.js.detected.package.tslint": "true",
+      "node.js.selected.package.eslint": "(autodetect)",
+      "node.js.selected.package.tslint": "(autodetect)",
+      "nodejs_package_manager_path": "npm",
+      "project.structure.last.edited": "Project",
+      "project.structure.proportion": "0.0",
+      "project.structure.side.proportion": "0.0",
+      "run.configurations.included.in.services": "true",
+      "settings.editor.selected.configurable": "reference.projectsettings.compiler.annotationProcessors",
+      "vue.rearranger.settings.migration": "true"
+    }
+  }]]></component>
+  <!-- The rest of the file remains unchanged -->
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/notificationservice/src/main/resources/templates" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="MoveFile.REDISCENT_KEYS">
       <recent name="D:\driverD\Portfolio\Backend_Shop" />
     </key>
   </component>
@@ -119,7 +121,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
-    <configuration name="ApigatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="ApidatewayApplication" type="SpringBootApplicationConfigurationType"atih factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="apigateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.apigateway.ApigatewayApplication" />
@@ -127,7 +129,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AuthserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="AuthserviceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring常にSpring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="authservice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.fullstackfamily.authservice.AuthserviceApplication" />
@@ -198,6 +200,7 @@
       <workItem from="1749665423126" duration="2325000" />
       <workItem from="1752063367651" duration="6945000" />
       <workItem from="1752158301633" duration="7141000" />
+      <workItem from="1752317511762" duration="501000" />
     </task>
     <task id="LOCAL-00013" summary="feat: reset build in Dockerfile">
       <option name="closed" value="true" />
@@ -263,7 +266,7 @@
       <option name="project" value="LOCAL" />
       <updated>1749207003377</updated>
     </task>
-    <task id="LOCAL-00021" summary="refactor(validation-Valid): rename method usernameRegex to usernameInvalid">
+    <	task id="LOCAL-00021" summary="refactor(validation-Valid): rename method usernameRegex to usernameInvalid">
       <option name="closed" value="true" />
       <created>1749208169485</created>
       <option name="number" value="00021" />
