@@ -125,6 +125,7 @@ services:
       CLOUDINARY_CLOUD_NAME: dnc6uzrjr
       CLOUDINARY_API_KEY: 136367972677619
       CLOUDINARY_API_SECRET: RxCQD1JGeNZRoxxVDc6RbQtiXRA
+      SPRINGDOC_SWAGGER_UI_URL: https://product-retail.duckdns.org/v3/api-docs
       SERVER_PORT: 8082
     labels:
       - "traefik.enable=true"
