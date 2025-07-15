@@ -26,7 +26,7 @@ public class UserService {
         if (ValidationUtils.firstNameInvalid(request.getFirstName())) {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse("Ім’я є обов’язковим. Має містити від 1 до 15 символів."));
-        } else if (ValidationUtils.firstNameInvalid(request.getLastName())) {
+        } else if (ValidationUtils.lastNameInvalid(request.getLastName())) {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse("Прізвище не коректне. Має містити від 1 до 15 символів."));
         }
