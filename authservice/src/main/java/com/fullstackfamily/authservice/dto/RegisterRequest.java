@@ -17,4 +17,7 @@ public class RegisterRequest {
 
     @Schema(description = "Пароль", example = "Password123!")
     private String password;
+
+    @Schema(description = "Підписка", example = "true/false")
+    private boolean isSubscribeToAds;
 }
