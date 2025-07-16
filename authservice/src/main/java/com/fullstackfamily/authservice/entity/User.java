@@ -23,8 +23,5 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private boolean isSubscribeToAds;
-
-    @Column(nullable = false)
     private String role = "ROLE_USER";
 }
