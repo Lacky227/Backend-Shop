@@ -1,9 +1,6 @@
 package com.fullstackfamily.authservice.service;
 
-import com.fullstackfamily.authservice.dto.ApiResponse;
-import com.fullstackfamily.authservice.dto.AuthResponse;
-import com.fullstackfamily.authservice.dto.LoginRequest;
-import com.fullstackfamily.authservice.dto.RegisterRequest;
+import com.fullstackfamily.authservice.dto.*;
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
 import com.fullstackfamily.authservice.validation.ValidationUtils;
@@ -21,6 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final SubServiceSender subServiceSender;
 
     public ResponseEntity<ApiResponse> registerUser(RegisterRequest request) {
         if (ValidationUtils.firstNameInvalid(request.getFirstName())) {
@@ -42,6 +40,10 @@ public class UserService {
         if (ValidationUtils.passwordInvalid(request.getPassword())) {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse("Недійсний пароль. Повинен містити 8–30 символів, 1 велику літеру, 1 цифру, 1 спецсимвол. Без кирилиці."));
+        }
+
+        if (request.isSubscribeToAds()){
+            subServiceSender.send(new SubSend(request.getEmail(), true));
         }
 
         User user = new User();
