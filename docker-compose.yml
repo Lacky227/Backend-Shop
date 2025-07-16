@@ -23,6 +23,19 @@ services:
       - mongodata:/data/db
     restart: always
 
+  rabbitmq:
+    image: rabbitmq:4.1.2-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbituser
+      RABBITMQ_DEFAULT_PASS: rabiitpass
+    networks:
+      - "luckyshop-net"
+    restart: always
+
   traefik:
     image: traefik:v2.11
     container_name: traefik
@@ -72,6 +85,8 @@ services:
       - "traefik.http.routers.auth.entrypoints=websecure"
       - "traefik.http.routers.auth.tls.certresolver=myresolver"
       - "traefik.http.services.auth.loadbalancer.server.port=8081"
+    networks:
+      - luckyshop-net
     restart: always
 
   api-gateway:
@@ -119,6 +134,8 @@ services:
       - "traefik.http.routers.notification.entrypoints=websecure"
       - "traefik.http.routers.notification.tls.certresolver=myresolver"
       - "traefik.http.services.notification.loadbalancer.server.port=8083"
+    networks:
+      - "luckyshop-net"
     restart: always
 
   product-service:
@@ -151,3 +168,8 @@ services:
 volumes:
   pgdata:
   mongodata:
+
+networks:
+  luckyshop-net:
+    name: luckyshop-network
+    driver: bridge
