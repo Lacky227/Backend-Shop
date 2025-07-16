@@ -1,5 +1,6 @@
 package com.fullstackfamily.authservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -19,5 +20,6 @@ public class RegisterRequest {
     private String password;
 
     @Schema(description = "Підписка", example = "true/false")
+    @JsonProperty("isSubscribeToAds")
     private boolean isSubscribeToAds;
 }
