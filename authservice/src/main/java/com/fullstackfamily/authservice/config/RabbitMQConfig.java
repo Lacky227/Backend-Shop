@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMQConfig {
-    private static final String QUEUE_NAME = "auth-to-notif";
+    public static final String QUEUE_NAME = "auth-to-notif";
 
     @Bean
     public Queue queue() {
