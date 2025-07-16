@@ -1,6 +1,7 @@
 package com.fullstackfamily.notificationservice.controller;
 
 import com.fullstackfamily.notificationservice.dto.EmailRequest;
+import com.fullstackfamily.notificationservice.entity.Subscriber;
 import com.fullstackfamily.notificationservice.service.EmailService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -11,6 +12,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/notification")
@@ -61,7 +64,11 @@ public class EmailController {
                     content =  @Content(schema = @Schema(implementation = String.class))),
     })
     @PostMapping("/unsub")
-    public ResponseEntity<?> unsubscribe(@RequestBody EmailRequest emailRequest) {
-        return emailService.unsubscribe(emailRequest);
+    public ResponseEntity<?> unsubscribe(@RequestBody String token) {
+        return emailService.unsubscribe(token);
     }
+//    @PostMapping("/unsub")
+//    public ResponseEntity<?> unsubscribe(@RequestBody EmailRequest emailRequest) {
+//        return emailService.unsubscribe(emailRequest);
+//    }
 }
