@@ -5,5 +5,4 @@ import lombok.Data;
 @Data
 public class SubReceive {
     private String email;
-    private boolean isSubscribe;
 }
