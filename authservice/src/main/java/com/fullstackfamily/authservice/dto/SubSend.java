@@ -7,5 +7,4 @@ import lombok.Data;
 @AllArgsConstructor
 public class SubSend {
     private String email;
-    private boolean isSubscribed;
 }

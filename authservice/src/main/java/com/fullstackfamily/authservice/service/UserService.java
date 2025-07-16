@@ -43,7 +43,7 @@ public class UserService {
         }
 
         if (request.isSubscribeToAds()){
-            subServiceSender.send(new SubSend(request.getEmail(), true));
+            subServiceSender.send(new SubSend(request.getEmail()));
         }
 
         User user = new User();
