@@ -12,6 +12,8 @@ services:
       POSTGRES_PASSWORD: shoppass
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - "luckyshop-net"
     restart: always
 
   mongodb:
@@ -21,6 +23,8 @@ services:
       - "27017:27017"
     volumes:
       - mongodata:/data/db
+    networks:
+      - "luckyshop-net"
     restart: always
 
   rabbitmq:
@@ -31,7 +35,7 @@ services:
       - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_USER: rabbituser
-      RABBITMQ_DEFAULT_PASS: rabiitpass
+      RABBITMQ_DEFAULT_PASS: rabbitpass
     networks:
       - "luckyshop-net"
     restart: always
@@ -56,6 +60,8 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       - "./letsencrypt:/letsencrypt"
+    networks:
+      - "luckyshop-net"
     ports:
       - "80:80"
       - "443:443"
@@ -96,6 +102,7 @@ services:
     container_name: api-gateway
     depends_on:
       - auth-service
+      - rabbitmq
     environment:
       AUTH_SERVICE_URL: http://auth-service:8081
       NOTIFICATION_SERVICE_URL: http://notification-service:8083
@@ -105,6 +112,10 @@ services:
       - "traefik.http.routers.gateway.entrypoints=websecure"
       - "traefik.http.routers.gateway.tls.certresolver=myresolver"
       - "traefik.http.services.gateway.loadbalancer.server.port=8080"
+    ports:
+      - "8080:8080"
+    networks:
+      - "luckyshop-net"
     restart: always
 
   notification-service:
@@ -114,6 +125,7 @@ services:
     container_name: notification-service
     depends_on:
       - mongodb
+      - rabbitmq
     environment:
       SPRING_DATA_MONGODB_URI: mongodb://mongo:27017/notificationDB
       SPRING_MAIL_HOST: smtp.gmail.com
@@ -163,6 +175,8 @@ services:
       - "traefik.http.routers.product.entrypoints=websecure"
       - "traefik.http.routers.product.tls.certresolver=myresolver"
       - "traefik.http.services.product.loadbalancer.server.port=8082"
+    networks:
+      - "luckyshop-net"
     restart: always
 
 volumes:
