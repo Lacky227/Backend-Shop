@@ -104,6 +104,10 @@ services:
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: true
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: true
       SPRINGDOC_SWAGGER_UI_URL: https://notify-retail.duckdns.org/v3/api-docs
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: rabbituser
+      SPRING_RABBITMQ_PASSWORD: rabbitpass
       SERVER_PORT: 8083
     labels:
       - "traefik.enable=true"
