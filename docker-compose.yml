@@ -61,6 +61,10 @@ services:
       SPRING_DATASOURCE_PASSWORD: shoppass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRINGDOC_SWAGGER_UI_URL: https://auth-retail.duckdns.org/v3/api-docs
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: rabbituser
+      SPRING_RABBITMQ_PASSWORD: rabbitpass
       SERVER_PORT: 8081
     labels:
       - "traefik.enable=true"
