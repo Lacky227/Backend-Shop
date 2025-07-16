@@ -12,6 +12,6 @@ public class SubServiceSender {
     private final RabbitTemplate rabbitTemplate;
 
     public void send(SubSend subResponse) {
-        rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, subResponse);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.QUEUE_NAME, subResponse.getEmail());
     }
 }
