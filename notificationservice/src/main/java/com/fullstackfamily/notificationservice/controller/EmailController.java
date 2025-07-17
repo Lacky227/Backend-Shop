@@ -1,6 +1,7 @@
 package com.fullstackfamily.notificationservice.controller;
 
 import com.fullstackfamily.notificationservice.dto.EmailRequest;
+import com.fullstackfamily.notificationservice.dto.TokenRequest;
 import com.fullstackfamily.notificationservice.entity.Subscriber;
 import com.fullstackfamily.notificationservice.service.EmailService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -64,7 +65,7 @@ public class EmailController {
                     content =  @Content(schema = @Schema(implementation = String.class))),
     })
     @PostMapping("/unsub")
-    public ResponseEntity<?> unsubscribe(@RequestBody String token) {
+    public ResponseEntity<?> unsubscribe(@RequestBody TokenRequest token) {
         return emailService.unsubscribe(token);
     }
 //    @PostMapping("/unsub")
