@@ -6,4 +6,5 @@ import lombok.Data;
 public class MallingRequest {
     private String email;
     private String subject;
+    private String unsubscribeLink;
 }
