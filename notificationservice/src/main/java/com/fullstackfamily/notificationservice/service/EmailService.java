@@ -31,7 +31,7 @@ public class EmailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender mailSender;
     @Value("${notification.token.secret}")
-    private final String secretKey;
+    private String secretKey;
 
     public ResponseEntity<ApiResponse> subscribe(EmailRequest emailRequest) {
         if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
