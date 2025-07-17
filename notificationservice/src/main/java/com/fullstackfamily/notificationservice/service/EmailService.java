@@ -10,6 +10,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.jsoup.Jsoup;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -17,7 +18,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
-
 import java.util.Optional;
 
 @Service
@@ -28,6 +28,11 @@ public class EmailService {
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender mailSender;
 
+    @Value("${notification.token.secret}")
+    private  String secretKey;
+    @Value("${notification.email.base-url}")
+    private String baseUrl;
+
     public ResponseEntity<ApiResponse> subscribe(EmailRequest emailRequest) {
         if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
             return ResponseEntity.badRequest()
@@ -36,6 +41,8 @@ public class EmailService {
 
         Optional<Subscriber> subscriberOpt = subscriberRepository.findByEmail(emailRequest.getEmail());
 
+        String token = TokenService.generateToken(emailRequest.getEmail(), secretKey);
+
         if (subscriberOpt.isPresent()) {
             Subscriber subscriber = subscriberOpt.get();
             if (subscriber.isSubscribed()) {
@@ -43,15 +50,13 @@ public class EmailService {
                         .body(new ApiResponse("Цей email вже підписано."));
             }
 
+            subscriber.setToken(token);
             subscriber.setSubscribed(true);
+
             subscriberRepository.save(subscriber);
 
-            MallingRequest mallingRequest = new MallingRequest();
-            mallingRequest.setEmail(emailRequest.getEmail());
-            mallingRequest.setSubject("Дякую що ви повернулись до нас");
-
             try {
-                sendEmail(mallingRequest);
+                sendWelcomeEmail(subscriber.getEmail(), "Дякую що ви повернулись до нас", token);
             } catch (MessagingException e) {
                 throw new RuntimeException(e);
             }
@@ -61,16 +66,14 @@ public class EmailService {
         }
 
         Subscriber newSubscriber = new Subscriber();
+
+        newSubscriber.setToken(token);
         newSubscriber.setEmail(emailRequest.getEmail());
         newSubscriber.setSubscribed(true);
         subscriberRepository.save(newSubscriber);
 
-        MallingRequest mallingRequest = new MallingRequest();
-        mallingRequest.setEmail(emailRequest.getEmail());
-        mallingRequest.setSubject("Дякую за підписку");
-
         try {
-            sendEmail(mallingRequest);
+            sendWelcomeEmail(newSubscriber.getEmail(), "Дякую за підписку", token);
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
@@ -79,34 +82,61 @@ public class EmailService {
                 .body(new ApiResponse("Успішно підписано."));
     }
 
-    public ResponseEntity<ApiResponse> unsubscribe(EmailRequest emailRequest) {
-        if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
-            return ResponseEntity.badRequest()
-                    .body(new ApiResponse("Email недійсний."));
+    public ResponseEntity<ApiResponse> unsubscribe(String token) {
+        Optional<Subscriber> subscriberOpt = subscriberRepository.findByToken(token);
+
+        if (subscriberOpt.isEmpty()) {
+            return ResponseEntity.badRequest().body(new ApiResponse("Неіснуючий токен"));
         }
 
-        Optional<Subscriber> subscriberOpt = subscriberRepository.findByEmail(emailRequest.getEmail());
-
-        if (subscriberOpt.isPresent()) {
-            Subscriber subscriber = subscriberOpt.get();
-            if (!subscriber.isSubscribed()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse("Цей email вже відписано."));
-            }
-
-            subscriber.setSubscribed(false);
-            subscriberRepository.save(subscriber);
-
-            return ResponseEntity.status(HttpStatus.ACCEPTED)
-                    .body(new ApiResponse("Успішно відписано."));
+        Subscriber subscriber = subscriberOpt.get();
+        if (!subscriber.isSubscribed()) {
+            return ResponseEntity.ok(new ApiResponse("Ви вже були відписані"));
         }
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED)
-                .body(new ApiResponse("Цей email не був підписаний."));
+        subscriber.setSubscribed(false);
+        subscriberRepository.save(subscriber);
+
+        return ResponseEntity.ok(new ApiResponse("Вас успішно відписано до розсилки"));
+    }
+
+//    public ResponseEntity<ApiResponse> unsubscribe(EmailRequest emailRequest) {
+//        if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
+//            return ResponseEntity.badRequest()
+//                    .body(new ApiResponse("Email недійсний."));
+//        }
+//
+//        Optional<Subscriber> subscriberOpt = subscriberRepository.findByEmail(emailRequest.getEmail());
+//
+//        if (subscriberOpt.isPresent()) {
+//            Subscriber subscriber = subscriberOpt.get();
+//            if (!subscriber.isSubscribed()) {
+//                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//                        .body(new ApiResponse("Цей email вже відписано."));
+//            }
+//
+//            subscriber.setSubscribed(false);
+//            subscriberRepository.save(subscriber);
+//
+//            return ResponseEntity.status(HttpStatus.ACCEPTED)
+//                    .body(new ApiResponse("Успішно відписано."));
+//        }
+//
+//        return ResponseEntity.status(HttpStatus.ACCEPTED)
+//                .body(new ApiResponse("Цей email не був підписаний."));
+//    }
+
+    private void sendWelcomeEmail(String email, String subject, String token) throws MessagingException {
+        MallingRequest request = new MallingRequest();
+        request.setEmail(email);
+        request.setSubject(subject);
+        request.setUnsubscribeLink(baseUrl + "?token=" + token);
+        sendEmail(request);
     }
 
     private void sendEmail(MallingRequest request) throws MessagingException {
         Context context = new Context();
+        context.setVariable("unsubscribeLink", request.getUnsubscribeLink());
         String html = templateEngine.process("welcome", context);
         String plainText = Jsoup.parse(html).text();
 

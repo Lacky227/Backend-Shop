@@ -10,5 +10,6 @@ public class Subscriber {
     @Id
     private String id;
     private String email;
+    private String token;
     private boolean isSubscribed;
 }

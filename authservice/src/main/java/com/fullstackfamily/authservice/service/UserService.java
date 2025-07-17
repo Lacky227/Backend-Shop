@@ -20,7 +20,7 @@ public class UserService {
     private final JwtService jwtService;
     private final SubServiceSender subServiceSender;
 
-    public ResponseEntity<ApiResponse> registerUser(RegisterRequest request) {
+    public ResponseEntity<?> registerUser(RegisterRequest request) {
         if (ValidationUtils.firstNameInvalid(request.getFirstName())) {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse("Ім’я є обов’язковим. Має містити від 1 до 15 символів."));
@@ -42,7 +42,7 @@ public class UserService {
                     .body(new ApiResponse("Недійсний пароль. Повинен містити 8–30 символів, 1 велику літеру, 1 цифру, 1 спецсимвол. Без кирилиці."));
         }
 
-        if (request.isSubscribeToAds()){
+        if (request.isSubscribeToAds()) {
             subServiceSender.send(new SubSend(request.getEmail()));
         }
 
@@ -53,8 +53,12 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
 
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setToken(jwtService.generateToken(user.getEmail(), user.getRole()));
+        authResponse.setRole(user.getRole());
+
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new ApiResponse("Зареєстровано."));
+                .body(authResponse);
     }
 
 

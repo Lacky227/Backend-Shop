@@ -30,7 +30,7 @@ public class AuthController {
             @ApiResponse(
                     responseCode = "201",
                     description = "Користувача успішно зареєстровано",
-                    content = @Content(schema = @Schema(implementation = String.class))
+                    content = @Content(schema = @Schema(implementation = AuthResponse.class))
             ),
             @ApiResponse(
                     responseCode = "400",
