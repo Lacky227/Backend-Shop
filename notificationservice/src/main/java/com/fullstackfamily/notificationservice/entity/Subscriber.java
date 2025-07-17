@@ -8,8 +8,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "subscribers")
 public class Subscriber {
     @Id
-    private String token;
     private String id;
     private String email;
+    private String token;
     private boolean isSubscribed;
 }
