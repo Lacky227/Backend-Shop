@@ -3,6 +3,7 @@ package com.fullstackfamily.notificationservice.service;
 import com.fullstackfamily.notificationservice.dto.ApiResponse;
 import com.fullstackfamily.notificationservice.dto.EmailRequest;
 import com.fullstackfamily.notificationservice.dto.MallingRequest;
+import com.fullstackfamily.notificationservice.dto.TokenRequest;
 import com.fullstackfamily.notificationservice.entity.Subscriber;
 import com.fullstackfamily.notificationservice.repository.SubscriberRepository;
 import com.fullstackfamily.notificationservice.validation.ValidationUtils;
@@ -82,8 +83,8 @@ public class EmailService {
                 .body(new ApiResponse("Успішно підписано."));
     }
 
-    public ResponseEntity<ApiResponse> unsubscribe(String token) {
-        Optional<Subscriber> subscriberOpt = subscriberRepository.findByToken(token);
+    public ResponseEntity<ApiResponse> unsubscribe(TokenRequest token) {
+        Optional<Subscriber> subscriberOpt = subscriberRepository.findByToken(token.getToken());
 
         if (subscriberOpt.isEmpty()) {
             return ResponseEntity.badRequest().body(new ApiResponse("Неіснуючий токен"));
