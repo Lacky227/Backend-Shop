@@ -1,5 +1,7 @@
 package com.fullstackfamily.authservice.service;
 
+import com.fullstackfamily.authservice.entity.BlackListToken;
+import com.fullstackfamily.authservice.repository.BlackListTokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,6 +19,7 @@ import java.util.Date;
 public class JwtService {
     @Value("${secret.key}")
     private String SECRET_KEY;
+    private final BlackListTokenRepository blackListTokenRepository;
 
     public String generateToken(String email, String role) {
         return Jwts.builder()
@@ -42,12 +45,20 @@ public class JwtService {
                 .getBody();
     }
 
+    public void blackListToken(String token) {
+        Claims claims = extractAllClaims(token);
+        BlackListToken blackListToken = new BlackListToken();
+        blackListToken.setToken(token);
+        blackListToken.setExpiryDate(claims.getExpiration());
+        blackListTokenRepository.save(blackListToken);
+    }
+
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
     public boolean isTokenValid(String token) {
-        return !isTokenExpired(token);
+        return !isTokenExpired(token) && !blackListTokenRepository.existsByToken(token);
     }
 
     private boolean isTokenExpired(String token) {

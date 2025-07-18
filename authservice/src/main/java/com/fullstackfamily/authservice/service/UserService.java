@@ -105,10 +105,10 @@ public class UserService {
                     .body(new ApiResponse("Користувача не знайдено."));
         }
 
+        jwtService.blackListToken(request.getToken());
         User user = optionalUser.get();
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
-
         return ResponseEntity.ok(new ApiResponse("Пароль успішно змінено."));
     }
 }
