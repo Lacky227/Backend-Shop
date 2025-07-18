@@ -77,6 +77,15 @@ public class UserService {
         authResponse.setRole(user.get().getRole());
         return ResponseEntity.ok(authResponse);
     }
+
+    public ResponseEntity<?> forgotPassword(ForgotRequest request) {
+        if (ValidationUtils.emailInvalid(request.getEmail())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Недійсний email. Введіть коректну адресу електронної пошти.");
+        } else if (userRepository.existsByEmail(request.getEmail())) {
+            subServiceSender.send(new SubSend(request.getEmail()));
+        }
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Повідомлення для пітвердження надіслано.");
+    }
 }
 
 
