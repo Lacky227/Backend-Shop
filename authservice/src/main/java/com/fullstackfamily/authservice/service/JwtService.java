@@ -5,14 +5,18 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
 
 @Service
+@RequiredArgsConstructor
 public class JwtService {
-    private static final String SECRET_KEY = "3F1F6A0A2B4E6F8C9D0E11223344556677889900AABBCCDDEEFF001122334455";
+    @Value("${secret.key}")
+    private String SECRET_KEY;
 
     public String generateToken(String email, String role) {
         return Jwts.builder()
