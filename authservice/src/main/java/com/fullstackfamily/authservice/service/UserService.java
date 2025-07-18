@@ -86,6 +86,32 @@ public class UserService {
         }
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Повідомлення для пітвердження надіслано.");
     }
+
+    public ResponseEntity<?> resetPassword(TokenRequest request) {
+        if (!jwtService.isTokenValid(request.getToken())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Недійсний або протермінований токен."));
+        }
+
+        if (ValidationUtils.passwordInvalid(request.getNewPassword())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Недійсний пароль. Повинен містити 8–30 символів, 1 велику літеру, 1 цифру, 1 спецсимвол. Без кирилиці."));
+        }
+
+        String email = jwtService.extractEmail(request.getToken());
+        Optional<User> optionalUser = userRepository.findByEmail(email);
+
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(new ApiResponse("Користувача не знайдено."));
+        }
+
+        User user = optionalUser.get();
+        user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new ApiResponse("Пароль успішно змінено."));
+    }
 }
 
 

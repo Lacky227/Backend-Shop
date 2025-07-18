@@ -1,9 +1,6 @@
 package com.fullstackfamily.authservice.controller;
 
-import com.fullstackfamily.authservice.dto.AuthResponse;
-import com.fullstackfamily.authservice.dto.ForgotRequest;
-import com.fullstackfamily.authservice.dto.LoginRequest;
-import com.fullstackfamily.authservice.dto.RegisterRequest;
+import com.fullstackfamily.authservice.dto.*;
 import com.fullstackfamily.authservice.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -129,5 +126,47 @@ public class AuthController {
     @PostMapping("/forgot-password")
     public ResponseEntity<?> forgotPassword(@RequestBody ForgotRequest request) {
         return userService.forgotPassword(request);
+    }
+    @Operation(
+            summary = "Скидання паролю",
+            description = "Оновлює пароль користувача після підтвердження токена, отриманого через email."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Пароль успішно змінено",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Пароль успішно змінено.\" }")
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Невалідний токен або пароль",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Недійсний або протермінований токен.\" }")
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "404",
+                    description = "Користувача не знайдено",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Користувача не знайдено.\" }")
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Помилка сервера",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Сталася внутрішня помилка сервера.\" }")
+                    )
+            )
+    })
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody TokenRequest request) {
+        return userService.resetPassword(request);
     }
 }
