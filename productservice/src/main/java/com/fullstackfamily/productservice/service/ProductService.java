@@ -63,6 +63,9 @@ public class ProductService {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
     public ResponseEntity<ApiResponse> createProduct(ProductInfoRequest request) {
+        if (request.getSku() == null || request.getSku().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Sku є обов'язвовим поле для заповнення."));
+        }
         Optional<Product> productBySku = productRepository.findBySku(request.getSku());
         if (productBySku.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiResponse("Товар із цим sku вже є"));
