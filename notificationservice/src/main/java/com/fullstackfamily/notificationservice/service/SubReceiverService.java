@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class SubReceiverService {
     private final EmailService emailService;
 
-    @RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)
+    @RabbitListener(queues = RabbitMQConfig.SUBSCRIPTION_QUEUE_NAME)
     public void receive(String email) {
         EmailRequest emailRequest = new EmailRequest();
         emailRequest.setEmail(email);
