@@ -5,6 +5,7 @@ import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
 import com.fullstackfamily.authservice.validation.ValidationUtils;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -79,10 +80,8 @@ public class UserService {
     }
 
     public ResponseEntity<?> forgotPassword(ForgotRequest request) {
-        if (ValidationUtils.emailInvalid(request.getEmail())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Недійсний email. Введіть коректну адресу електронної пошти.");
-        } else if (userRepository.existsByEmail(request.getEmail())) {
-            subServiceSender.send(new SubSend(request.getEmail()));
+        if (userRepository.existsByEmail(request.getEmail())) {
+            subServiceSender.sendForgotPassword(request);
         }
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("Повідомлення для пітвердження надіслано.");
     }
