@@ -1,11 +1,13 @@
 package com.fullstackfamily.authservice.controller;
 
 import com.fullstackfamily.authservice.dto.AuthResponse;
+import com.fullstackfamily.authservice.dto.ForgotRequest;
 import com.fullstackfamily.authservice.dto.LoginRequest;
 import com.fullstackfamily.authservice.dto.RegisterRequest;
 import com.fullstackfamily.authservice.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -34,18 +36,27 @@ public class AuthController {
             ),
             @ApiResponse(
                     responseCode = "400",
-                    description = "Некоректні вхідні дані (недійсне ім’я, прізвище, email або пароль)",
-                    content = @Content(schema = @Schema(implementation = String.class))
+                    description = "Некоректні вхідні дані",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Некоректні вхідні дані (недійсне ім’я, прізвище, email або пароль)\" }")
+                    )
             ),
             @ApiResponse(
                     responseCode = "409",
                     description = "Email уже використовується",
-                    content = @Content(schema = @Schema(implementation = String.class))
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Користувач з таким email вже існує.\" }")
+                    )
             ),
             @ApiResponse(
                     responseCode = "500",
                     description = "Помилка сервера",
-                    content = @Content(schema = @Schema(implementation = String.class))
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Сталася внутрішня помилка сервера.\" }")
+                    )
             )
     })
     @PostMapping("/register")
@@ -66,16 +77,57 @@ public class AuthController {
             @ApiResponse(
                     responseCode = "401",
                     description = "Невірний email або пароль",
-                    content = @Content(schema = @Schema(implementation = String.class))
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Невірний email або пароль.\" }")
+                    )
             ),
             @ApiResponse(
                     responseCode = "500",
                     description = "Помилка сервера",
-                    content = @Content(schema = @Schema(implementation = String.class))
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Сталася внутрішня помилка сервера.\" }")
+                    )
             )
     })
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         return userService.loginUser(request);
+    }
+
+    @Operation(
+            summary = "Відновлення паролю",
+            description = "Надсилає лист для відновлення паролю, якщо email зареєстровано у системі."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "202",
+                    description = "Лист для відновлення паролю успішно надіслано",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Повідомлення для підтвердження надіслано.\" }")
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Некоректний email",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Недійсний email. Введіть коректну адресу електронної пошти.\" }")
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Внутрішня помилка сервера",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Сталася внутрішня помилка сервера.\" }")
+                    )
+            )
+    })
+    @PostMapping("/forgot-password")
+    public ResponseEntity<?> forgotPassword(@RequestBody ForgotRequest request) {
+        return userService.forgotPassword(request);
     }
 }
