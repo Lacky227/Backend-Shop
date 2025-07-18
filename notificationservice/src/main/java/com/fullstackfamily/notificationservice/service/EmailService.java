@@ -132,13 +132,14 @@ public class EmailService {
         request.setEmail(email);
         request.setSubject(subject);
         request.setUnsubscribeLink(baseUrl + "?token=" + token);
+        request.setTemplateName("welcome");
         sendEmail(request);
     }
 
     private void sendEmail(MallingRequest request) throws MessagingException {
         Context context = new Context();
         context.setVariable("unsubscribeLink", request.getUnsubscribeLink());
-        String html = templateEngine.process("welcome", context);
+        String html = templateEngine.process(request.getTemplateName(), context);
         String plainText = Jsoup.parse(html).text();
 
         MimeMessage mime = mailSender.createMimeMessage();
