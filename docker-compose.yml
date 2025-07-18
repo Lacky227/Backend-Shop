@@ -80,6 +80,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: shoppass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRINGDOC_SWAGGER_UI_URL: https://auth-retail.duckdns.org/v3/api-docs
+      SECRET_KEY: 3F1F6A0A2B4E6F8C9D0E11223344556677889900AABBCCDDEEFF001122334455
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: rabbituser
@@ -136,7 +137,9 @@ services:
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: true
       SPRINGDOC_SWAGGER_UI_URL: https://notify-retail.duckdns.org/v3/api-docs
       NOTIFICATION_TOKEN_SECRET: OLi2DbABssc0WNyE62FAA1Sx7mnroEhb
-      NOTIFICATION_EMAIL_BASE_URL: https://lucky-shop-one.vercel.app/unsubscribe
+      NOTIFICATION_EMAIL_BASE_UNSUB_URL: https://lucky-shop-one.vercel.app/unsubscribe
+      NOTIFICATION_EMAIL_BASE_FORGOT_PASSWORD_URL: https://lucky-shop-one.vercel.app/auth/create-new-password
+      SECRET_KEY: 3F1F6A0A2B4E6F8C9D0E11223344556677889900AABBCCDDEEFF001122334455
       SPRING_RABBITMQ_HOST: rabbitmq
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: rabbituser

@@ -11,10 +11,15 @@ import org.springframework.stereotype.Service;
 public class SubReceiverService {
     private final EmailService emailService;
 
-    @RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)
-    public void receive(String email) {
+    @RabbitListener(queues = RabbitMQConfig.SUBSCRIPTION_QUEUE_NAME)
+    public void subReceive(String email) {
         EmailRequest emailRequest = new EmailRequest();
         emailRequest.setEmail(email);
         emailService.subscribe(emailRequest);
+    }
+
+    @RabbitListener(queues = RabbitMQConfig.RESET_QUEUE_NAME)
+    public void resetPassword(String email) {
+        emailService.forgotPassword(email);
     }
 }

@@ -28,12 +28,21 @@ public class EmailService {
     private final SubscriberRepository subscriberRepository;
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender mailSender;
+    private final JwtService jwtService;
 
     @Value("${notification.token.secret}")
     private  String secretKey;
-    @Value("${notification.email.base-url}")
-    private String baseUrl;
+    @Value("${notification.email.base.unsub-url}")
+    private String baseUnsubUrl;
+    @Value("${notification.email.base.forgotpassword-url}")
+    private String baseForgotPasswordUrl;
 
+    /**
+     * Підписує користувача на розсилку, генеруючи JWT токен.
+     *
+     * @param emailRequest Запит із email користувача.
+     * @return ResponseEntity з відповіддю про статус операції.
+     */
     public ResponseEntity<ApiResponse> subscribe(EmailRequest emailRequest) {
         if (ValidationUtils.emailInvalid(emailRequest.getEmail())) {
             return ResponseEntity.badRequest()
@@ -41,8 +50,7 @@ public class EmailService {
         }
 
         Optional<Subscriber> subscriberOpt = subscriberRepository.findByEmail(emailRequest.getEmail());
-
-        String token = TokenService.generateToken(emailRequest.getEmail(), secretKey);
+        String token = jwtService.generateToken(emailRequest.getEmail(), false);
 
         if (subscriberOpt.isPresent()) {
             Subscriber subscriber = subscriberOpt.get();
@@ -53,13 +61,12 @@ public class EmailService {
 
             subscriber.setToken(token);
             subscriber.setSubscribed(true);
-
             subscriberRepository.save(subscriber);
 
             try {
-                sendWelcomeEmail(subscriber.getEmail(), "Дякую що ви повернулись до нас", token);
+                sendWelcomeEmail(subscriber.getEmail(), "Дякую, що повернулись до нас!", token);
             } catch (MessagingException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Помилка надсилання листа: " + e.getMessage(), e);
             }
 
             return ResponseEntity.status(HttpStatus.ACCEPTED)
@@ -67,38 +74,54 @@ public class EmailService {
         }
 
         Subscriber newSubscriber = new Subscriber();
-
         newSubscriber.setToken(token);
         newSubscriber.setEmail(emailRequest.getEmail());
         newSubscriber.setSubscribed(true);
         subscriberRepository.save(newSubscriber);
 
         try {
-            sendWelcomeEmail(newSubscriber.getEmail(), "Дякую за підписку", token);
+            sendWelcomeEmail(newSubscriber.getEmail(), "Дякую за підписку!", token);
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Помилка надсилання листа: " + e.getMessage(), e);
         }
 
         return ResponseEntity.status(HttpStatus.ACCEPTED)
                 .body(new ApiResponse("Успішно підписано."));
     }
 
-    public ResponseEntity<ApiResponse> unsubscribe(TokenRequest token) {
-        Optional<Subscriber> subscriberOpt = subscriberRepository.findByToken(token.getToken());
+    /**
+     * Відписує користувача від розсилки за JWT токеном.
+     *
+     * @param tokenRequest Запит із токеном.
+     * @return ResponseEntity з відповіддю про статус операції.
+     */
+    public ResponseEntity<ApiResponse> unsubscribe(TokenRequest tokenRequest) {
+        String token = tokenRequest.getToken();
+        try {
+            if (!jwtService.isTokenValid(token)) {
+                return ResponseEntity.badRequest().body(new ApiResponse("Недійсний або прострочений токен."));
+            }
 
-        if (subscriberOpt.isEmpty()) {
-            return ResponseEntity.badRequest().body(new ApiResponse("Неіснуючий токен"));
+            String email = jwtService.extractEmail(token);
+            Optional<Subscriber> subscriberOpt = subscriberRepository.findByEmail(email);
+
+            if (subscriberOpt.isEmpty()) {
+                return ResponseEntity.badRequest().body(new ApiResponse("Користувача з таким токеном не знайдено."));
+            }
+
+            Subscriber subscriber = subscriberOpt.get();
+            if (!subscriber.isSubscribed()) {
+                return ResponseEntity.ok(new ApiResponse("Ви вже відписані."));
+            }
+
+            subscriber.setSubscribed(false);
+            subscriberRepository.save(subscriber);
+
+            return ResponseEntity.ok(new ApiResponse("Успішно відписано від розсилки."));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ApiResponse("Помилка обробки токена: " + e.getMessage()));
         }
-
-        Subscriber subscriber = subscriberOpt.get();
-        if (!subscriber.isSubscribed()) {
-            return ResponseEntity.ok(new ApiResponse("Ви вже були відписані"));
-        }
-
-        subscriber.setSubscribed(false);
-        subscriberRepository.save(subscriber);
-
-        return ResponseEntity.ok(new ApiResponse("Вас успішно відписано до розсилки"));
     }
 
 //    public ResponseEntity<ApiResponse> unsubscribe(EmailRequest emailRequest) {
@@ -127,18 +150,36 @@ public class EmailService {
 //                .body(new ApiResponse("Цей email не був підписаний."));
 //    }
 
+    public void forgotPassword(String email) {
+        sendForgotPassword(email, jwtService.generateTokenForgotPassword(email));
+    }
+
     private void sendWelcomeEmail(String email, String subject, String token) throws MessagingException {
         MallingRequest request = new MallingRequest();
         request.setEmail(email);
         request.setSubject(subject);
-        request.setUnsubscribeLink(baseUrl + "?token=" + token);
+        request.setLink(baseUnsubUrl + "?token=" + token);
+        request.setTemplateName("welcome");
         sendEmail(request);
+    }
+
+    private void sendForgotPassword(String email, String token) {
+        try {
+            MallingRequest request = new MallingRequest();
+            request.setEmail(email);
+            request.setSubject("Відновлення паролю");
+            request.setLink(baseForgotPasswordUrl + "?token=" + token);
+            request.setTemplateName("forgot-password");
+            sendEmail(request);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void sendEmail(MallingRequest request) throws MessagingException {
         Context context = new Context();
-        context.setVariable("unsubscribeLink", request.getUnsubscribeLink());
-        String html = templateEngine.process("welcome", context);
+        context.setVariable("link", request.getLink());
+        String html = templateEngine.process(request.getTemplateName(), context);
         String plainText = Jsoup.parse(html).text();
 
         MimeMessage mime = mailSender.createMimeMessage();
