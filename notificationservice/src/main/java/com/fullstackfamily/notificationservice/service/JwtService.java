@@ -3,7 +3,6 @@ package com.fullstackfamily.notificationservice.service;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -52,7 +51,6 @@ public class JwtService {
                     .build()
                     .parseClaimsJws(token);
 
-            // Перевірка терміну дії, якщо він заданий
             Date expiration = claims.getBody().getExpiration();
             if (expiration != null && expiration.before(new Date())) {
                 return false;
