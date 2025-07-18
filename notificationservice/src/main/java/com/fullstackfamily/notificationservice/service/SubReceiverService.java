@@ -17,4 +17,9 @@ public class SubReceiverService {
         emailRequest.setEmail(email);
         emailService.subscribe(emailRequest);
     }
+
+    @RabbitListener(queues = RabbitMQConfig.RESET_QUEUE_NAME)
+    public void resetPassword(String email) {
+        emailService.forgotPassword(email);
+    }
 }
