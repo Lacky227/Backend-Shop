@@ -12,7 +12,7 @@ public class SubReceiverService {
     private final EmailService emailService;
 
     @RabbitListener(queues = RabbitMQConfig.SUBSCRIPTION_QUEUE_NAME)
-    public void receive(String email) {
+    public void subReceive(String email) {
         EmailRequest emailRequest = new EmailRequest();
         emailRequest.setEmail(email);
         emailService.subscribe(emailRequest);
