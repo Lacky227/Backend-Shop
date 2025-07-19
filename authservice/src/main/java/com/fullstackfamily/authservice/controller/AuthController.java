@@ -169,4 +169,38 @@ public class AuthController {
     public ResponseEntity<?> resetPassword(@RequestBody TokenRequest request) {
         return userService.resetPassword(request);
     }
+    @Operation(
+            summary = "Вхід через Google",
+            description = "Автентифікує користувача за допомогою Google ID токена, створює нового користувача, якщо він не існує, і повертає JWT-токен та роль."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Успішна автентифікація через Google",
+                    content = @Content(
+                            schema = @Schema(implementation = AuthResponse.class),
+                            examples = @ExampleObject(value = "{ \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\", \"role\": \"USER\" }")
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "400",
+                    description = "Недійсний Google токен",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Недійсний Google аккаунт\" }")
+                    )
+            ),
+            @ApiResponse(
+                    responseCode = "500",
+                    description = "Внутрішня помилка сервера",
+                    content = @Content(
+                            schema = @Schema(implementation = ApiResponse.class),
+                            examples = @ExampleObject(value = "{ \"message\": \"Сталася внутрішня помилка сервера.\" }")
+                    )
+            )
+    })
+    @PostMapping("/google")
+    public ResponseEntity<?> loginGoogle(@RequestBody IdTokenRequest request) {
+        return userService.loginWithGoogle(request);
+    }
 }
