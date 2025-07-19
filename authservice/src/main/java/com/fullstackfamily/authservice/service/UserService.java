@@ -1,25 +1,36 @@
 package com.fullstackfamily.authservice.service;
 
 import com.fullstackfamily.authservice.dto.*;
+import com.fullstackfamily.authservice.entity.AuthProvider;
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
 import com.fullstackfamily.authservice.validation.ValidationUtils;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final SubServiceSender subServiceSender;
+    @Value("${google.client-id}")
+    private String clientId;
 
     public ResponseEntity<?> registerUser(RegisterRequest request) {
         if (ValidationUtils.firstNameInvalid(request.getFirstName())) {
@@ -52,6 +63,7 @@ public class UserService {
         user.setLastName(request.getLastName());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setProvider(AuthProvider.LOCAL);
         userRepository.save(user);
 
         AuthResponse authResponse = new AuthResponse();
@@ -65,8 +77,8 @@ public class UserService {
 
     public ResponseEntity<?> loginUser(LoginRequest request) {
         Optional<User> user = userRepository.findByEmail(request.getEmail());
-        if (user.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Не знайдено користувача. Будь ласка, перевірте email.");
+        if (user.isEmpty() || user.get().getProvider() != AuthProvider.LOCAL) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Неправильні облікові дані.");
         }
 
         if (!passwordEncoder.matches(request.getPassword(), user.get().getPassword())) {
@@ -101,8 +113,8 @@ public class UserService {
         Optional<User> optionalUser = userRepository.findByEmail(email);
 
         if (optionalUser.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new ApiResponse("Користувача не знайдено."));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Недійсний або протермінований токен."));
         }
 
         jwtService.blackListToken(request.getToken());
@@ -110,6 +122,32 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getNewPassword()));
         userRepository.save(user);
         return ResponseEntity.ok(new ApiResponse("Пароль успішно змінено."));
+    }
+    public ResponseEntity<?> loginWithGoogle(IdTokenRequest request) {
+        GoogleIdToken.Payload payload = ValidationUtils.verifyToken(request.getIdToken(), clientId);
+        if (payload == null) {
+            return ResponseEntity.badRequest().body("Недійсний Google аккаунт");
+        }
+
+        String email = payload.getEmail();
+        String firstName = (String) payload.get("given_name");
+        String lastName = (String) payload.get("family_name");
+
+        Optional<User> userOptional = userRepository.findByEmail(email);
+        User user = userOptional.orElseGet(() -> {
+            User newUser = new User();
+            newUser.setEmail(email);
+            newUser.setFirstName(firstName != null ? firstName : "Unknown");
+            newUser.setLastName(lastName != null ? lastName : "");
+            newUser.setPassword(UUID.randomUUID().toString());
+            newUser.setProvider(AuthProvider.GOOGLE);
+            return userRepository.save(newUser);
+        });
+
+        AuthResponse authResponse = new AuthResponse();
+        authResponse.setToken(jwtService.generateToken(user.getEmail(), user.getRole()));
+        authResponse.setRole(user.getRole());
+        return ResponseEntity.ok(authResponse);
     }
 }
 
