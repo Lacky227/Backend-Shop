@@ -1,24 +1,22 @@
 package com.fullstackfamily.authservice.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fullstackfamily.authservice.dto.*;
 import com.fullstackfamily.authservice.entity.AuthProvider;
 import com.fullstackfamily.authservice.entity.User;
 import com.fullstackfamily.authservice.repository.UserRepository;
 import com.fullstackfamily.authservice.validation.ValidationUtils;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,8 +27,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final SubServiceSender subServiceSender;
-    @Value("${google.client-id}")
-    private String clientId;
+    @Value("${google.api_url}")
+    private String googleApiUrl;
 
     public ResponseEntity<?> registerUser(RegisterRequest request) {
         if (ValidationUtils.firstNameInvalid(request.getFirstName())) {
@@ -123,31 +121,36 @@ public class UserService {
         userRepository.save(user);
         return ResponseEntity.ok(new ApiResponse("Пароль успішно змінено."));
     }
-    public ResponseEntity<?> loginWithGoogle(IdTokenRequest request) {
-        GoogleIdToken.Payload payload = ValidationUtils.verifyToken(request.getIdToken(), clientId);
-        if (payload == null) {
-            return ResponseEntity.badRequest().body("Недійсний Google аккаунт");
+    public ResponseEntity<?> loginWithGoogle(AccessTokenRequest request) {
+        try {
+            URL url = new URL(googleApiUrl + request.getIdToken());
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode userInfo = objectMapper.readTree(connection.getInputStream());
+
+            String email = userInfo.get("email").asText();
+            String firstName = userInfo.get("first_name").asText();
+            String lastName = userInfo.get("last_name").asText();
+
+            Optional<User> userOptional = userRepository.findByEmail(email);
+            User user = userOptional.orElseGet(() -> {
+                User newUser = new User();
+                newUser.setEmail(email);
+                newUser.setFirstName(firstName != null ? firstName : "Unknown");
+                newUser.setLastName(lastName != null ? lastName : "");
+                newUser.setPassword(UUID.randomUUID().toString());
+                newUser.setProvider(AuthProvider.GOOGLE);
+                return userRepository.save(newUser);
+            });
+
+            AuthResponse authResponse = new AuthResponse();
+            authResponse.setToken(jwtService.generateToken(user.getEmail(), user.getRole()));
+            authResponse.setRole(user.getRole());
+            return ResponseEntity.ok(authResponse);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Невірний Google access token");
         }
-
-        String email = payload.getEmail();
-        String firstName = (String) payload.get("given_name");
-        String lastName = (String) payload.get("family_name");
-
-        Optional<User> userOptional = userRepository.findByEmail(email);
-        User user = userOptional.orElseGet(() -> {
-            User newUser = new User();
-            newUser.setEmail(email);
-            newUser.setFirstName(firstName != null ? firstName : "Unknown");
-            newUser.setLastName(lastName != null ? lastName : "");
-            newUser.setPassword(UUID.randomUUID().toString());
-            newUser.setProvider(AuthProvider.GOOGLE);
-            return userRepository.save(newUser);
-        });
-
-        AuthResponse authResponse = new AuthResponse();
-        authResponse.setToken(jwtService.generateToken(user.getEmail(), user.getRole()));
-        authResponse.setRole(user.getRole());
-        return ResponseEntity.ok(authResponse);
     }
 }
 
