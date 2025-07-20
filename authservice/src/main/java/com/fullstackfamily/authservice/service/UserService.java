@@ -126,7 +126,7 @@ public class UserService {
             URL url = new URL(googleApiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Authorization", "Bearer " + request.getIdToken());
+            connection.setRequestProperty("Authorization", "Bearer " + request.getAccessToken());
 
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode userInfo = objectMapper.readTree(connection.getInputStream());
