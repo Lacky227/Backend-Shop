@@ -123,15 +123,17 @@ public class UserService {
     }
     public ResponseEntity<?> loginWithGoogle(AccessTokenRequest request) {
         try {
-            URL url = new URL(googleApiUrl + request.getIdToken());
+            URL url = new URL(googleApiUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Authorization", "Bearer " + request.getIdToken());
 
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode userInfo = objectMapper.readTree(connection.getInputStream());
 
             String email = userInfo.get("email").asText();
-            String firstName = userInfo.get("first_name").asText();
-            String lastName = userInfo.get("last_name").asText();
+            String firstName = userInfo.path("given_name").asText(null);
+            String lastName = userInfo.path("family_name").asText(null);
 
             Optional<User> userOptional = userRepository.findByEmail(email);
             User user = userOptional.orElseGet(() -> {
