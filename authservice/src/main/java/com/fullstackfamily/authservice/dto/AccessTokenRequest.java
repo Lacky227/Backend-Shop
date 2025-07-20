@@ -3,6 +3,6 @@ package com.fullstackfamily.authservice.dto;
 import lombok.Data;
 
 @Data
-public class IdTokenRequest {
+public class AccessTokenRequest {
     private String idToken;
 }
