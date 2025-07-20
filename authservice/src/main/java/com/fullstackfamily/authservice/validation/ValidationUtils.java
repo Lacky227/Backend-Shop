@@ -1,12 +1,6 @@
 package com.fullstackfamily.authservice.validation;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import lombok.experimental.UtilityClass;
-
-import java.util.Collections;
 
 @UtilityClass
 public class ValidationUtils {
