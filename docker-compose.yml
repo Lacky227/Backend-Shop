@@ -80,7 +80,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: shoppass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRINGDOC_SWAGGER_UI_URL: https://auth-retail.duckdns.org/v3/api-docs
-      GOOGLE_CLIENT_ID: 752968437257-9svca9d3h06vr44a3vt5t742trs5f4f7.apps.googleusercontent.com
+      GOOGLE_API_URL: https://www.googleapis.com/oauth2/v1/userinfo?access_token=
       SPRING_JACKSON_SERIALIZATION_INDENT_OUTPUT: true
       SECRET_KEY: 3F1F6A0A2B4E6F8C9D0E11223344556677889900AABBCCDDEEFF001122334455
       SPRING_RABBITMQ_HOST: rabbitmq
