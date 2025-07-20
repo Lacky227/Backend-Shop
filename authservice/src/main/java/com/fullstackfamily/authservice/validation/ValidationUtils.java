@@ -1,12 +1,6 @@
 package com.fullstackfamily.authservice.validation;
 
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
-import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import lombok.experimental.UtilityClass;
-
-import java.util.Collections;
 
 @UtilityClass
 public class ValidationUtils {
@@ -33,22 +27,5 @@ public class ValidationUtils {
     }
     public boolean lastNameInvalid(String name) {
         return name != null && !name.isEmpty() && !name.matches(NAME_PATTERN);
-    }
-    public GoogleIdToken.Payload verifyToken(String idTokenString, String clientId) {
-        try {
-            var transport = GoogleNetHttpTransport.newTrustedTransport();
-            var jsonFactory = JacksonFactory.getDefaultInstance();
-
-            GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jsonFactory)
-                    .setAudience(Collections.singletonList(clientId))
-                    .build();
-
-            GoogleIdToken idToken = verifier.verify(idTokenString);
-            return idToken != null ? idToken.getPayload() : null;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
     }
 }

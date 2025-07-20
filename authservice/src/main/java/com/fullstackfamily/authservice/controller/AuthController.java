@@ -200,7 +200,7 @@ public class AuthController {
             )
     })
     @PostMapping("/google")
-    public ResponseEntity<?> loginGoogle(@RequestBody IdTokenRequest request) {
+    public ResponseEntity<?> loginGoogle(@RequestBody AccessTokenRequest request) {
         return userService.loginWithGoogle(request);
     }
 }
