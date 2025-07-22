@@ -134,7 +134,7 @@ services:
       SPRING_MAIL_HOST: smtp.gmail.com
       SPRING_MAIL_PORT: 587
       SPRING_MAIL_USERNAME: notification.veedev@gmail.com
-      SPRING_MAIL_PASSWORD: otfm qmpu uexj rjni
+      SPRING_MAIL_PASSWORD: rkbd gocy uawr bohf
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: true
       SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: true
       SPRINGDOC_SWAGGER_UI_URL: https://notify-retail.duckdns.org/v3/api-docs
