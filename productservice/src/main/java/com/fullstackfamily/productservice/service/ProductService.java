@@ -1,9 +1,6 @@
 package com.fullstackfamily.productservice.service;
 
-import com.fullstackfamily.productservice.dto.ApiResponse;
-import com.fullstackfamily.productservice.dto.ProductInfoRequest;
-import com.fullstackfamily.productservice.dto.ProductResponse;
-import com.fullstackfamily.productservice.dto.SortType;
+import com.fullstackfamily.productservice.dto.*;
 import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
@@ -112,6 +109,32 @@ public class ProductService {
         product.setMaterial(request.getMaterial());
         productRepository.save(product);
         return ResponseEntity.ok(new ApiResponse("Товар успішно створений"));
+    }
+    public ResponseEntity<ApiResponse> updateProduct(String sku, UpdateProductRequest request) {
+        Optional<Product> product = productRepository.findBySku(sku);
+        if (product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Товар не знайдено"));
+        }
+
+        request.getSku().ifPresent(product.get()::setSku);
+        request.getName().ifPresent(product.get()::setName);
+        request.getBrand().ifPresent(product.get()::setBrand);
+        request.getGender().ifPresent(product.get()::setGender);
+        request.getCategory().ifPresent(product.get()::setCategory);
+        request.getPrice().ifPresent(product.get()::setPrice);
+        request.getOldPrice().ifPresent(product.get()::setOldPrice);
+        request.getHasdiscount().ifPresent(product.get()::setHasdiscount);
+        request.getNewCollection().ifPresent(product.get()::setNewCollection);
+        request.getTopSales().ifPresent(product.get()::setTopSales);
+        request.getSizes().ifPresent(product.get()::setSizes);
+        request.getColor().ifPresent(product.get()::setColor);
+        request.getSeason().ifPresent(product.get()::setSeason);
+        request.getDescription().ifPresent(product.get()::setDescription);
+        request.getMaterial().ifPresent(product.get()::setMaterial);
+
+        productRepository.save(product.get());
+
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Товар успішно оновлено"));
     }
     public ResponseEntity<ApiResponse> deleteProduct(String sku) {
         Optional<Product> product = productRepository.findBySku(sku);

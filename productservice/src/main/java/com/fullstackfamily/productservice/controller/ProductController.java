@@ -1,9 +1,6 @@
 package com.fullstackfamily.productservice.controller;
 
-import com.fullstackfamily.productservice.dto.ApiResponse;
-import com.fullstackfamily.productservice.dto.ProductInfoRequest;
-import com.fullstackfamily.productservice.dto.ProductResponse;
-import com.fullstackfamily.productservice.dto.SortType;
+import com.fullstackfamily.productservice.dto.*;
 import com.fullstackfamily.productservice.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -89,6 +86,11 @@ public class ProductController {
     @PostMapping("/create")
     public ResponseEntity<ApiResponse> createProduct(@RequestBody ProductInfoRequest request) {
         return productService.createProduct(request);
+    }
+
+    @PatchMapping("/update/{sku}")
+    public ResponseEntity<ApiResponse> updateProduct(@PathVariable String sku, @RequestBody UpdateProductRequest request) {
+        return productService.updateProduct(sku, request);
     }
 
     @Operation(
