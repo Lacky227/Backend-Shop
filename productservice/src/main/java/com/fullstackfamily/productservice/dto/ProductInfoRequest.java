@@ -26,6 +26,10 @@ public class ProductInfoRequest {
 
     private Boolean hasdiscount;
 
+    private Boolean newCollection;
+
+    private Boolean topSales;
+
     private Map<String, Integer> sizes;
 
     private String color;
