@@ -103,6 +103,8 @@ public class ProductService {
         product.setPrice(request.getPrice());
         product.setOldPrice(request.getOldPrice());
         product.setHasdiscount(request.getHasdiscount());
+        product.setNewCollection(request.getNewCollection());
+        product.setTopSales(request.getTopSales());
         product.setSizes(request.getSizes());
         product.setColor(request.getColor());
         product.setSeason(request.getSeason());
