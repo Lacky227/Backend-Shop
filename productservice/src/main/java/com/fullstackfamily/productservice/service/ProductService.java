@@ -3,6 +3,7 @@ package com.fullstackfamily.productservice.service;
 import com.fullstackfamily.productservice.dto.ApiResponse;
 import com.fullstackfamily.productservice.dto.ProductInfoRequest;
 import com.fullstackfamily.productservice.dto.ProductResponse;
+import com.fullstackfamily.productservice.dto.SortType;
 import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +22,17 @@ import java.util.Optional;
 public class ProductService {
     private ProductRepository productRepository;
 
-    public ResponseEntity<List<ProductResponse>> getAllProducts() {
+    public ResponseEntity<List<ProductResponse>> getAllProducts(Optional<SortType> sort) {
         List<Product> products = productRepository.findAll();
+        if (sort.isPresent()) {
+            switch (sort.get()) {
+                case PRICE_ASC -> products.sort(Comparator.comparing(Product::getPrice));
+                case PRICE_DESC -> products.sort(Comparator.comparing(Product::getPrice).reversed());
+                case NEW -> products.sort(Comparator.comparing(Product::getNewCollection).reversed());
+                case POPULAR -> products.sort(Comparator.comparing(Product::getTopSales).reversed());
+                case DISCOUNT -> products.sort(Comparator.comparing(Product::getHasdiscount).reversed());
+            }
+        }
         List<ProductResponse> productResponses = products.stream()
                 .map(e -> new ProductResponse(
                         e.getSku(),
