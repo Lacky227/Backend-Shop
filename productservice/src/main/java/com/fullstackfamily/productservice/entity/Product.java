@@ -51,11 +51,9 @@ public class Product {
     @Schema(description = "Whether the product has a discount", example = "true")
     private Boolean hasdiscount;
 
-    @Column(nullable = false)
     @Schema(description = "", example = "true/false")
     private Boolean newCollection;
 
-    @Column(nullable = false)
     @Schema(description = "", example = "true/false")
     private Boolean topSales;
 
