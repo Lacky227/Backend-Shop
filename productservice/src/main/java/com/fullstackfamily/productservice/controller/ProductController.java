@@ -3,6 +3,7 @@ package com.fullstackfamily.productservice.controller;
 import com.fullstackfamily.productservice.dto.ApiResponse;
 import com.fullstackfamily.productservice.dto.ProductInfoRequest;
 import com.fullstackfamily.productservice.dto.ProductResponse;
+import com.fullstackfamily.productservice.dto.SortType;
 import com.fullstackfamily.productservice.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -14,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Tag(name = "Управління продуктами", description = "REST-контролер для створення, перегляду та видалення продуктів.")
 @RestController
@@ -38,8 +40,9 @@ public class ProductController {
             )
     })
     @GetMapping("/all")
-    public ResponseEntity<List<ProductResponse>> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductResponse>> getAllProducts(@RequestParam Optional<String> sort) {
+        Optional<SortType> sortType = sort.flatMap(SortType::fromValue);
+        return productService.getAllProducts(sortType);
     }
 
     @Operation(
