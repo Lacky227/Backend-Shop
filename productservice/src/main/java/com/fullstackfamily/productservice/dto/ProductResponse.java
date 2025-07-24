@@ -27,6 +27,10 @@ public class ProductResponse {
 
     private Boolean hasdiscount;
 
+    private Boolean newCollection;
+
+    private Boolean topSales;
+
     private List<String> image;
 
     private Map<String, Integer> sizes;
