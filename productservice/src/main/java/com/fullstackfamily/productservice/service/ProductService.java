@@ -4,8 +4,11 @@ import com.fullstackfamily.productservice.dto.*;
 import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
+import com.fullstackfamily.productservice.specification.ProductSpecification;
 import com.fullstackfamily.productservice.validation.ValidationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,23 +16,36 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ProductService {
     private ProductRepository productRepository;
 
-    public ResponseEntity<List<ProductResponse>> getAllProducts(Optional<SortType> sort) {
-        List<Product> products = productRepository.findAll();
+    public ResponseEntity<List<ProductResponse>> getAllProducts(ProductFilterRequest filter, Optional<SortType> sort) {
+        Specification<Product> spec = ProductSpecification.withFilter(filter);
+        Sort sorting = Sort.unsorted();
+
         if (sort.isPresent()) {
             switch (sort.get()) {
-                case PRICE_ASC -> products.sort(Comparator.comparing(Product::getPrice));
-                case PRICE_DESC -> products.sort(Comparator.comparing(Product::getPrice).reversed());
-                case NEW -> products.sort(Comparator.comparing(Product::getNewCollection).reversed());
-                case POPULAR -> products.sort(Comparator.comparing(Product::getTopSales).reversed());
-                case DISCOUNT -> products.sort(Comparator.comparing(Product::getHasdiscount).reversed());
+                case PRICE_ASC -> sorting = Sort.by(Sort.Direction.ASC, "price");
+                case PRICE_DESC -> sorting = Sort.by(Sort.Direction.DESC, "price");
+                case NEW -> sorting = Sort.by("newCollection").descending();
+                case POPULAR -> sorting = Sort.by("topSales").descending();
+                case DISCOUNT -> sorting = Sort.by("hasdiscount").descending();
             }
         }
+
+        List<Product> products = productRepository.findAll(spec, sorting);
+
+        if (filter.getSize() != null) {
+            products = products.stream()
+                    .filter(p -> p.getSizes().entrySet().stream()
+                            .anyMatch(e -> filter.getSize().contains(e.getKey()) && e.getValue() > 0))
+                    .toList();
+        }
+
         List<ProductResponse> productResponses = products.stream()
                 .map(e -> new ProductResponse(
                         e.getSku(),
