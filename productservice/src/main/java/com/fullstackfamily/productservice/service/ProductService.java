@@ -74,13 +74,13 @@ public class ProductService {
                                 value.getMaterial())))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-    public ResponseEntity<ApiResponse> createProduct(ProductInfoRequest request) {
+    public ResponseEntity<APIResponse> createProduct(ProductInfoRequest request) {
         if (request.getSku() == null || request.getSku().isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Sku є обов'язвовим поле для заповнення."));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new APIResponse("Sku є обов'язвовим поле для заповнення."));
         }
         Optional<Product> productBySku = productRepository.findBySku(request.getSku());
         if (productBySku.isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiResponse("Товар із цим sku вже є"));
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new APIResponse("Товар із цим sku вже є"));
         } else if (ValidationRequest.isNullOrEmpty(request.getName()) ||
                 ValidationRequest.isNullOrEmpty(request.getBrand()) ||
                 ValidationRequest.isNullOrEmpty(request.getGender()) ||
@@ -93,7 +93,7 @@ public class ProductService {
                 ValidationRequest.isNullOrEmpty(request.getMaterial())) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse("Всі обов’язкові поля мають бути заповнені"));
+                    .body(new APIResponse("Всі обов’язкові поля мають бути заповнені"));
         }
         Product product = new Product();
         product.setSku(request.getSku());
@@ -112,12 +112,12 @@ public class ProductService {
         product.setDescription(request.getDescription());
         product.setMaterial(request.getMaterial());
         productRepository.save(product);
-        return ResponseEntity.ok(new ApiResponse("Товар успішно створений"));
+        return ResponseEntity.ok(new APIResponse("Товар успішно створений"));
     }
-    public ResponseEntity<ApiResponse> updateProduct(String sku, UpdateProductRequest request) {
+    public ResponseEntity<APIResponse> updateProduct(String sku, UpdateProductRequest request) {
         Optional<Product> product = productRepository.findBySku(sku);
         if (product.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Товар не знайдено"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new APIResponse("Товар не знайдено"));
         }
 
         if (request.getSku() != null) product.get().setSku(request.getSku());
@@ -138,14 +138,14 @@ public class ProductService {
 
         productRepository.save(product.get());
 
-        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Товар успішно оновлено"));
+        return ResponseEntity.status(HttpStatus.OK).body(new APIResponse("Товар успішно оновлено"));
     }
-    public ResponseEntity<ApiResponse> deleteProduct(String sku) {
+    public ResponseEntity<APIResponse> deleteProduct(String sku) {
         Optional<Product> product = productRepository.findBySku(sku);
         if (product.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Не знайдено товар"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new APIResponse("Не знайдено товар"));
         }
         productRepository.delete(product.get());
-        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Товар видалено"));
+        return ResponseEntity.status(HttpStatus.OK).body(new APIResponse("Товар видалено"));
     }
 }

@@ -2,7 +2,7 @@ package com.fullstackfamily.productservice.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.fullstackfamily.productservice.dto.ApiResponse;
+import com.fullstackfamily.productservice.dto.APIResponse;
 import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ImageRepository;
@@ -26,19 +26,19 @@ public class ImageService {
     private final ProductRepository productRepository;
     private final ImageRepository imageRepository;
 
-    public ResponseEntity<ApiResponse> saveImage(MultipartFile file) {
+    public ResponseEntity<APIResponse> saveImage(MultipartFile file) {
         try {
             String originalFilename = file.getOriginalFilename();
             if (file.getSize() == 0 || originalFilename == null) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse("Не вірний формат файлу або файл не існує"));
+                        .body(new APIResponse("Не вірний формат файлу або файл не існує"));
             }
 
             Pattern pattern = Pattern.compile("((TSH|TRS|SWT|OUT)\\d+)-\\d+\\.(png|jpg|jpeg)", Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(originalFilename);
             if (!matcher.matches()) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(new ApiResponse("Невірний формат імені файлу"));
+                        .body(new APIResponse("Невірний формат імені файлу"));
             }
 
             String sku = matcher.group(1);
@@ -47,17 +47,17 @@ public class ImageService {
             Optional<Product> product = productRepository.findBySku(sku);
             if (product.isEmpty()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(new ApiResponse("Товар з SKU '" + sku + "' не знайдено"));
+                        .body(new APIResponse("Товар з SKU '" + sku + "' не знайдено"));
             } else if (imageRepository.existsByOriginalName(baseName)){
                 return ResponseEntity.badRequest()
-                        .body(new ApiResponse("Таке фото вже існує"));
+                        .body(new APIResponse("Таке фото вже існує"));
             }
 
             Map uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
             String imageUrl = uploadResult.get("secure_url").toString();
             if (imageUrl == null) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body(new ApiResponse("Не вдалося отримати URL завантаженого зображення"));
+                        .body(new APIResponse("Не вдалося отримати URL завантаженого зображення"));
             }
 
             Images image = new Images();
@@ -67,11 +67,11 @@ public class ImageService {
             imageRepository.save(image);
 
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(new ApiResponse("Фото збережено"));
+                    .body(new APIResponse("Фото збережено"));
 
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ApiResponse("Помилка при завантаженні фото"));
+                    .body(new APIResponse("Помилка при завантаженні фото"));
         }
     }
 }
