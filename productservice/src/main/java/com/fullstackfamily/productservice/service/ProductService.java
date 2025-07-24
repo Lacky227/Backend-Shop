@@ -116,21 +116,21 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Товар не знайдено"));
         }
 
-        request.getSku().ifPresent(product.get()::setSku);
-        request.getName().ifPresent(product.get()::setName);
-        request.getBrand().ifPresent(product.get()::setBrand);
-        request.getGender().ifPresent(product.get()::setGender);
-        request.getCategory().ifPresent(product.get()::setCategory);
-        request.getPrice().ifPresent(product.get()::setPrice);
-        request.getOldPrice().ifPresent(product.get()::setOldPrice);
-        request.getHasdiscount().ifPresent(product.get()::setHasdiscount);
-        request.getNewCollection().ifPresent(product.get()::setNewCollection);
-        request.getTopSales().ifPresent(product.get()::setTopSales);
-        request.getSizes().ifPresent(product.get()::setSizes);
-        request.getColor().ifPresent(product.get()::setColor);
-        request.getSeason().ifPresent(product.get()::setSeason);
-        request.getDescription().ifPresent(product.get()::setDescription);
-        request.getMaterial().ifPresent(product.get()::setMaterial);
+        if (request.getSku() != null) product.get().setSku(request.getSku());
+        if (request.getName() != null) product.get().setName(request.getName());
+        if (request.getBrand() != null) product.get().setBrand(request.getBrand());
+        if (request.getGender() != null) product.get().setGender(request.getGender());
+        if (request.getCategory() != null) product.get().setCategory(request.getCategory());
+        if (request.getPrice() != null) product.get().setPrice(request.getPrice());
+        if (request.getOldPrice() != null) product.get().setOldPrice(request.getOldPrice());
+        if (request.getHasdiscount() != null) product.get().setHasdiscount(request.getHasdiscount());
+        if (request.getNewCollection() != null) product.get().setNewCollection(request.getNewCollection());
+        if (request.getTopSales() != null) product.get().setTopSales(request.getTopSales());
+        if (request.getSizes() != null) product.get().setSizes(request.getSizes());
+        if (request.getColor() != null) product.get().setColor(request.getColor());
+        if (request.getSeason() != null) product.get().setSeason(request.getSeason());
+        if (request.getDescription() != null) product.get().setDescription(request.getDescription());
+        if (request.getMaterial() != null) product.get().setMaterial(request.getMaterial());
 
         productRepository.save(product.get());
 
