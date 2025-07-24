@@ -44,9 +44,9 @@ public class ProductController {
             )
     })
     @GetMapping("/all")
-    public ResponseEntity<List<ProductResponse>> getAllProducts(@RequestParam Optional<String> sort) {
+    public ResponseEntity<List<ProductResponse>> getAllProducts(@ModelAttribute ProductFilterRequest filter, @RequestParam Optional<String> sort) {
         Optional<SortType> sortType = sort.flatMap(SortType::fromValue);
-        return productService.getAllProducts(sortType);
+        return productService.getAllProducts(filter, sortType);
     }
 
     @Operation(
