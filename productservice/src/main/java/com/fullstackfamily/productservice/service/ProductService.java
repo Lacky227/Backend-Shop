@@ -8,17 +8,22 @@ import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
 import com.fullstackfamily.productservice.validation.ValidationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class ProductService {
     private ProductRepository productRepository;
+    private static final Set<String> ALLOWED_CATEGORIES = Set.of("футболки", "кофти", "сорочки", "шорти", "джинси");
+    private static final Set<String> ALLOWED_COLORS = Set.of("білий", "зелений", "рожевий", "синій", "чорний");
+    private static final Set<String> ALLOWED_GENDERS = Set.of("чоловічий", "жіночий");
 
     public ResponseEntity<List<ProductResponse>> getAllProducts() {
         List<Product> products = productRepository.findAll();
@@ -83,6 +88,25 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ApiResponse("Всі обов’язкові поля мають бути заповнені"));
         }
+
+        if (!"Lucky".equalsIgnoreCase(request.getBrand())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Бренд повинен бути 'Lucky'."));
+        } else if (!ALLOWED_GENDERS.contains(request.getGender().toLowerCase())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Невалідне значення для gender. Дозволені: " + ALLOWED_GENDERS));
+        } else if (!ALLOWED_COLORS.contains(request.getColor().toLowerCase())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Невалідне значення для color. Дозволені: " + ALLOWED_COLORS));
+        } else if (!ALLOWED_CATEGORIES.contains(request.getCategory().toLowerCase())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Невалідне значення для category. Дозволені: " + ALLOWED_CATEGORIES));
+        } else if (request.getHasdiscount() &&
+                request.getPrice().compareTo(request.getOldPrice()) >= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ApiResponse("Ціна зі знижкою повинна бути меншою за стару ціну."));
+        }
+
         Product product = new Product();
         product.setSku(request.getSku());
         product.setName(request.getName());
@@ -97,6 +121,7 @@ public class ProductService {
         product.setSeason(request.getSeason());
         product.setDescription(request.getDescription());
         product.setMaterial(request.getMaterial());
+
         productRepository.save(product);
         return ResponseEntity.ok(new ApiResponse("Товар успішно створений"));
     }
