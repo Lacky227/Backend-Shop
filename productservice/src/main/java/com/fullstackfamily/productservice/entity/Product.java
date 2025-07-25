@@ -51,6 +51,12 @@ public class Product {
     @Schema(description = "Whether the product has a discount", example = "true")
     private Boolean hasdiscount;
 
+    @Schema(description = "", example = "true/false")
+    private Boolean newCollection;
+
+    @Schema(description = "", example = "true/false")
+    private Boolean topSales;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @Schema(description = "List of product images")
     private List<Images> image = new ArrayList<>();

@@ -1,6 +1,6 @@
 package com.fullstackfamily.productservice.controller;
 
-import com.fullstackfamily.productservice.dto.ApiResponse;
+import com.fullstackfamily.productservice.dto.APIResponse;
 import com.fullstackfamily.productservice.service.ImageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -30,26 +30,26 @@ public class ImageController {
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "201",
                     description = "Фото збережено",
-                    content = @Content(schema = @Schema(implementation = ApiResponse.class))
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))
             ),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "400",
                     description = "Некоректний файл або ім'я файлу, або фото вже існує",
-                    content = @Content(schema = @Schema(implementation = ApiResponse.class))
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))
             ),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "404",
                     description = "Товар не знайдено",
-                    content = @Content(schema = @Schema(implementation = ApiResponse.class))
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))
             ),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "500",
                     description = "Внутрішня помилка сервера",
-                    content = @Content(schema = @Schema(implementation = ApiResponse.class))
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))
             )
     })
     @PostMapping("/save-image")
-    public ResponseEntity<ApiResponse> saveImage(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<APIResponse> saveImage(@RequestParam("file") MultipartFile file) {
         return imageService.saveImage(file);
     }
 }

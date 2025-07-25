@@ -1,27 +1,51 @@
 package com.fullstackfamily.productservice.service;
 
-import com.fullstackfamily.productservice.dto.ApiResponse;
-import com.fullstackfamily.productservice.dto.ProductInfoRequest;
-import com.fullstackfamily.productservice.dto.ProductResponse;
+import com.fullstackfamily.productservice.dto.*;
 import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
+import com.fullstackfamily.productservice.specification.ProductSpecification;
 import com.fullstackfamily.productservice.validation.ValidationRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class ProductService {
     private ProductRepository productRepository;
 
-    public ResponseEntity<List<ProductResponse>> getAllProducts() {
-        List<Product> products = productRepository.findAll();
+    public ResponseEntity<List<ProductResponse>> getAllProducts(ProductFilterRequest filter, Optional<SortType> sort) {
+        Specification<Product> spec = ProductSpecification.withFilter(filter);
+        Sort sorting = Sort.unsorted();
+
+        if (sort.isPresent()) {
+            switch (sort.get()) {
+                case PRICE_ASC -> sorting = Sort.by(Sort.Direction.ASC, "price");
+                case PRICE_DESC -> sorting = Sort.by(Sort.Direction.DESC, "price");
+                case NEW -> sorting = Sort.by("newCollection").descending();
+                case POPULAR -> sorting = Sort.by("topSales").descending();
+                case DISCOUNT -> sorting = Sort.by("hasdiscount").descending();
+            }
+        }
+
+        List<Product> products = productRepository.findAll(spec, sorting);
+
+        if (filter.getSize() != null) {
+            products = products.stream()
+                    .filter(p -> p.getSizes().entrySet().stream()
+                            .anyMatch(e -> filter.getSize().contains(e.getKey()) && e.getValue() > 0))
+                    .toList();
+        }
+
         List<ProductResponse> productResponses = products.stream()
                 .map(e -> new ProductResponse(
                         e.getSku(),
@@ -32,6 +56,8 @@ public class ProductService {
                         e.getPrice(),
                         e.getOldPrice(),
                         e.getHasdiscount(),
+                        e.getNewCollection(),
+                        e.getTopSales(),
                         e.getImage().stream().map(Images::getUrl).toList(),
                         e.getSizes(),
                         e.getColor(),
@@ -54,6 +80,8 @@ public class ProductService {
                                 value.getPrice(),
                                 value.getOldPrice(),
                                 value.getHasdiscount(),
+                                value.getNewCollection(),
+                                value.getTopSales(),
                                 value.getImage().stream().map(Images::getUrl).toList(),
                                 value.getSizes(),
                                 value.getColor(),
@@ -62,13 +90,13 @@ public class ProductService {
                                 value.getMaterial())))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-    public ResponseEntity<ApiResponse> createProduct(ProductInfoRequest request) {
+    public ResponseEntity<APIResponse> createProduct(ProductInfoRequest request) {
         if (request.getSku() == null || request.getSku().isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Sku є обов'язвовим поле для заповнення."));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new APIResponse("Sku є обов'язвовим поле для заповнення."));
         }
         Optional<Product> productBySku = productRepository.findBySku(request.getSku());
         if (productBySku.isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiResponse("Товар із цим sku вже є"));
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(new APIResponse("Товар із цим sku вже є"));
         } else if (ValidationRequest.isNullOrEmpty(request.getName()) ||
                 ValidationRequest.isNullOrEmpty(request.getBrand()) ||
                 ValidationRequest.isNullOrEmpty(request.getGender()) ||
@@ -81,7 +109,7 @@ public class ProductService {
                 ValidationRequest.isNullOrEmpty(request.getMaterial())) {
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse("Всі обов’язкові поля мають бути заповнені"));
+                    .body(new APIResponse("Всі обов’язкові поля мають бути заповнені"));
         }
         Product product = new Product();
         product.setSku(request.getSku());
@@ -92,20 +120,48 @@ public class ProductService {
         product.setPrice(request.getPrice());
         product.setOldPrice(request.getOldPrice());
         product.setHasdiscount(request.getHasdiscount());
+        product.setNewCollection(request.getNewCollection());
+        product.setTopSales(request.getTopSales());
         product.setSizes(request.getSizes());
         product.setColor(request.getColor());
         product.setSeason(request.getSeason());
         product.setDescription(request.getDescription());
         product.setMaterial(request.getMaterial());
         productRepository.save(product);
-        return ResponseEntity.ok(new ApiResponse("Товар успішно створений"));
+        return ResponseEntity.ok(new APIResponse("Товар успішно створений"));
     }
-    public ResponseEntity<ApiResponse> deleteProduct(String sku) {
+    public ResponseEntity<APIResponse> updateProduct(String sku, UpdateProductRequest request) {
         Optional<Product> product = productRepository.findBySku(sku);
         if (product.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Не знайдено товар"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new APIResponse("Товар не знайдено"));
+        }
+
+        if (request.getSku() != null) product.get().setSku(request.getSku());
+        if (request.getName() != null) product.get().setName(request.getName());
+        if (request.getBrand() != null) product.get().setBrand(request.getBrand());
+        if (request.getGender() != null) product.get().setGender(request.getGender());
+        if (request.getCategory() != null) product.get().setCategory(request.getCategory());
+        if (request.getPrice() != null) product.get().setPrice(request.getPrice());
+        if (request.getOldPrice() != null) product.get().setOldPrice(request.getOldPrice());
+        if (request.getHasdiscount() != null) product.get().setHasdiscount(request.getHasdiscount());
+        if (request.getNewCollection() != null) product.get().setNewCollection(request.getNewCollection());
+        if (request.getTopSales() != null) product.get().setTopSales(request.getTopSales());
+        if (request.getSizes() != null) product.get().setSizes(request.getSizes());
+        if (request.getColor() != null) product.get().setColor(request.getColor());
+        if (request.getSeason() != null) product.get().setSeason(request.getSeason());
+        if (request.getDescription() != null) product.get().setDescription(request.getDescription());
+        if (request.getMaterial() != null) product.get().setMaterial(request.getMaterial());
+
+        productRepository.save(product.get());
+
+        return ResponseEntity.status(HttpStatus.OK).body(new APIResponse("Товар успішно оновлено"));
+    }
+    public ResponseEntity<APIResponse> deleteProduct(String sku) {
+        Optional<Product> product = productRepository.findBySku(sku);
+        if (product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new APIResponse("Не знайдено товар"));
         }
         productRepository.delete(product.get());
-        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Товар видалено"));
+        return ResponseEntity.status(HttpStatus.OK).body(new APIResponse("Товар видалено"));
     }
 }
