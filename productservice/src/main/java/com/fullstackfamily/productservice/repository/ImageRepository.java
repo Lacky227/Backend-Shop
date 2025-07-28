@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface ImageRepository extends JpaRepository<Images, Long> {
     boolean existsByOriginalName(String originalName);
-    Optional<Images> findByOriginalName(String originalName);
+    Optional<Images> findByOriginalNameAndProduct_Sku(String originalName, String productSku);
 }
