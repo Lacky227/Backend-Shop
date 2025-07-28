@@ -1,6 +1,7 @@
 package com.fullstackfamily.productservice.controller;
 
 import com.fullstackfamily.productservice.dto.APIResponse;
+import com.fullstackfamily.productservice.dto.DeleteImageRequest;
 import com.fullstackfamily.productservice.service.ImageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -9,10 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -51,5 +49,9 @@ public class ImageController {
     @PostMapping("/save-image")
     public ResponseEntity<APIResponse> saveImage(@RequestParam("file") MultipartFile file) {
         return imageService.saveImage(file);
+    }
+    @DeleteMapping("/delete")
+    public ResponseEntity<APIResponse> deleteImage(@RequestBody DeleteImageRequest request) {
+        return imageService.deleteImage(request);
     }
 }
