@@ -50,6 +50,27 @@ public class ImageController {
     public ResponseEntity<APIResponse> saveImage(@RequestParam("file") MultipartFile file) {
         return imageService.saveImage(file);
     }
+    @Operation(
+            summary = "Видалення зображення",
+            description = "Видаляє зображення за ім'ям файлу та SKU продукту"
+    )
+    @ApiResponses(value = {
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "200",
+                    description = "Фото успішно видалено",
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "404",
+                    description = "Фото не знайдено або не належить продукту",
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))
+            ),
+            @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                    responseCode = "500",
+                    description = "Помилка при видаленні з Cloudinary",
+                    content = @Content(schema = @Schema(implementation = APIResponse.class))
+            )
+    })
     @DeleteMapping("/delete")
     public ResponseEntity<APIResponse> deleteImage(@RequestBody DeleteImageRequest request) {
         return imageService.deleteImage(request);
