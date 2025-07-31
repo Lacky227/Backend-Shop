@@ -6,6 +6,7 @@ import com.fullstackfamily.productservice.dto.ProductResponse;
 import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
+import com.fullstackfamily.productservice.validation.ProductValidationProperties;
 import com.fullstackfamily.productservice.validation.ValidationRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
@@ -21,9 +22,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProductService {
     private ProductRepository productRepository;
-    private static final Set<String> ALLOWED_CATEGORIES = Set.of("футболки", "кофти", "сорочки", "шорти", "джинси");
-    private static final Set<String> ALLOWED_COLORS = Set.of("білий", "зелений", "рожевий", "синій", "чорний");
-    private static final Set<String> ALLOWED_GENDERS = Set.of("чоловічий", "жіночий");
+    private ProductValidationProperties properties;
 
     public ResponseEntity<List<ProductResponse>> getAllProducts() {
         List<Product> products = productRepository.findAll();
@@ -92,15 +91,15 @@ public class ProductService {
         if (!"Lucky".equalsIgnoreCase(request.getBrand())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ApiResponse("Бренд повинен бути 'Lucky'."));
-        } else if (!ALLOWED_GENDERS.contains(request.getGender().toLowerCase())) {
+        } else if (!properties.getGenders().contains(request.getGender().toLowerCase())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse("Невалідне значення для gender. Дозволені: " + ALLOWED_GENDERS));
-        } else if (!ALLOWED_COLORS.contains(request.getColor().toLowerCase())) {
+                    .body(new ApiResponse("Невалідне значення для gender. Дозволені: " + properties.getGenders()));
+        } else if (!properties.getColors().contains(request.getColor().toLowerCase())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse("Невалідне значення для color. Дозволені: " + ALLOWED_COLORS));
-        } else if (!ALLOWED_CATEGORIES.contains(request.getCategory().toLowerCase())) {
+                    .body(new ApiResponse("Невалідне значення для color. Дозволені: " + properties.getColors()));
+        } else if (!properties.getCategories().contains(request.getCategory().toLowerCase())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ApiResponse("Невалідне значення для category. Дозволені: " + ALLOWED_CATEGORIES));
+                    .body(new ApiResponse("Невалідне значення для category. Дозволені: " + properties.getCategories()));
         } else if (request.getHasdiscount() &&
                 request.getPrice().compareTo(request.getOldPrice()) >= 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
