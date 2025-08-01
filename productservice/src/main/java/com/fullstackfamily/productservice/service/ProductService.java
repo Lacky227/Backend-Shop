@@ -6,12 +6,14 @@ import com.fullstackfamily.productservice.entity.Product;
 import com.fullstackfamily.productservice.repository.ProductRepository;
 import com.fullstackfamily.productservice.specification.ProductSpecification;
 import com.fullstackfamily.productservice.validation.ValidationRequest;
+import com.fullstackfamily.productservice.dto.APIResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import com.fullstackfamily.productservice.validation.ProductValidationProperties;
 
 import java.util.Comparator;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ProductService {
     private ProductRepository productRepository;
+    private ProductValidationProperties properties;
 
     public ResponseEntity<List<ProductResponse>> getAllProducts(ProductFilterRequest filter, Optional<SortType> sort) {
         Specification<Product> spec = ProductSpecification.withFilter(filter);
@@ -111,6 +114,24 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new APIResponse("Всі обов’язкові поля мають бути заповнені"));
         }
+        if (!"Lucky".equalsIgnoreCase(request.getBrand())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new APIResponse("Бренд повинен бути 'Lucky'."));
+        } else if (!properties.getGenders().contains(request.getGender().toLowerCase())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new APIResponse("Невалідне значення для gender. Дозволені: " + properties.getGenders()));
+        } else if (!properties.getColors().contains(request.getColor().toLowerCase())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new APIResponse("Невалідне значення для color. Дозволені: " + properties.getColors()));
+        } else if (!properties.getCategories().contains(request.getCategory().toLowerCase())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new APIResponse("Невалідне значення для category. Дозволені: " + properties.getCategories()));
+        } else if (request.getHasdiscount() &&
+                request.getPrice().compareTo(request.getOldPrice()) >= 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new APIResponse("Ціна зі знижкою повинна бути меншою за стару ціну."));
+        }
+
         Product product = new Product();
         product.setSku(request.getSku());
         product.setName(request.getName());
