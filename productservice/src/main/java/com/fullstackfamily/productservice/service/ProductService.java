@@ -90,6 +90,28 @@ public class ProductService {
                                 value.getMaterial())))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    public Optional<ProductResponse> findProductBySku(String sku) {
+        return productRepository.findBySku(sku)
+                .map(value -> new ProductResponse(
+                        value.getSku(),
+                        value.getName(),
+                        value.getBrand(),
+                        value.getGender(),
+                        value.getCategory(),
+                        value.getPrice(),
+                        value.getOldPrice(),
+                        value.getHasdiscount(),
+                        value.getNewCollection(),
+                        value.getTopSales(),
+                        value.getImage().stream().map(Images::getUrl).toList(),
+                        value.getSizes(),
+                        value.getColor(),
+                        value.getSeason(),
+                        value.getDescription(),
+                        value.getMaterial()));
+    }
+
     public ResponseEntity<APIResponse> createProduct(ProductInfoRequest request) {
         if (request.getSku() == null || request.getSku().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new APIResponse("Sku є обов'язвовим поле для заповнення."));
