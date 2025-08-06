@@ -1,9 +1,12 @@
 package com.fullstackfamily.productservice.service;
 
 import com.fullstackfamily.productservice.dto.*;
-import com.fullstackfamily.productservice.entity.Images;
-import com.fullstackfamily.productservice.entity.Product;
+import com.fullstackfamily.productservice.entity.*;
 import com.fullstackfamily.productservice.repository.ProductRepository;
+import com.fullstackfamily.productservice.repository.CategoryRepository;
+import com.fullstackfamily.productservice.repository.BrandRepository;
+import com.fullstackfamily.productservice.repository.ColorRepository;
+
 import com.fullstackfamily.productservice.specification.ProductSpecification;
 import com.fullstackfamily.productservice.validation.ValidationRequest;
 import com.fullstackfamily.productservice.dto.APIResponse;
@@ -13,7 +16,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import com.fullstackfamily.productservice.validation.ProductValidationProperties;
 
 import java.util.Comparator;
 import java.util.List;
@@ -23,8 +25,10 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class ProductService {
-    private ProductRepository productRepository;
-    private ProductValidationProperties properties;
+    private final ProductRepository productRepository;
+    private final BrandRepository brandRepository;
+    private final CategoryRepository categoryRepository;
+    private final ColorRepository colorRepository;
 
     public ResponseEntity<List<ProductResponse>> getAllProducts(ProductFilterRequest filter, Optional<SortType> sort) {
         Specification<Product> spec = ProductSpecification.withFilter(filter);
@@ -53,9 +57,9 @@ public class ProductService {
                 .map(e -> new ProductResponse(
                         e.getSku(),
                         e.getName(),
-                        e.getBrand(),
+                        e.getBrand().getName(),
                         e.getGender(),
-                        e.getCategory(),
+                        e.getCategory().getName(),
                         e.getPrice(),
                         e.getOldPrice(),
                         e.getHasdiscount(),
@@ -63,7 +67,7 @@ public class ProductService {
                         e.getTopSales(),
                         e.getImage().stream().map(Images::getUrl).toList(),
                         e.getSizes(),
-                        e.getColor(),
+                        e.getColor().getName(),
                         e.getSeason(),
                         e.getDescription(),
                         e.getMaterial()))
@@ -77,9 +81,9 @@ public class ProductService {
                         new ProductResponse(
                                 value.getSku(),
                                 value.getName(),
-                                value.getBrand(),
+                                value.getBrand().getName(),
                                 value.getGender(),
-                                value.getCategory(),
+                                value.getCategory().getName(),
                                 value.getPrice(),
                                 value.getOldPrice(),
                                 value.getHasdiscount(),
@@ -87,7 +91,7 @@ public class ProductService {
                                 value.getTopSales(),
                                 value.getImage().stream().map(Images::getUrl).toList(),
                                 value.getSizes(),
-                                value.getColor(),
+                                value.getColor().getName(),
                                 value.getSeason(),
                                 value.getDescription(),
                                 value.getMaterial())))
@@ -101,12 +105,12 @@ public class ProductService {
         if (productBySku.isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(new APIResponse("Товар із цим sku вже є"));
         } else if (ValidationRequest.isNullOrEmpty(request.getName()) ||
-                ValidationRequest.isNullOrEmpty(request.getBrand()) ||
+                request.getBrandId() == null ||
                 ValidationRequest.isNullOrEmpty(request.getGender()) ||
-                ValidationRequest.isNullOrEmpty(request.getCategory()) ||
+                request.getCategoryId() == null ||
                 request.getPrice() == null ||
                 request.getSizes() == null || request.getSizes().isEmpty() ||
-                ValidationRequest.isNullOrEmpty(request.getColor()) ||
+                request.getColorId() == null ||
                 ValidationRequest.isNullOrEmpty(request.getSeason()) ||
                 ValidationRequest.isNullOrEmpty(request.getDescription()) ||
                 ValidationRequest.isNullOrEmpty(request.getMaterial())) {
@@ -114,37 +118,34 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new APIResponse("Всі обов’язкові поля мають бути заповнені"));
         }
-        if (!"Lucky".equalsIgnoreCase(request.getBrand())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APIResponse("Бренд повинен бути 'Lucky'."));
-        } else if (!properties.getGenders().contains(request.getGender().toLowerCase())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APIResponse("Невалідне значення для gender. Дозволені: " + properties.getGenders()));
-        } else if (!properties.getColors().contains(request.getColor().toLowerCase())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APIResponse("Невалідне значення для color. Дозволені: " + properties.getColors()));
-        } else if (!properties.getCategories().contains(request.getCategory().toLowerCase())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APIResponse("Невалідне значення для category. Дозволені: " + properties.getCategories()));
-        } else if (request.getHasdiscount() &&
+
+        Brand brand = brandRepository.findById(request.getBrandId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid brand ID"));
+
+        Category category = categoryRepository.findById(request.getCategoryId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid category ID"));
+
+        Color color = colorRepository.findById(request.getColorId())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid color ID"));
+
+        if (request.getHasdiscount() &&
                 request.getPrice().compareTo(request.getOldPrice()) >= 0) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new APIResponse("Ціна зі знижкою повинна бути меншою за стару ціну."));
+            throw new IllegalArgumentException("Discounted price must be less than old price.");
         }
 
-        Product product = new Product();
+            Product product = new Product();
         product.setSku(request.getSku());
         product.setName(request.getName());
-        product.setBrand(request.getBrand());
+        product.setBrand(brand);
         product.setGender(request.getGender());
-        product.setCategory(request.getCategory());
+        product.setCategory(category);
         product.setPrice(request.getPrice());
         product.setOldPrice(request.getOldPrice());
         product.setHasdiscount(request.getHasdiscount());
         product.setNewCollection(request.getNewCollection());
         product.setTopSales(request.getTopSales());
         product.setSizes(request.getSizes());
-        product.setColor(request.getColor());
+        product.setColor(color);
         product.setSeason(request.getSeason());
         product.setDescription(request.getDescription());
         product.setMaterial(request.getMaterial());
@@ -159,16 +160,28 @@ public class ProductService {
 
         if (request.getSku() != null) product.get().setSku(request.getSku());
         if (request.getName() != null) product.get().setName(request.getName());
-        if (request.getBrand() != null) product.get().setBrand(request.getBrand());
+        if (request.getBrandId() != null) {
+            Brand brand = brandRepository.findById(request.getBrandId())
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid brand ID"));
+            product.get().setBrand(brand);
+        }
         if (request.getGender() != null) product.get().setGender(request.getGender());
-        if (request.getCategory() != null) product.get().setCategory(request.getCategory());
+        if (request.getCategoryId() != null) {
+            Category category = categoryRepository.findById(request.getCategoryId())
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid brand ID"));
+            product.get().setCategory(category);
+        }
         if (request.getPrice() != null) product.get().setPrice(request.getPrice());
         if (request.getOldPrice() != null) product.get().setOldPrice(request.getOldPrice());
         if (request.getHasdiscount() != null) product.get().setHasdiscount(request.getHasdiscount());
         if (request.getNewCollection() != null) product.get().setNewCollection(request.getNewCollection());
         if (request.getTopSales() != null) product.get().setTopSales(request.getTopSales());
         if (request.getSizes() != null) product.get().setSizes(request.getSizes());
-        if (request.getColor() != null) product.get().setColor(request.getColor());
+        if (request.getColorId() != null) {
+            Color color = colorRepository.findById(request.getColorId())
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid color ID"));
+            product.get().setColor(color);
+        }
         if (request.getSeason() != null) product.get().setSeason(request.getSeason());
         if (request.getDescription() != null) product.get().setDescription(request.getDescription());
         if (request.getMaterial() != null) product.get().setMaterial(request.getMaterial());

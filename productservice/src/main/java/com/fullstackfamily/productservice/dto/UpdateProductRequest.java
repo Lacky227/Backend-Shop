@@ -17,13 +17,13 @@ public class UpdateProductRequest {
     private String name;
 
     @Schema(description = "Бренд товару", example = "Lucky")
-    private String brand;
+    private Long brandId;
 
     @Schema(description = "Гендерна категорія", example = "man")
     private String gender;
 
     @Schema(description = "Категорія товару", example = "dresses")
-    private String category;
+    private Long categoryId;
 
     @Schema(description = "Ціна товару", example = "799.99")
     private BigDecimal price;
@@ -44,7 +44,7 @@ public class UpdateProductRequest {
     private Map<String, Integer> sizes;
 
     @Schema(description = "Колір товару", example = "чорний")
-    private String color;
+    private Long colorId;
 
     @Schema(description = "Сезонність", example = "spring_summer")
     private String season;

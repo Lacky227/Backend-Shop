@@ -28,17 +28,19 @@ public class Product {
     @Schema(description = "Product name", example = "Nike Air Max")
     private String name;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", nullable = false)
     @Schema(description = "Brand of the product", example = "Nike")
-    private String brand;
+    private Brand brand;
 
     @Column(nullable = false)
     @Schema(description = "Gender category", example = "Men")
     private String gender;
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
     @Schema(description = "Product category", example = "Shoes")
-    private String category;
+    private Category category;
 
     @Column(nullable = false)
     @Schema(description = "Current price of the product", example = "129.99")
@@ -71,9 +73,10 @@ public class Product {
     @Schema(description = "Available sizes and quantities")
     private Map<String, Integer> sizes = new HashMap<>();
 
-    @Column(nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", nullable = false)
     @Schema(description = "Color of the product", example = "Black")
-    private String color;
+    private Color color;
 
     @Column(nullable = false)
     @Schema(description = "Seasonal tag", example = "Winter")
