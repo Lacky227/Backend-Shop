@@ -12,17 +12,23 @@ import java.util.Optional;
 @Service
 public class CartService {
 
+    // Краще використовувати інжекцію через конструктор з Lombok (@RequiredArgsConstructor),
+    // замість поля з @Autowired — це більш безпечний і рекомендований підхід
     @Autowired
     private CartItemRepository cartItemRepository;
 
     public CartItem addOrUpdateItem(String userEmail, AddToCartRequest request) {
-        Optional<CartItem> existing = cartItemRepository.findByUserEmailAndSkuAndSize(userEmail, request.getSku(), request.getSize());
+        Optional<CartItem> existing = cartItemRepository
+                .findByUserEmailAndSkuAndSize(userEmail, request.getSku(), request.getSize());
+
+        // Логіку з Optional можна спростити, щоб уникнути зайвої перевірки .isPresent()
         if (existing.isPresent()) {
             CartItem item = existing.get();
             item.setQuantity(item.getQuantity() + request.getQuantity());
             return cartItemRepository.save(item);
         }
 
+        // Дублювання коду створення сутності — краще винести у приватний метод
         CartItem newItem = new CartItem();
         newItem.setEmail(userEmail);
         newItem.setSku(request.getSku());
@@ -37,6 +43,7 @@ public class CartService {
 
     public void deleteAllByEmailAndSku(String email, String sku) {
         List<CartItem> items = cartItemRepository.findAllByEmailAndSku(email, sku);
+        // Перед deleteAll() не обов’язково робити перевірку на порожній список
         if (!items.isEmpty()) {
             cartItemRepository.deleteAll(items);
         }

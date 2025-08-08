@@ -19,10 +19,10 @@ import java.util.Optional;
 @RequestMapping("/cart")
 public class CartController {
 
+    // Тут інжекцію можна спростити за допомогою Lombok @RequiredArgsConstructor
     private final CartService cartService;
     private final ProductService productService;
     private final JwtService jwtService;
-
 
     public CartController(CartService cartService, ProductService productService, JwtService jwtService) {
         this.cartService = cartService;
@@ -42,12 +42,14 @@ public class CartController {
 
         Optional<ProductResponse> productResponse = productService.findProductBySku(cartItem.getSku());
 
+        // Логіку з Optional можна спростити через orElseThrow або map
         if (productResponse.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
 
         ProductResponse product = productResponse.get();
 
+        // Формування ResponseEntity краще перенести у сервіс, щоб контролер був "тонким"
         CartItemResponse response = CartItemResponse.builder()
                 .sku(product.getSku())
                 .name(product.getName())
@@ -75,6 +77,7 @@ public class CartController {
         List<CartItemResponse> response = items.stream().map(cartItem -> {
             Optional<ProductResponse> productResponse = productService.findProductBySku(cartItem.getSku());
 
+            // Тут можна уніфікувати через APIResponse для кращої інтеграції з фронтом
             return productResponse.map(product -> CartItemResponse.builder()
                     .sku(product.getSku())
                     .name(product.getName())
