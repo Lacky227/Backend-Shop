@@ -88,12 +88,6 @@ services:
       SPRING_RABBITMQ_USERNAME: rabbituser
       SPRING_RABBITMQ_PASSWORD: rabbitpass
       SERVER_PORT: 8081
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.auth.rule=Host(`auth-retail.duckdns.org`)"
-      - "traefik.http.routers.auth.entrypoints=websecure"
-      - "traefik.http.routers.auth.tls.certresolver=myresolver"
-      - "traefik.http.services.auth.loadbalancer.server.port=8081"
     networks:
       - luckyshop-net
     restart: always
@@ -147,12 +141,6 @@ services:
       SPRING_RABBITMQ_USERNAME: rabbituser
       SPRING_RABBITMQ_PASSWORD: rabbitpass
       SERVER_PORT: 8083
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.notification.rule=Host(`notify-retail.duckdns.org`)"
-      - "traefik.http.routers.notification.entrypoints=websecure"
-      - "traefik.http.routers.notification.tls.certresolver=myresolver"
-      - "traefik.http.services.notification.loadbalancer.server.port=8083"
     networks:
       - "luckyshop-net"
     restart: always
@@ -176,12 +164,6 @@ services:
       CLOUDINARY_API_SECRET: RxCQD1JGeNZRoxxVDc6RbQtiXRA
       SPRINGDOC_SWAGGER_UI_URL: https://ps-retail.duckdns.org/v3/api-docs
       SERVER_PORT: 8082
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.product.rule=Host(`ps-retail.duckdns.org`)"
-      - "traefik.http.routers.product.entrypoints=websecure"
-      - "traefik.http.routers.product.tls.certresolver=myresolver"
-      - "traefik.http.services.product.loadbalancer.server.port=8082"
     networks:
       - "luckyshop-net"
     restart: always
