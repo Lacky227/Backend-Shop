@@ -14,11 +14,11 @@ public class ProductInfoRequest {
 
     private String name;
 
-    private String brand;
+    private Long brandId;
 
     private String gender;
 
-    private String category;
+    private Long categoryId;
 
     private BigDecimal price;
 
@@ -32,7 +32,7 @@ public class ProductInfoRequest {
 
     private Map<String, Integer> sizes;
 
-    private String color;
+    private Long colorId;
 
     private String season;
 
