@@ -11,7 +11,8 @@ import java.util.Optional;
 @Repository
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
-    Optional<CartItem> findByUserEmailAndSkuAndSize(String userEmail, String sku, String size);
+    Optional<CartItem> findByEmailAndSkuAndSize(String userEmail, String sku, String size);
     List<CartItem> findAllByEmail(String userEmail);
     List<CartItem> findAllByEmailAndSku(String email, String sku);
+    void deleteByEmailAndSku(String email, String sku);
 }
