@@ -24,9 +24,8 @@ public class GatewayConfig {
                 .route("product-service-protected", r -> r
                         .path("/api/files/save-image",
                                 "/api/product/create",
-                                "/api/product/update/{sku}",
                                 "/api/product/delete/{sku}",
-                                "/api/files/delete")
+                                "/api/product/update/{sku}")
                         .filters(f -> f.filter(jwtFilter))
                         .uri("http://product-service:8082/"))
                 .route("notification-service", r -> r
