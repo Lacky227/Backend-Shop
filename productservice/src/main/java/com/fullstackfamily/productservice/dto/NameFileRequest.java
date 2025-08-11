@@ -3,7 +3,6 @@ package com.fullstackfamily.productservice.dto;
 import lombok.Data;
 
 @Data
-public class DeleteImageRequest {
+public class NameFileRequest {
     private String fileName;
-    private String productSku;
 }
