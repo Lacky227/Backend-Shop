@@ -18,8 +18,14 @@ public class GatewayConfig {
                 .route("auth-service", r -> r
                         .path("/auth/**")
                         .uri("http://auth-service:8081/"))
+                .route("auth-swagger", r -> r
+                        .path("/docs/auth/**",
+                                "/auth/v3/api-docs/**",
+                                "/auth/swagger-ui/**")
+                        .uri("http://auth-service:8081/"))
+
                 .route("product-service-open", r -> r
-                        .path( "/api/product/**")
+                        .path("/api/product/**")
                         .uri("http://product-service:8082/"))
                 .route("product-service-protected", r -> r
                         .path("/api/files/save-image",
@@ -28,8 +34,19 @@ public class GatewayConfig {
                                 "/api/product/update/{sku}")
                         .filters(f -> f.filter(jwtFilter))
                         .uri("http://product-service:8082/"))
+                .route("product-swagger", r -> r
+                        .path("/docs/product/**",
+                                "/product/v3/api-docs/**",
+                                "/product/swagger-ui/**")
+                        .uri("http://product-service:8082/"))
+
                 .route("notification-service", r -> r
                         .path("/api/notification/**")
+                        .uri("http://notification-service:8083/"))
+                .route("notification-swagger", r -> r
+                        .path("/docs/notification/**",
+                                "/notification/v3/api-docs/**",
+                                "/notification/swagger-ui/**")
                         .uri("http://notification-service:8083/"))
                 .build();
     }
