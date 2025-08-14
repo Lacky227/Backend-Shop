@@ -164,11 +164,13 @@ services:
     container_name: product-service
     depends_on:
       - postgres
+      - mongodb
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/productdb
       SPRING_DATASOURCE_USERNAME: shopuser
       SPRING_DATASOURCE_PASSWORD: shoppass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATA_MONGODB: mongodb://mongo:27017/luckyshop-cart
       SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE: 10MB
       SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE: 10MB
       CLOUDINARY_CLOUD_NAME: dnc6uzrjr

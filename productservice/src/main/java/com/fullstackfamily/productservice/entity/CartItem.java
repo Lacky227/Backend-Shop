@@ -1,27 +1,25 @@
 package com.fullstackfamily.productservice.entity;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
+@Document(collection = "cart_items")
 @Data
-@Entity
-@Table(name = "cart_items")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class CartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String email;
-
     private String sku;
-
-    private int quantity;
-
     private String size;
-
-    private LocalDateTime createdAt = LocalDateTime.now();
-
+    private int quantity;
+    private LocalDateTime createdAt;
 }
