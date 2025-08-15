@@ -136,21 +136,21 @@ public class ProductService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new APIResponse("Товар не знайдено"));
         }
 
-        if (request.getSku() != null) product.get().setSku(request.getSku());
-        if (request.getName() != null) product.get().setName(request.getName());
-        if (request.getBrand() != null) product.get().setBrand(request.getBrand());
-        if (request.getGender() != null) product.get().setGender(request.getGender());
-        if (request.getCategory() != null) product.get().setCategory(request.getCategory());
+        if (request.getSku() != null && !request.getSku().isBlank()) product.get().setSku(request.getSku());
+        if (request.getName() != null && !request.getName().isBlank()) product.get().setName(request.getName());
+        if (request.getBrand() != null && !request.getBrand().isBlank()) product.get().setBrand(request.getBrand());
+        if (request.getGender() != null && !request.getGender().isBlank()) product.get().setGender(request.getGender());
+        if (request.getCategory() != null && !request.getCategory().isBlank()) product.get().setCategory(request.getCategory());
         if (request.getPrice() != null) product.get().setPrice(request.getPrice());
         if (request.getOldPrice() != null) product.get().setOldPrice(request.getOldPrice());
         if (request.getHasdiscount() != null) product.get().setHasdiscount(request.getHasdiscount());
         if (request.getNewCollection() != null) product.get().setNewCollection(request.getNewCollection());
         if (request.getTopSales() != null) product.get().setTopSales(request.getTopSales());
-        if (request.getSizes() != null) product.get().setSizes(request.getSizes());
-        if (request.getColor() != null) product.get().setColor(request.getColor());
-        if (request.getSeason() != null) product.get().setSeason(request.getSeason());
-        if (request.getDescription() != null) product.get().setDescription(request.getDescription());
-        if (request.getMaterial() != null) product.get().setMaterial(request.getMaterial());
+        if (request.getSizes() != null && !request.getSizes().isEmpty()) product.get().setSizes(request.getSizes());
+        if (request.getColor() != null && !request.getColor().isBlank()) product.get().setColor(request.getColor());
+        if (request.getSeason() != null && !request.getSeason().isBlank()) product.get().setSeason(request.getSeason());
+        if (request.getDescription() != null && !request.getDescription().isBlank()) product.get().setDescription(request.getDescription());
+        if (request.getMaterial() != null && !request.getMaterial().isBlank()) product.get().setMaterial(request.getMaterial());
 
         productRepository.save(product.get());
 
