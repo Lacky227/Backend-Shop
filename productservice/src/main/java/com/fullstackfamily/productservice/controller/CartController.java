@@ -78,6 +78,7 @@ public class CartController {
             @RequestBody UpdateCartItemRequest request,
             @RequestHeader("X-User-Email") String email) {
 
+        // TODO: Повернути повідомлення
         CartItemResponse response = cartService.updateItem(email, sku, request);
         return ResponseEntity.ok(response);
     }
@@ -97,6 +98,7 @@ public class CartController {
             @RequestHeader("X-User-Email") String email) {
 
         cartService.deleteAllByEmailAndSku(email, sku);
+        // TODO: Повернути повідомлення
         return ResponseEntity.noContent().build();
     }
 }

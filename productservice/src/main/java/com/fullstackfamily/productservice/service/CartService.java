@@ -47,6 +47,7 @@ public class CartService {
                 .toList();
     }
 
+    // TODO: Тільки один параметр обовязковий
     public CartItemResponse updateItem(String email, String sku, UpdateCartItemRequest request) {
         List<CartItem> itemsBySku = cartItemRepository.findAllByEmailAndSku(email, sku);
 
