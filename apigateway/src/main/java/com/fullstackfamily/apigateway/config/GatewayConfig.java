@@ -1,5 +1,6 @@
 package com.fullstackfamily.apigateway.config;
 
+import com.fullstackfamily.apigateway.filter.AdminFilter;
 import com.fullstackfamily.apigateway.filter.JwtFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.cloud.gateway.route.RouteLocator;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 public class GatewayConfig {
     private final JwtFilter jwtFilter;
+    private final AdminFilter adminFilter;
 
     @Bean
     RouteLocator routes(RouteLocatorBuilder builder) {
@@ -23,7 +25,9 @@ public class GatewayConfig {
                                 "/api/product/create",
                                 "/api/product/delete/**",
                                 "/api/product/update/**")
-                        .filters(f -> f.filter(jwtFilter))
+                        .filters(f -> f
+                                .filter(jwtFilter)
+                                .filter(adminFilter))
                         .uri("http://product-service:8082/"))
                 .route("product-service-open", r -> r
                         .path( "/api/product/**")
