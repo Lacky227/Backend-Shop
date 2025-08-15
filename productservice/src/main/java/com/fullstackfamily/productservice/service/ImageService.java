@@ -3,10 +3,8 @@ package com.fullstackfamily.productservice.service;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.fullstackfamily.productservice.dto.APIResponse;
-import com.fullstackfamily.productservice.dto.DeleteImageRequest;
 import com.fullstackfamily.productservice.entity.Images;
 import com.fullstackfamily.productservice.entity.Product;
-import com.fullstackfamily.productservice.parser.Parser;
 import com.fullstackfamily.productservice.repository.ImageRepository;
 import com.fullstackfamily.productservice.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -75,22 +73,5 @@ public class ImageService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new APIResponse("Помилка при завантаженні фото"));
         }
-    }
-
-    public ResponseEntity<APIResponse> deleteImage(DeleteImageRequest request) {
-        Optional<Images> image =  imageRepository.findByOriginalNameAndProduct_Sku(request.getFileName(), request.getProductSku());
-        if (image.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body(new APIResponse("Фото не знайдено або не належить продукту"));
-        }
-        String publicId = Parser.extractPublicIdFromUrl(image.get().getUrl());
-        try {
-            cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new APIResponse("Помилка при видаленні зображення з Cloudinary"));
-        }
-        imageRepository.delete(image.get());
-        return ResponseEntity.ok(new APIResponse("Фото успішно видалено"));
     }
 }
