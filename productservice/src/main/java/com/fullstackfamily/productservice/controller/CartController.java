@@ -36,12 +36,12 @@ public class CartController {
             @ApiResponse(responseCode = "500", description = "Помилка сервера", content = @Content)
     })
     @PostMapping
-    public ResponseEntity<CartItemResponse> addToCart(
+    public ResponseEntity<String> addToCart(
             @RequestHeader("X-User-Email") String email,
             @RequestBody AddToCartRequest request) {
 
         CartItemResponse response = cartService.addOrUpdateItem(email, request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok("Товар добавлено в кошик");
     }
 
     @Operation(
