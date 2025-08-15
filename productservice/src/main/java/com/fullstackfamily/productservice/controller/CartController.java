@@ -73,14 +73,13 @@ public class CartController {
             @ApiResponse(responseCode = "500", description = "Помилка сервера", content = @Content)
     })
     @PatchMapping("/{sku}")
-    public ResponseEntity<CartItemResponse> updateCartItem(
+    public ResponseEntity<String> updateCartItem(
             @PathVariable String sku,
             @RequestBody UpdateCartItemRequest request,
             @RequestHeader("X-User-Email") String email) {
 
-        // TODO: Повернути повідомлення
         CartItemResponse response = cartService.updateItem(email, sku, request);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok("Товар в кошику оновлено");
     }
 
     @Operation(
@@ -93,12 +92,12 @@ public class CartController {
             @ApiResponse(responseCode = "500", description = "Помилка сервера", content = @Content)
     })
     @DeleteMapping("/{sku}")
-    public ResponseEntity<Void> deleteItemBySku(
+    public ResponseEntity<String> deleteItemBySku(
             @PathVariable String sku,
             @RequestHeader("X-User-Email") String email) {
 
         cartService.deleteAllByEmailAndSku(email, sku);
-        // TODO: Повернути повідомлення
-        return ResponseEntity.noContent().build();
+
+        return ResponseEntity.ok("Товар видалено з кошика");
     }
 }
