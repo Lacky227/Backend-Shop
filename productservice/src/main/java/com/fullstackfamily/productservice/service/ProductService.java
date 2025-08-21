@@ -13,9 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,7 +57,7 @@ public class ProductService {
                         e.getNewCollection(),
                         e.getTopSales(),
                         e.getImage().stream().map(Images::getUrl).toList(),
-                        e.getSizes(),
+                        sortSizes(e.getSizes()),
                         e.getColor(),
                         e.getSeason(),
                         e.getDescription(),
@@ -83,7 +81,7 @@ public class ProductService {
                                 value.getNewCollection(),
                                 value.getTopSales(),
                                 value.getImage().stream().map(Images::getUrl).toList(),
-                                value.getSizes(),
+                                sortSizes(value.getSizes()),
                                 value.getColor(),
                                 value.getSeason(),
                                 value.getDescription(),
@@ -163,5 +161,19 @@ public class ProductService {
         }
         productRepository.delete(product.get());
         return ResponseEntity.status(HttpStatus.OK).body(new APIResponse("Товар видалено"));
+    }
+
+    private Map<String, Integer> sortSizes(Map<String, Integer> sizes) {
+        List<String> sizeOrder = List.of("XS", "S", "M", "L", "XL");
+
+        Map<String, Integer> formattedSizes = sizes.entrySet().stream()
+                .collect(Collectors.<Map.Entry<String, Integer>, String, Integer, LinkedHashMap<String, Integer>>toMap(
+                        entry -> entry.getKey().trim().toUpperCase(),
+                        Map.Entry::getValue, (v1, v2) -> v1, LinkedHashMap::new));
+
+        return sizeOrder.stream()
+                .filter(formattedSizes::containsKey)
+                .collect(Collectors.<String, String, Integer, LinkedHashMap<String, Integer>>toMap(
+                        size -> size, formattedSizes::get, (v1, v2) -> v1, LinkedHashMap::new));
     }
 }
